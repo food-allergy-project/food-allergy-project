@@ -16,14 +16,15 @@
     <li>profileActivationToken</li>
     <li>profileHash</li>
 </ul>
+
 <h2>Allergy</h2>
 <ul>
     <li>allergyId</li>
     <li>allergyName</li>
+    <li>FK:allergyProfileId</li>
 </ul>
 
 <h2>Recipe</h2>
-
 <ul>
     <li>PK:recipeId</li>
     <li>recipeTitle</li>
@@ -35,29 +36,33 @@
 
 <h2>RecipeCategory</h2>
 <ul>
-    <li>FK:recipeCategoryId</li>
-    <li>FK:recipeCategoryRecipeId</li>
+    <li>PK:recipeCategoryId</li>
+    <li>recipeCategoryRecipeId</li>
 </ul>
 
-<h2>SavedRecipe</h2>
+<h2>FavoritedRecipe</h2>
 <ul>
-    <li>FK:savedRecipeProfileId</li>
-    <li>FK:savedRecipeRecipeId</li>
-    <li>savedRecipeDate</li>
+    <li>FK:favoritedRecipeProfileId</li>
+    <li>FK:favoritedRecipeRecipeId</li>
+    <li>favoritedRecipeDate</li>
 </ul>
 
 <h2>Comment</h2>
 <ul>
-<li>PK:commentId</li>
-<li>FK:commentProfileId</li>
-<li>commentContent</li>
-<li>commentDate</li>
+    <li>PK:commentId</li>
+    <li>FK:commentProfileId</li>
+    <li>FK:commentRecipeId</li>
+    <li>commentContent</li>
+    <li>commentDate</li>
 </ul>
 
 <h2>Relationships</h2>
 <ul>
-    <li>Foreign Key <b>savedRecipeProfileId</b> points to primary key <b>profileId</b></li>
-    <li>Foreign Key <b></b></li>
+    <li>Foreign Key favoritedRecipeProfileId points to Primary Key profileId</li>
+    <li>Foreign Key favoritedRecipeRecipeId points to Primary Key recipeId</li>
+    <li>One profile can comment on many recipes</li>
+    <li>Many recipes can be favorited by many profiles</li>
+
 </ul>
 </body>
 </html>
