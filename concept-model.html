@@ -19,11 +19,14 @@
 
 <h2>Allergy</h2>
 <ul>
-    <li>allergyId</li>
+    <li>PK:allergyId</li>
     <li>allergyName</li>
-    <li>FK:allergyProfileId</li>
 </ul>
-
+<h2>AlleryProfile (Weak Entity)</h2>
+<ul>
+    <li>FK:alleryProfileAllergyId</li>
+    <li>FK:allergyProfileProfileId</li>
+</ul>
 <h2>Recipe</h2>
 <ul>
     <li>PK:recipeId</li>
@@ -32,12 +35,12 @@
     <li>recipeDate</li>
     <li>recipeImageUrl</li>
     <li>recipeImageAlt</li>
+    <li>recipeCategory</li>
 </ul>
-
-<h2>RecipeCategory</h2>
+<h2>AllergyRecipe (Weak Entity)</h2>
 <ul>
-    <li>FK:recipeCategoryId</li>
-    <li>FK:recipeCategoryRecipeId</li>
+    <li>FK:allergyRecipeAlleryId</li>
+    <li>FK:allergyRecipeRecipeId</li>
 </ul>
 
 <h2>FavoritedRecipe</h2>
@@ -62,11 +65,12 @@
     <li>Foreign Key favoritedRecipeRecipeId points to Primary Key recipeId</li>
     <li>Foreign Key commentProfileId points to Primary Key profileId</li>
     <li>Foreign Key commentRecipeId points to Primary Key recipeId</li>
-    <li>Foreign Key recipeCategoryId points to Primary Key recipeId</li>
-    <li>Foreign Key recipeCategoryRecipeId points Primary Key recipeId </li>
+    <li>Foreign Key allergyRecipeAlleryId points to Primary Key allergyId</li>
+    <li>Foreign Key allergyRecipeRecipeId points to Primary Key recipeId</li>
+    <li>Foreign Key alleryProfileAllergyId points to Primary Key allergyId</li>
+    <li>Foreign Key allergyProfileProfileId points to Primary Key profileId</li>
     <li>One profile can comment on many recipes</li>
     <li>Many recipes can be favorited by many profiles</li>
-
 </ul>
 </body>
 </html>
