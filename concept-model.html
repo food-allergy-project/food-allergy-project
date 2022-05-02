@@ -36,8 +36,8 @@
 
 <h2>RecipeCategory</h2>
 <ul>
-    <li>PK:recipeCategoryId</li>
-    <li>recipeCategoryRecipeId</li>
+    <li>FK:recipeCategoryId</li>
+    <li>FK:recipeCategoryRecipeId</li>
 </ul>
 
 <h2>FavoritedRecipe</h2>
@@ -60,6 +60,10 @@
 <ul>
     <li>Foreign Key favoritedRecipeProfileId points to Primary Key profileId</li>
     <li>Foreign Key favoritedRecipeRecipeId points to Primary Key recipeId</li>
+    <li>Foreign Key commentProfileId points to Primary Key profileId</li>
+    <li>Foreign Key commentRecipeId points to Primary Key recipeId</li>
+    <li>Foreign Key recipeCategoryId points to Primary Key recipeId</li>
+    <li>Foreign Key recipeCategoryRecipeId points Primary Key recipeId </li>
     <li>One profile can comment on many recipes</li>
     <li>Many recipes can be favorited by many profiles</li>
 
