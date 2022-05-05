@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Allergic Foodie: Conceptual Model</title>
+</head>
+
+<body>
+
+<h2>Profile</h2>
+<ul>
+    <li>PK:profileId</li>
+    <li>profileFirstName</li>
+    <li>profileLastName</li>
+    <li>profileEmail</li>
+    <li>profileActivationToken</li>
+    <li>profileHash</li>
+</ul>
+
+<h2>Ingredient</h2>
+<ul>
+    <li>PK:ingredientId</li>
+    <li>ingredientName</li>
+</ul>
+<h2>Allergy (Weak Entity)</h2>
+<ul>
+    <li>FK:allergyIngredientId</li>
+    <li>FK:allergyProfileId</li>
+</ul>
+<h2>Recipe</h2>
+<ul>
+    <li>PK:recipeId</li>
+    <li>recipeTitle</li>
+    <li>recipeDate</li>
+    <li>recipeImageUrl</li>
+    <li>recipeImageAlt</li>
+    <li>recipeCategory</li>
+</ul>
+<h2>IngredientRecipe (Weak Entity)</h2>
+<ul>
+    <li>FK:ingredientRecipeIngredientId</li>
+    <li>FK:ingredientRecipeRecipeId</li>
+</ul>
+
+<h2>FavoritedRecipe</h2>
+<ul>
+    <li>FK:favoritedRecipeProfileId</li>
+    <li>FK:favoritedRecipeRecipeId</li>
+    <li>favoritedRecipeDate</li>
+</ul>
+
+<h2>Comment</h2>
+<ul>
+    <li>PK:commentId</li>
+    <li>FK:commentProfileId</li>
+    <li>FK:commentRecipeId</li>
+    <li>commentContent</li>
+    <li>commentDate</li>
+</ul>
+
+<h2>Relationships</h2>
+<ul>
+    <li>Foreign Key favoritedRecipeProfileId points to Primary Key profileId</li>
+    <li>Foreign Key favoritedRecipeRecipeId points to Primary Key recipeId</li>
+    <li>Foreign Key commentProfileId points to Primary Key profileId</li>
+    <li>Foreign Key commentRecipeId points to Primary Key recipeId</li>
+    <li>Foreign Key ingredientRecipeIngredientId points to Primary Key ingredientId</li>
+    <li>Foreign Key ingredientRecipeRecipeId points to Primary Key recipeId</li>
+    <li>Foreign Key allergyId points to Primary Key allergyIngredientId</li>
+    <li>Foreign Key allergyProfileId points to Primary Key profileId</li>
+    <li>One profile can comment on many recipes</li>
+    <li>Many recipes can be favorited by many profiles</li>
+</ul>
+<h2>ERD</h2>
+<img src="ERD.png" alt="ERDdiagram">
+</body>
+</html>
