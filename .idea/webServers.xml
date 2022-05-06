@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="98869405-318c-40e1-99bd-fdbf93d2c4af" name="food-allergy-project" url="https://ddc-web-student.cnm.edu/~smoya30/food-allergy-project/">
-        <fileTransfer rootFolder="/home/smoya30/public_html/food-allergy-project" accessType="SFTP" host="ddc-web-student.cnm.edu" port="22" sshConfigId="d6fb3fb6-f4fd-46a8-9475-e7e7405bfa39" sshConfig="smoya30@ddc-web-student.cnm.edu:22 agent" authAgent="true">
+      <webServer id="98869405-318c-40e1-99bd-fdbf93d2c4af" name="food-allergy-project (project level)" url="https://ddc-web-student.cnm.edu/~smoya30/food-allergy-project/">
+        <fileTransfer rootFolder="/home/smoya30/public_html/food-allergy-project" accessType="SFTP" sshConfigId="d6fb3fb6-f4fd-46a8-9475-e7e7405bfa39" sshConfig="smoya30@ddc-web-student.cnm.edu:22 agent">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
