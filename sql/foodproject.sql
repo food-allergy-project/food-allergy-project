@@ -3,6 +3,7 @@
 -- this is akin to reformatting and reinstalling Windows (OS X never needs a reinstall...) ;)
 -- never ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever
 -- do this on live data!!!!
+
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS favoritedRecipes;
 DROP TABLE IF EXISTS recipeAllergy;
