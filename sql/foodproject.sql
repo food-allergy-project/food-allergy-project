@@ -3,66 +3,87 @@
 -- this is akin to reformatting and reinstalling Windows (OS X never needs a reinstall...) ;)
 -- never ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever
 -- do this on live data!!!!
-DROP TABLE IF EXISTS `like`;
-DROP TABLE IF EXISTS image;
-DROP TABLE IF EXISTS tweet;
-DROP TABLE IF EXISTS `profile`;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS favoritedRecipes;
+DROP TABLE IF EXISTS recipeAllergy;
+DROP TABLE IF EXISTS recipe;
+DROP TABLE IF EXISTS profileAllergy;
+DROP TABLE IF EXISTS allergy;
+DROP TABLE IF EXISTS profile;
 
 CREATE TABLE profile (
-    -- this creates the attribute for the primary key
-    -- auto_increment tells mySQL to number them {1, 2, 3, ...}
-    -- not null means the attribute is required!
-                         profileId BINARY(16) NOT NULL,
-                         profileActivationToken CHAR(32),
-                         profileAtHandle VARCHAR(32) NOT NULL UNIQUE,
-                         profileAvatarUrl  VARCHAR(255),
-    -- to make sure duplicate data cannot exist, create a unique index
-                         profileEmail VARCHAR(128) NOT NULL,
-    -- to make something optional, exclude the not null
-                         profileHash CHAR(97) NOT NULL,
-                         profilePhone VARCHAR(32),
-                         UNIQUE(profileEmail),
-                         UNIQUE(profileAtHandle),
-    -- this officiates the primary key for the entity
-                         PRIMARY KEY(profileId)
+    profileId              BINARY(16)   NOT NULL,
+    profileFullName        VARCHAR(64)  NOT NULL,
+    profileEmail           VARCHAR(320) NOT NULL,
+    profileActivationToken NCHAR(255),
+    profileHash            CHAR(97)     NOT NULL,
+    UNIQUE (profileEmail),
+    PRIMARY KEY (profileId)
 );
--- create the tweet entity
-CREATE TABLE tweet (
-    -- this is for yet another primary key...
-                       tweetId BINARY(16) NOT NULL,
-    -- this is for a foreign key; auto_incremented is omitted by design
-                       tweetProfileId BINARY(16) NOT NULL,
-                       tweetContent VARCHAR(140) NOT NULL,
-    -- notice dates don't need a size parameter
-                       tweetDate DATETIME(6) NOT NULL,
-    -- this creates an index before making a foreign key
-                       INDEX(tweetProfileId),
-    -- this creates the actual foreign key relation
-                       FOREIGN KEY(tweetProfileId) REFERENCES profile(profileId),
-    -- and finally create the primary key
-                       PRIMARY KEY(tweetId)
+
+CREATE TABLE allergy (
+    allergyId       BINARY(16)  NOT NULL,
+    allergyImage    LONGBLOB    NOT NULL,
+    allergyImageAlt VARCHAR(32),
+    allergyName     VARCHAR(32) NOT NULL,
+    INDEX (allergyId),
+    PRIMARY KEY (allergyId)
+
 );
--- create the tweetImage entity
-CREATE TABLE image (
-                       imageId BINARY(16) NOT NULL,
-                       imageTweetId BINARY(16) NOT NULL,
-                       imageCloudinaryToken VARCHAR(255) NOT NULL,
-                       imageUrl VARCHAR(128) NOT NULL ,
-                       INDEX(imageId),
-                       INDEX(imageTweetId),
-                       FOREIGN KEY(imageTweetId) REFERENCES tweet(tweetId),
-                       PRIMARY KEY (imageId)
+
+CREATE TABLE profileAllergy (
+    profileAllergyAllergyId BINARY(16) NOT NULL,
+    profileAllergyProfileId BINARY(16) NOT NULL,
+    INDEX (profileAllergyAllergyId, profileAllergyProfileId),
+    FOREIGN KEY (profileAllergyAllergyId) references allergy (allergyId),
+    FOREIGN KEY (profileAllergyProfileId) references profile (profileId),
+    PRIMARY KEY (profileAllergyAllergyId, profileAllergyProfileId)
+
 );
--- create the like entity (a weak entity from an m-to-n for profile --> tweet)
-CREATE TABLE `like` (
-    -- these are not auto_increment because they're still foreign keys
-                        likeTweetId BINARY(16) NOT NULL,
-                        likeProfileId BINARY(16) NOT NULL,
-                        likeDate DATETIME(6) NOT NULL,	-- index the foreign keys
-                        INDEX(likeProfileId),
-                        INDEX(likeTweetId),
-    -- create the foreign key relations
-                        FOREIGN KEY(likeTweetId) REFERENCES tweet(tweetId),
-                        FOREIGN KEY(likeProfileId) REFERENCES profile(profileId),
-    -- finally, create a composite foreign key with the two foreign keys
-                        PRIMARY KEY(likeProfileId, likeTweetId)
+
+CREATE TABLE recipe (
+    recipeId           BINARY(16)    NOT NULL,
+    recipeProfileId    BINARY(16)    NOT NULL,
+    recipeCategory     VARCHAR(16)   NOT NULL,
+    recipeDate         DATE,
+    recipeIngredients  VARCHAR(2500) NOT NULL,
+    recipeImage        LONGBLOB      NOT NULL,
+    recipeImageAlt     VARCHAR(32),
+    recipeInstructions BLOB          NOT NULL,
+    recipeTitle        VARCHAR(32)   NOT NULL,
+    INDEX (recipeId, recipeProfileId, recipeCategory),
+    PRIMARY KEY (recipeId)
+);
+
+CREATE TABLE recipeAllergy (
+    recipeAllergyRecipeId BINARY (16) NOT NULL,
+    profileAllergyProfileId BINARY (16) NOT NULL,
+    INDEX (recipeAllergyRecipeId, profileAllergyProfileId),
+    FOREIGN KEY (recipeAllergyRecipeId) references recipe (recipeId),
+    FOREIGN KEY (profileAllergyProfileId) references profile (profileId),
+    PRIMARY KEY (recipeAllergyRecipeId,profileAllergyProfileId)
+
+);
+
+CREATE TABLE favoritedRecipes (
+    favoritedRecipeProfileId BINARY (16) NOT NULL,
+    favoritedRecipeRecipeId BINARY (16) NOT NULL,
+    INDEX (favoritedRecipeProfileId, favoritedRecipeRecipeId),
+    FOREIGN KEY (favoritedRecipeProfileId) references profile (profileId),
+    FOREIGN KEY (favoritedRecipeRecipeId) references recipe (recipeId),
+    PRIMARY KEY (favoritedRecipeProfileId, favoritedRecipeRecipeId)
+
+);
+
+CREATE TABLE comment (
+    commentId BINARY (16) NOT NULL,
+    commentProfileId BINARY (16) NOT NULL,
+    commentRecipeId BINARY (16) NOT NULL,
+    commentContent VARCHAR(250) NOT NULL,
+    commentDate DATETIME,
+    INDEX (commentId, commentProfileId, commentRecipeId),
+    FOREIGN KEY (commentProfileId) references profile (profileId),
+    FOREIGN KEY (commentRecipeId) references recipe (recipeId),
+    PRIMARY KEY (commentId)
+
+);
