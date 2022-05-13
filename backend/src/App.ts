@@ -1,7 +1,10 @@
-import express, { Application } from 'express'
-import morgan from 'morgan'
+import express, { Application, Errback, ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import SignupRoute from './apis/sign-up/signup.route';
+import morgan from 'morgan';
+
 // Routes
-import { indexRoute } from './apis/index.route'
+import { indexRoute } from './apis/index.routes';
+
 
 // The following class creates the app and instantiates the server
 export class App {
@@ -31,6 +34,7 @@ export class App {
     private routes () :void {
         // TODO add "/apis"
         this.app.use('/apis', indexRoute)
+        this.app.use('/apis',SignupRoute)
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
