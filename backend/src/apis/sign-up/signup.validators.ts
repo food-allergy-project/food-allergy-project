@@ -1,18 +1,12 @@
 import {Schema} from 'express-validator';
 
 export const signupValidator: Schema= {
-    profileAtHandle: {
+    profileFullName: {
         escape: true,
         trim: true,
         isLength: {
-            errorMessage: 'profileAtHandle must be between seven and thirty two characters',
+            errorMessage: 'Please enter your full name',
             options: {min:1, max: 32 }
-        }
-    },
-    profileAvatarUrl: {
-        optional: true,
-        isURL: {
-            errorMessage: "profile avatar is malformed please upload a new image"
         }
     },
     profileEmail: {
@@ -39,14 +33,4 @@ export const signupValidator: Schema= {
         trim: true,
         escape: true
     },
-    profilePhone: {
-        isMobilePhone: {
-            errorMessage: "please provide a valid mobile phone number"
-        },
-        optional: {
-            options: {
-                nullable: true
-            }
-        }
-    }
 };
