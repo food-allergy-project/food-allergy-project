@@ -18,25 +18,20 @@ export async function signInController(request: Request, response: Response): Pr
             const {profilePassword} = request.body;
 
             // @ts-ignore isEmailValid determines mySqlResult will not be null
-            const {profileId, profileAtHandle, profileAvatarUrl, profilePhone, profileHash, profileActivationToken} = mySqlResult
+            const {profileId,profileHash, profileActivationToken, profileFullName} = mySqlResult
 
             const profile: Profile = {
                 profileId,
-                profileAtHandle,
-                profileAvatarUrl,
                 profileEmail,
-                profilePhone,
                 profileHash,
-                profileActivationToken
-            }
+                profileActivationToken,
+                profileFullName,
+            };
 
             const signature: string = uuid();
             const authorization: string = generateJwt({
                 profileId,
-                profileAtHandle,
-                profileAvatarUrl,
                 profileEmail,
-                profilePhone
             }, signature);
 
             const signInFailed = (message: string) => response.json({
