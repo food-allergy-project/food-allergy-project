@@ -1,11 +1,11 @@
 import { App } from './App';
 import {Profile} from './utils/interfaces/Profile';
-
+import 'express-session'
 
 
 declare module 'express-session' {
     export interface SessionData {
-        profile: Profile|undefined;
+       profile: Profile|undefined;
         signature: string|undefined;
         jwt: string|undefined
     }
