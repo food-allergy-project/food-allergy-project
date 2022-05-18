@@ -4,7 +4,7 @@ import morgan from 'morgan';
 
 // Routes
 import { indexRoute } from './apis/index.routes';
-import {SignInRouter} from "./apis/sign-in/sign-in.route";
+import {SignInRouter} from './apis/sign-in/sign-in.route';
 
 
 // The following class creates the app and instantiates the server
