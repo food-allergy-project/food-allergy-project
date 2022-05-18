@@ -1,5 +1,4 @@
 import {Request, Response} from 'express';
-// DB
 import {setActivationToken, setHash} from '../../utils/auth.utils';
 import {Profile} from '../../utils/interfaces/Profile';
 import {Status} from '../../utils/interfaces/Status';
@@ -21,18 +20,18 @@ export async function signupProfileController(request: Request, response: Respon
         const {profileFullName, profileEmail, profilePassword} = request.body;
         const profileHash = await setHash(profilePassword);
         const profileActivationToken = setActivationToken();
-        const basePath = `${request.protocol}://${request.get('host')}${request.originalUrl}activation/${profileActivationToken}`
+        const basePath = `${request.protocol}://${request.get('host')}${request.originalUrl}/activation/${profileActivationToken}`
         console.log(profileActivationToken)
 
-        const message = `<h2>Welcome to DDCTwitter.</h2>
-<p>In order to start posting tweets of cats you must confirm your account </p>
-<p><a href="${basePath}">${basePath}</a></p>
+        const message = `<h2>Welcome to Allergic Foodies.</h2>
+        <p>Please confirm your account. </p>
+        <p><a href="${basePath}">${basePath}</a></p>
 `
 
         const mailgunMessage = {
             from: `Mailgun Sandbox <postmaster@${process.env.MAILGUN_DOMAIN}>`,
             to: profileEmail,
-            subject: 'One step closer to Sticky Head -- Account Activation',
+            subject: 'One Step Closer to Yummy Recipes -- Account Activation',
             html: message
         }
 
@@ -44,6 +43,7 @@ export async function signupProfileController(request: Request, response: Respon
             profileEmail,
             profileHash,
         };
+
         await insertProfile(profile)
 
         await mailgunClient.messages.create(<string>process.env.MAILGUN_DOMAIN, mailgunMessage)
@@ -57,7 +57,7 @@ export async function signupProfileController(request: Request, response: Respon
         return response.json(status)
 
     } catch (error: any) {
-
+    console.error(error)
         const status: Status = {
             status: 500,
             message: error.message,
