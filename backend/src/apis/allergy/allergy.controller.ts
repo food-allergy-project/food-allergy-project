@@ -1,13 +1,13 @@
 import {Request, Response} from 'express'
-import { insertAllergy } from '../../../utils/allergy/insertAllergy'
-import { selectAllergyByAllergyId } from '../../../utils/tag/selectAllergyByAllergyId'
 import {Allergy} from "../../utils/interfaces/Allergy";
+import {insertAllergy} from "../../utils/allergy/insertAllergy";
+import {selectAllergyByAllergyId} from "../../utils/allergy/selectAllergyByAllergyId";
 
 export async function postAllergyController(request: Request, response: Response) : Promise<Response> {
     try {
-        // const tagName = request.body.tagName
-        const {allergyName} = request.body
-        const allergy : Allergy = {allergyId:null, allergyName}
+        const {allergyId} = request.params
+        const {allergyImage, allergyImageAlt, allergyName} = request.body
+        const allergy : Allergy = {allergyId:null, allergyImage, allergyImageAlt, allergyName}
         const message = await insertAllergy(allergy)
         return response.json({status:200, data: null, message})
 

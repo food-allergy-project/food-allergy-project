@@ -1,4 +1,6 @@
 export interface Allergy {
     allergyId: null|string
-    allergyName: string
+    allergyName: null|string
+    allergyImage: string
+    allergyImageAlt: string
 }

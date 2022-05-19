@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import { indexRoute } from './apis/index.routes';
 import {SignInRouter} from './apis/sign-in/sign-in.route';
 import { ProfileRoute } from './apis/profile/profile.route';
+import {allergyRoute} from "./apis/allergy/allergy.route";
 
 
 // The following class creates the app and instantiates the server
@@ -39,6 +40,7 @@ export class App {
         this.app.use('/apis/sign-up',SignupRoute)
         this.app.use('/apis/sign-in', SignInRouter);
         this.app.use('/apis/profile', ProfileRoute);
+        this.app.use('/apis/allergy',allergyRoute);
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
