@@ -1,4 +1,3 @@
-
 import {Profile} from "../interfaces/Profile";
 import {connect} from "../database.utils";
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
