@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import { indexRoute } from './apis/index.routes';
 import {SignInRouter} from './apis/sign-in/sign-in.route';
 import { ProfileRoute } from './apis/profile/profile.route';
+import session, { MemoryStore } from 'express-session';
 
 
 // The following class creates the app and instantiates the server
@@ -27,9 +28,20 @@ export class App {
     }
 
     // private method to setting up the middleware to handle json responses, one for dev and one for prod
-    private middlewares () :void {
+    private middlewares (): void {
+        const sessionConfig = {
+            store: new MemoryStore({
+                checkPeriod: 100800
+            }),
+            secret: 'secret',
+            saveUninitialized: true,
+            resave: true,
+            maxAge: '3h'
+        }
+
         this.app.use(morgan('dev'))
         this.app.use(express.json())
+        this.app.use(session(sessionConfig))
     }
 
     // private method for setting up routes in their basic sense (ie. any route that performs an action on profiles starts with /profiles)
