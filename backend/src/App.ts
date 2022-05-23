@@ -6,7 +6,8 @@ import morgan from 'morgan';
 import { indexRoute } from './apis/index.routes';
 import {SignInRouter} from './apis/sign-in/sign-in.route';
 import { ProfileRoute } from './apis/profile/profile.route';
-import session, { MemoryStore } from 'express-session';
+import session from 'express-session';
+const MemoryStore = require('memorystore')(session);
 
 
 // The following class creates the app and instantiates the server
