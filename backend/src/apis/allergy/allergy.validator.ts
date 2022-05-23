@@ -7,15 +7,6 @@ export const allergyValidator: Schema = {
         }
 
     },
-    allergyName: {
-        escape: true,
-        trim: true,
-        isLength: {
-            errorMessage: 'allergy name must be between 1-10 characters',
-            options: {min: 1, max: 10}
-        }
-
-    },
     allergyImage: {
         optional: {
             options: {
@@ -33,5 +24,14 @@ export const allergyValidator: Schema = {
             errorMessage: 'Image Alt must be between 1-10 characters',
             options: {min: 1, max: 10}
         }
+    },
+    allergyName: {
+        escape: true,
+        trim: true,
+        isLength: {
+            errorMessage: 'allergy name must be between 1-10 characters',
+            options: {min: 1, max: 10}
+        }
+
     }
 }

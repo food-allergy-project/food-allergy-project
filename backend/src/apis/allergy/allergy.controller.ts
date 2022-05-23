@@ -2,6 +2,8 @@ import {Request, Response} from 'express'
 import {Allergy} from "../../utils/interfaces/Allergy";
 import {insertAllergy} from "../../utils/allergy/insertAllergy";
 import {selectAllergyByAllergyId} from "../../utils/allergy/selectAllergyByAllergyId";
+import {Status} from "../../utils/interfaces/Status";
+import {selectAllAllergies} from "../../utils/allergy/selectAllAllergies";
 
 export async function postAllergyController(request: Request, response: Response) : Promise<Response> {
     try {
@@ -25,5 +27,17 @@ export async function getAllergyByAllergyIdController(request: Request, response
     } catch (error) {
         console.error(error)
         return response.json({status:500, data: null, message: 'internal server error please try again.'})
+    }
+}
+
+export async function getAllAllergyControllers(request: Request, response: Response) : Promise<Response> {
+    try {
+        const mySqlResult = await selectAllAllergies();
+        const data = mySqlResult ?? null
+        const status: Status = {status: 200, data, message: null}
+        return response.json(status)
+
+    } catch (error: any) {
+        return(response.json({status: 400, data: null, message: error.message}))
     }
 }

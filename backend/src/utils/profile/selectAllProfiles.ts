@@ -1,4 +1,3 @@
-import { Status } from '../interfaces/Status'
 import { connect} from '../../../src/database'
 import { RowDataPacket } from 'mysql2/promise'
 import { Profile } from '../interfaces/Profile'

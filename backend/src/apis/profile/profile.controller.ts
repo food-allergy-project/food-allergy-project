@@ -28,7 +28,7 @@ export async function putProfileController(request: Request, response: Response)
 
         return profileId === profileIdFromSession
             ? preformUpdate({profileId, profileEmail, profileFullName, profileHash})
-            : updateFailed("you are not allowed to preform this action")
+            : updateFailed("you are not allowed to perform this action")
     } catch (error: any) {
         return response.json( {status:400, data: null, message: error.message})
     }

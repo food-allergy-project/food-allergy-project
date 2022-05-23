@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { getAllergyByAllergyIdController, postAllergyController } from './allergy.controller'
+import {getAllAllergyControllers, getAllergyByAllergyIdController, postAllergyController} from './allergy.controller'
 import { allergyValidator } from './allergy.validator'
 import { check, checkSchema } from 'express-validator'
 import {asyncValidatorController} from "../../utils/controllers/async-validator.controller";
@@ -10,7 +10,11 @@ export const allergyRoute = Router()
 allergyRoute.route("/").post(
     asyncValidatorController(checkSchema(allergyValidator)),
     postAllergyController
+
 )
+// get all allergies
+allergyRoute.route("/").get(
+        getAllAllergyControllers)
 // get allergy by ID (primary key)
 
 allergyRoute.route("/:allergyId").get(
@@ -18,10 +22,3 @@ allergyRoute.route("/:allergyId").get(
     getAllergyByAllergyIdController
 )
 
-// get allergy by foreign key
-
-// get all allergies
-
-// delete allergy
-
-// put allergy (edit)
