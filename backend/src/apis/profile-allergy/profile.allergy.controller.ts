@@ -3,8 +3,7 @@ import { Profile } from "../../utils/interfaces/Profile";
 import {ProfileAllergy} from "../../utils/interfaces/ProfileAllergy";
 import {Status} from "../../utils/interfaces/Status";
 import { insertProfileAllergy } from "../../utils/profile-allergy/insert-profile-allery";
-import {selectProfileAllergyByPrimarykey} from "../../utils/profile-allergy/selectProfileAllergyByPrimarykey"
-import {selectPartialProfileAllergtByProfileAllergyProfileId} from "../../utils/profile-allergy/selectPartialProfileAllergyByProfileAllergyProfileId"
+import {selectProfileAllergyByPrimaryKey} from "../../utils/profile-allergy/selectProfileAllergyByPrimaryKey"
 
 //post ProfileAllergy
 
@@ -30,7 +29,7 @@ export async function getProfileAllergyByPrimaryKey(request: Request, response: 
         const {profileAllergyAllergyId} = request.params;
         const profile = request.session.profile as Profile
         const profileAllergyProfileId = profile.profileId as string
-        const mySqlResult = await selectProfileAllergyByPrimarykey(profileAllergyAllergyId, profileAllergyProfileId);
+        const mySqlResult = await selectProfileAllergyByPrimaryKey(profileAllergyAllergyId, profileAllergyProfileId);
         const data = mySqlResult ?? null
         const status: Status = {status: 200, data, message: null}
         return response.json(status)
@@ -46,7 +45,7 @@ export async function deleteProfileAllergy(request: Request, response: Response)
         const {profileAllergyAllergyId} = request.params;
         const profile = request.session.profile as Profile
         const profileAllergyProfileId = profile.profileId as string
-        const mySqlResult = await selectProfileAllergyByPrimarykey(profileAllergyAllergyId, profileAllergyProfileId);
+        const mySqlResult = await selectProfileAllergyByPrimaryKey(profileAllergyAllergyId, profileAllergyProfileId);
         const data = mySqlResult ?? null
         const status: Status = {status: 200, data, message: null}
         return response.json(status)
@@ -59,10 +58,11 @@ export async function deleteProfileAllergy(request: Request, response: Response)
 
 
 // get profileAllergyProfileId
-export async function getprofileAllergyProfileId(request: Request, response: Response) : Promise<Response> {
+
+/*export async function getprofileAllergyProfileId(request: Request, response: Response) : Promise<Response> {
     try {
         const {profileAllergyProfileId} = request.params;
-        const mySqlResult = await selectPartialProfileAllergtByProfileAllergyProfileId(profileAllergyProfileId);
+        const mySqlResult = await selectProfileAllergyByPrimaryKey(profileAllergyProfileId);
         const data = mySqlResult ?? null
         const status: Status = {status: 200, data, message: null}
         return response.json(status)
@@ -70,6 +70,6 @@ export async function getprofileAllergyProfileId(request: Request, response: Res
     } catch (error: any) {
         return(response.json({status: 400, data: null, message: error.message}))
     }
-}
+}*/
 
 

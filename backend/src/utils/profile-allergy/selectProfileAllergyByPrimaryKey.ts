@@ -3,7 +3,7 @@ import {PartialProfileAllergy, ProfileAllergy} from '../interfaces/ProfileAllerg
 import {RowDataPacket} from 'mysql2';
 
 
-export async function selectProfileAllergyByPrimarykey(profileAllergyAllergyId: string, profileAllergyProfileId: string) : Promise< ProfileAllergy| null> {
+export async function selectProfileAllergyByPrimaryKey(profileAllergyAllergyId: string, profileAllergyProfileId: string) : Promise< ProfileAllergy| null> {
     try {
         const mysqlConnection = await connect();
         const mysqlQuery : string = "SELECT BIN_TO_UUID(profileAllergyAllergyId) as profileAllergyAllergyId, BIN_TO_UUID(profileAllergyProfileId) as profileAllergyProfileId FROM profileAllergy WHERE profileAllergyAllergyId = UUID_TO_BIN(:profileAllergyAllergyId) and profileAllergyProfileId = UUID_TO_BIN(:profileAllergyProfileId)"
