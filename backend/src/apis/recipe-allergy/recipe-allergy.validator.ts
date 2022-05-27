@@ -7,7 +7,7 @@ export const recipeAllergyValidator : Schema = {
         }
     },
 
-    profileAllergyProfileId: {
+    recipeAllergyProfileId: {
         isUUID: {
             errorMessage: 'please provide a valid ProfileAllergyProfileId'
         }

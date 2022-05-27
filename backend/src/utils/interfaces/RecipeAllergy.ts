@@ -1,4 +1,4 @@
 export interface RecipeAllergy {
     recipeAllergyRecipeId : string|null,
-    profileAllergyProfileId : string|null,
+    recipeAllergyProfileId : string|null,
 }

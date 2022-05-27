@@ -58,11 +58,11 @@ CREATE TABLE recipe (
 
 CREATE TABLE recipeAllergy (
     recipeAllergyRecipeId BINARY (16) NOT NULL,
-    profileAllergyProfileId BINARY (16) NOT NULL,
-    INDEX (recipeAllergyRecipeId, profileAllergyProfileId),
+    recipeAllergyProfileId BINARY (16) NOT NULL,
+    INDEX (recipeAllergyRecipeId, recipeAllergyProfileId),
     FOREIGN KEY (recipeAllergyRecipeId) references recipe (recipeId),
-    FOREIGN KEY (profileAllergyProfileId) references profile (profileId),
-    PRIMARY KEY (recipeAllergyRecipeId,profileAllergyProfileId)
+    FOREIGN KEY (recipeAllergyProfileId) references profile (profileId),
+    PRIMARY KEY (recipeAllergyRecipeId,recipeAllergyProfileId)
 
 );
 

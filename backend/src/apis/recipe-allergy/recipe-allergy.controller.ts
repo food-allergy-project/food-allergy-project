@@ -11,12 +11,12 @@ export async function postRecipeAllergyController (request: Request, response: R
     try {
         const {recipeAllergyRecipeId} = request.body
         const profile = request.session.profile as Profile
-        const profileAllergyProfileId = profile.profileId as string
+        const recipeAllergyProfileId = profile.profileId as string
 
-        const recipeAllergy : RecipeAllergy = {recipeAllergyRecipeId, profileAllergyProfileId}
+        const recipeAllergy : RecipeAllergy = {recipeAllergyRecipeId, recipeAllergyProfileId}
 
         const message = await insertRecipeAllergy(recipeAllergy)
-        return response.json({status: 200, data: null, message: ''})
+        return response.json({status: 200, data: null, message: "Successfully Insert"})
 
     } catch (e) {
         console.error(e)
