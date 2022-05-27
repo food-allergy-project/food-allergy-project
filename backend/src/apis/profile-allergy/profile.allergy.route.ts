@@ -3,7 +3,11 @@ import {asyncValidatorController} from "../../utils/controllers/async-validator.
 import {check, checkSchema} from "express-validator";
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import {profileAllergyValidator} from "./profile.allergy.validator";
-import {getProfileAllergyByPrimaryKey, postProfileAllergyController, deleteProfileAllergy} from "./profile.allergy.controller";
+import {
+    getProfileAllergyByPrimaryKey,
+    postProfileAllergyController,
+    getProfileAllergyByProfileId, getProfileAllergyByAllergyId, deleteProfileAllergyController
+} from "./profile.allergy.controller";
 
 export const ProfileAllergyRoute: Router = Router()
 
@@ -14,14 +18,35 @@ ProfileAllergyRoute.route("/").post(
 
 )
 
-//get ProfileAllergy by Primary Key
+//get ProfileAllergy by Primary Key (AllergyId)
 ProfileAllergyRoute.route("/:profileAllergyAllergyId")
+
+    //delete ProfileAllergy by Primary Key
+    .delete(isLoggedIn,
+        asyncValidatorController([
+        check("profileAllergyAllergyId", "please provide a valid profileAllergyAllergyId").isUUID()
+    ]) , deleteProfileAllergyController)
+
+    //get ProfileAllergy by Primary Key
     .get(
+        isLoggedIn,
         asyncValidatorController([
             check("profileAllergyAllergyId", "please provide a valid profileAllergyAllergyId").isUUID()
         ])
         , getProfileAllergyByPrimaryKey
     )
 
-    //delete ProfileAllergy
-    .delete(isLoggedIn, asyncValidatorController(checkSchema (profileAllergyValidator)), deleteProfileAllergy)
+//get ProfileAllergies by ProfileId
+ProfileAllergyRoute.route("/profileAllergyProfileId/:profileAllergyProfileId")
+    .get( isLoggedIn,
+        asyncValidatorController([
+        check("profileAllergyProfileId", "please provide a valid profileAllergyProfileId").isUUID()
+    ]), getProfileAllergyByProfileId)
+
+//get ProfileAllergies by AllergyId
+ProfileAllergyRoute.route("/profileAllergyAllergyId/:profileAllergyAllergyId")
+    .get( isLoggedIn,
+        asyncValidatorController([
+            check("profileAllergyAllergyId", "please provide a valid profileAllergyAllergyId").isUUID()
+        ]), getProfileAllergyByAllergyId)
+

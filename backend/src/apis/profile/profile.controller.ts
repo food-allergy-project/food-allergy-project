@@ -76,5 +76,5 @@ export async function getAllProfileControllers(request: Request, response: Respo
         return(response.json({status: 400, data: null, message: error.message}))
 
     }
-
 }
+
