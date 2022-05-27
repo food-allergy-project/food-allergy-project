@@ -3,30 +3,37 @@ import {asyncValidatorController} from "../../utils/controllers/async-validator.
 import {check, checkSchema} from "express-validator";
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import {profileAllergyValidator} from "./profile.allergy.validator";
-import { getProfileAllergyAllergyId, getprofileAllergyProfileId, deleteProfileAllergyAllergyId, deleteProfileAllergyProfileId} from "./profile.allergy.controller";
-
-
+import {
+    getProfileAllergyByPrimaryKey,
+    getprofileAllergyProfileId,
+    postProfileAllergyController,
+    deleteProfileAllergy
+} from "./profile.allergy.controller";
 
 export const ProfileAllergyRoute: Router = Router()
 
+//post ProfileAllergy
+ProfileAllergyRoute.route("/").post(
+    asyncValidatorController(checkSchema(profileAllergyValidator)),
+    postProfileAllergyController
+
+)
+
+//get ProfileAllergy by ProfileAllergyAllergyId
 ProfileAllergyRoute.route("/:profileAllergyAllergyId")
     .get(
         asyncValidatorController([
             check("profileAllergyAllergyId", "please provide a valid profileAllergyAllergyId").isUUID()
         ])
-        , getProfileAllergyAllergyId
+        , getProfileAllergyByPrimaryKey
     )
-    //
 
-    .delete(isLoggedIn, asyncValidatorController(checkSchema (profileAllergyValidator)), deleteProfileAllergyAllergyId)
+    //delete ProfileAllergy
+    .delete(isLoggedIn, asyncValidatorController(checkSchema (profileAllergyValidator)), deleteProfileAllergy)
 
+
+//get ProfileAllergy by ProfileAllergyProfileId
 ProfileAllergyRoute.route('/:profileAllergyProfileId')
-    .get(
-        asyncValidatorController([
-            check("profileAllergyProfileId", "please provide a valid profileAllergyProfileId").isUUID()
-        ])
-        , getprofileAllergyProfileId
+    .get( isLoggedIn,
+        getprofileAllergyProfileId
     )
-    //
-
-    .delete(isLoggedIn, asyncValidatorController(checkSchema (profileAllergyValidator)), deleteProfileAllergyProfileId)

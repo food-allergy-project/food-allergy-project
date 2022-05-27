@@ -17,11 +17,12 @@ ProfileRoute.route("/:profileId")
         ])
         , getProfileByProfileId
     )
-    //
+    // edit profile by profileId
     .put(isLoggedIn, asyncValidatorController(checkSchema(profileValidator)), putProfileController)
-
+    // delete profile by profileId
     .delete(isLoggedIn, asyncValidatorController(checkSchema (profileValidator)), deleteProfileByProfileId)
 
+//get all profiles
 ProfileRoute.route('/')
     .get(
         getAllProfileControllers)

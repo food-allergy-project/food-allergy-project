@@ -1,14 +1,14 @@
 import {Schema} from "express-validator";
 
 export const profileAllergyValidator : Schema = {
-    profileAlleryAllergyId: {
+    profileAllergyAllergyId: {
         isUUID: {
             errorMessage: 'please provide a valid ProfileAllergyAllergyId'
         }
     },
 
     profileAllergyProfileId: {
-        isEmail: {
+        isUUID: {
             errorMessage: 'Please provide a valid ProfileAllergyProfileId'
         },
         trim: true

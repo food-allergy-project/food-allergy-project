@@ -48,9 +48,9 @@ CREATE TABLE recipe (
     recipeCategory     VARCHAR(16)   NOT NULL,
     recipeDate         DATE,
     recipeIngredients  VARCHAR(2500) NOT NULL,
-    recipeImage        LONGBLOB      NOT NULL,
+    recipeImage        VARCHAR(255)  NOT NULL,
     recipeImageAlt     VARCHAR(32),
-    recipeInstructions BLOB          NOT NULL,
+    recipeInstructions VARCHAR(5000) NOT NULL,
     recipeTitle        VARCHAR(32)   NOT NULL,
     INDEX (recipeId, recipeProfileId, recipeCategory),
     PRIMARY KEY (recipeId)
