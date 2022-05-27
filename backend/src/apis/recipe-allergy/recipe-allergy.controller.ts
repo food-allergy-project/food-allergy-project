@@ -17,7 +17,8 @@ export async function postRecipeAllergyController (request: Request, response: R
         const message = await insertRecipeAllergy(recipeAllergy)
         return response.json({status: 200, data: null, message: ''})
 
-
-
+    } catch (e) {
+        console.error(e)
+        return response.json({status: 500, data: null, message: 'internal server error please try again.'})
     }
 }
