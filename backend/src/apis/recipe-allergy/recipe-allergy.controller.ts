@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
 import {Profile} from "../../utils/interfaces/Profile";
 import {RecipeAllergy} from "../../utils/interfaces/RecipeAllergy";
+import {insertRecipeAllergy} from "../../utils/recipe-allergy/insertRecipeAllergy";
 
 
 
