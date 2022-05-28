@@ -2,6 +2,8 @@ import {Request, Response} from "express";
 import {Profile} from "../../utils/interfaces/Profile";
 import {RecipeAllergy} from "../../utils/interfaces/RecipeAllergy";
 import {insertRecipeAllergy} from "../../utils/recipe-allergy/insertRecipeAllergy";
+import {Status} from "../../utils/interfaces/Status";
+import {selectRecipeAllergyByPrimaryKey} from "../../utils/recipe-allergy/selectRecipeAllergyByPrimaryKey";
 
 
 
@@ -21,5 +23,22 @@ export async function postRecipeAllergyController (request: Request, response: R
     } catch (e) {
         console.error(e)
         return response.json({status: 500, data: null, message: 'internal server error please try again.'})
+    }
+}
+
+// GET recipeAllergy
+
+export async function getRecipeAllergyByPrimaryKey (request: Request, response: Response) : Promise<Response> {
+    try {
+        const {recipeAllergyRecipeId} = request.params;
+        const profile = request.session.profile as Profile
+        const recipeAllergyProfileId = profile.profileId as string
+
+        const sqlResult = await selectRecipeAllergyByPrimaryKey (recipeAllergyProfileId,recipeAllergyRecipeId)
+        const data = sqlResult ?? null
+        const status : Status = {status: 200, data, message: null}
+        return  response.json(status)
+    } catch (error : any) {
+        return (response.json({status: 400, data: null, message: error.message}))
     }
 }
