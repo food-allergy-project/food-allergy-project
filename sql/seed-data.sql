@@ -32,3 +32,4 @@ VALUES (UUID_TO_BIN(UUID()), 'URL', 'peanuts image', 'peanut');
 INSERT INTO allergy (allergyId, allergyImage, allergyImageAlt, allergyName)
 VALUES (UUID_TO_BIN(UUID()), 'URL', 'tree nuts image', 'tree nut');
 
+INSERT INTO recipe (recipeId, recipeProfileId, recipeCategory, recipeDate, recipeIngredients, recipeImage, recipeImageAlt, recipeInstructions, recipeTitle) VALUES (UUID_TO_BIN(UUID()),UUID_TO_BIN(UUID()), 'dessert', '1991,12,07', 'almond flour, eggs, extra dairy milk, shellfish', 'URL', 'Name', 'Step 1 boil everything together', 'EWWWWWW');

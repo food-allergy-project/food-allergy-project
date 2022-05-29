@@ -46,7 +46,7 @@ CREATE TABLE recipe (
     recipeId           BINARY(16)    NOT NULL,
     recipeProfileId    BINARY(16)    NOT NULL,
     recipeCategory     VARCHAR(16)   NOT NULL,
-    recipeDate         DATE,
+    recipeDate         DATETIME(6),
     recipeIngredients  VARCHAR(2500) NOT NULL,
     recipeImage        VARCHAR(255)  NOT NULL,
     recipeImageAlt     VARCHAR(32),

@@ -6,6 +6,7 @@ import {selectWholeProfileByProfileId} from "../../utils/profile/selectWholeProf
 import {updateProfile} from "../../utils/profile/updateProfile";
 import { selectAllProfiles } from "../../utils/profile/selectAllProfiles";
 
+
 export async function putProfileController(request: Request, response: Response) : Promise<Response>{
     try {
         const {profileId} = request.params
@@ -49,20 +50,7 @@ export async function getProfileByProfileId(request: Request, response: Response
     }
 
 }
-export async function deleteProfileByProfileId(request: Request, response: Response) : Promise<Response> {
-    try {
-        const {profileId} = request.params;
-        const mySqlResult = await selectPartialProfileByProfileId(profileId);
-        const data = mySqlResult ?? null
-        const status: Status = {status: 200, data, message: null}
-        return response.json(status)
 
-    } catch (error: any) {
-        return(response.json({status: 400, data: null, message: error.message}))
-
-    }
-
-}
 
 export async function getAllProfileControllers(request: Request, response: Response) : Promise<Response> {
     try {
