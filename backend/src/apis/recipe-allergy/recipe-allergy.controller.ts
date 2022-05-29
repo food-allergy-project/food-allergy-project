@@ -4,6 +4,12 @@ import {RecipeAllergy} from "../../utils/interfaces/RecipeAllergy";
 import {insertRecipeAllergy} from "../../utils/recipe-allergy/insertRecipeAllergy";
 import {Status} from "../../utils/interfaces/Status";
 import {selectRecipeAllergyByPrimaryKey} from "../../utils/recipe-allergy/selectRecipeAllergyByPrimaryKey";
+import {
+    selectRecipeAllergyByRecipeAllergyRecipeId
+} from "../../utils/recipe-allergy/selectRecipeAllergyByRecipeAllergyRecipeId";
+import {
+    selectRecipeAllergyByRecipeAllergyProfileId
+} from "../../utils/recipe-allergy/selectRecipeAllergyByRecipeAllergyProfileId";
 
 
 
