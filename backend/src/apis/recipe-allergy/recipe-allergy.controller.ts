@@ -42,3 +42,31 @@ export async function getRecipeAllergyByPrimaryKey (request: Request, response: 
         return (response.json({status: 400, data: null, message: error.message}))
     }
 }
+
+// GET recipeAllergyRecipeId
+export async function getRecipeAllergyRecipeId (request: Request, response: Response) : Promise<Response> {
+    try {
+        const {recipeAllergyRecipeId} = request.params;
+        const mySqlResult = await selectRecipeAllergyByRecipeAllergyRecipeId(recipeAllergyRecipeId);
+        const data = mySqlResult ?? null
+        const status: Status = {status: 200, data, message: null}
+        return response.json(status)
+
+    } catch (error: any) {
+        return (response.json({status: 400, data: null, message: error.message}))
+    }
+}
+
+// GET recipeAllergyProfileId
+export async  function getRecipeAllergyProfileId (request: Request, response: Response) : Promise<Response> {
+    try {
+        const profile = request.session.profile as Profile
+        const recipeAllergyProfileId = profile.profileId as string
+        const mySqlResult = await selectRecipeAllergyByRecipeAllergyProfileId(recipeAllergyProfileId);
+        const data = mySqlResult ?? null
+        const status: Status = {status: 200, data, message: null}
+        return response.json(status)
+    } catch (error: any) {
+        return (response.json({status: 400, data: null, message: error.message}))
+    }
+}
