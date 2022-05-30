@@ -3,16 +3,14 @@ import {asyncValidatorController} from "../../utils/controllers/async-validator.
 import {check, checkSchema} from "express-validator";
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import {profileAllergyValidator} from "./profile.allergy.validator";
-import {
-    getProfileAllergyByPrimaryKey,
-    postProfileAllergyController,
-    getProfileAllergyByProfileId, getProfileAllergyByAllergyId, deleteProfileAllergyController
+import {getProfileAllergyByPrimaryKey, postProfileAllergyController,getProfileAllergyByProfileId, getProfileAllergyByAllergyId,deleteProfileAllergyController
 } from "./profile.allergy.controller";
 
 export const ProfileAllergyRoute: Router = Router()
 
 //post ProfileAllergy
-ProfileAllergyRoute.route("/").post(
+ProfileAllergyRoute.route("/")
+    .post(
     asyncValidatorController(checkSchema(profileAllergyValidator)),
     postProfileAllergyController
 
