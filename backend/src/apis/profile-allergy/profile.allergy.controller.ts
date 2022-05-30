@@ -99,3 +99,4 @@ export async function getProfileAllergyByAllergyId(request: Request, response: R
         return(response.json({status: 400, data: null, message: error.message}))
     }
 }
+

@@ -7,6 +7,7 @@ import { selectCommentsByCommentProfileId } from '../../utils/comment/selectComm
 import { selectCommentByCommentId } from '../../utils/comment/selectCommentByCommentId'
 import { selectAllComments } from '../../utils/comment/selectAllComments'
 import {selectCommentsByCommentRecipeId} from "../../utils/comment/selectCommentsByCommentRecipeId";
+import {deleteComment} from "../../utils/comment/deleteComment";
 
 // get All Comments (working)
 export async function getAllCommentsController (request: Request, response: Response): Promise<Response<Status>> {
@@ -73,3 +74,25 @@ export async function postComment (request: Request, response: Response): Promis
     }
 }
 
+//delete Comment
+export async function deleteCommentController(request: Request, response: Response) : Promise<Response> {
+    try {
+        const {commentId} = request.params;
+        const {commentRecipeId, commentContent} = request.body
+        const profile = request.session.profile as Profile
+        const commentProfileId = profile.profileId as string
+
+        const comment: Comment ={commentId: null, commentProfileId, commentRecipeId, commentContent, commentDate: null}
+        const mySqlResult = await selectCommentByCommentId(commentId)
+        if (mySqlResult === null){
+            return response.json({status:404,message:'comment does not exists',data:null})
+        }
+        const result = await deleteComment(comment)
+        const status: Status = {status: 200, message: result, data:null}
+        return response.json(status)
+
+    } catch (error: any) {
+        return(response.json({status: 400, data: null, message: error.message}))
+
+    }
+}

@@ -1,5 +1,12 @@
 import { Router } from 'express'
-import {getAllCommentsController, getCommentByCommentIdController,getCommentsByCommentProfileIdController,getCommentsByCommentRecipeIdController, postComment} from './comment.controller'
+import {
+    deleteCommentController,
+    getAllCommentsController,
+    getCommentByCommentIdController,
+    getCommentsByCommentProfileIdController,
+    getCommentsByCommentRecipeIdController,
+    postComment
+} from './comment.controller'
 import { asyncValidatorController } from '../../utils/controllers/async-validator.controller'
 import {check, checkSchema} from 'express-validator'
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
@@ -13,6 +20,13 @@ CommentRoute.route('/:commentId')
         asyncValidatorController([
     check('commentId', 'please provide a valid commentId').isUUID()
 ]), getCommentByCommentIdController)
+
+//deleteCommentByCommentId
+    .delete(isLoggedIn,
+        asyncValidatorController([
+            check("commentId", "please provide a valid commentId").isUUID()
+        ]), deleteCommentController)
+
 
 //getCommentsByCommentProfileId (working)
 CommentRoute.route('/commentProfileId/:commentProfileId')
