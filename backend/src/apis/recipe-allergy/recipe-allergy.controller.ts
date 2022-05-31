@@ -76,3 +76,23 @@ export async  function getRecipeAllergyProfileId (request: Request, response: Re
         return (response.json({status: 400, data: null, message: error.message}))
     }
 }
+
+// DELETE recipeAllergy
+export async function deleteRecipeAllergyController (request: Request, response: Response) : Promise<Response> {
+    try {
+        const {recipeAllergyRecipeId} = request.params;
+        const profile = request.session.profile as Profile
+        const recipeAllergyProfileId = profile.profileId as string
+
+        const recipeAllergy: RecipeAllergy = {recipeAllergyRecipeId, recipeAllergyProfileId}
+        const mySqlResult = await selectRecipeAllergyByPrimaryKey(recipeAllergyRecipeId, recipeAllergyProfileId)
+        if (mySqlResult === null) {
+            return response.json({status: 404, message: 'recipeAllergy does not exists', data: null})
+        }
+        const result = await deleteRecipeAllergy(recipeAllergy)
+        const status: Status = {status: 200, message: result, data: null}
+        return response.json(status)
+    } catch (error: any) {
+        return (response.json({status: 400, data: null, message: error.message}))
+    }
+}
