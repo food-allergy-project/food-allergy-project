@@ -10,6 +10,7 @@ import {
 import {
     selectRecipeAllergyByRecipeAllergyProfileId
 } from "../../utils/recipe-allergy/selectRecipeAllergyByRecipeAllergyProfileId";
+import {deleteRecipeAllergy} from "../../utils/recipe-allergy/deleteRecipeAllergy";
 
 
 
