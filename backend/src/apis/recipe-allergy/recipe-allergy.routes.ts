@@ -19,6 +19,7 @@ RecipeAllergyRoutes.route("/").post (
     postRecipeAllergyController
 )
 
+
 // GET By Primary
 
 RecipeAllergyRoutes.route("/:recipeAllergyRecipeId")
@@ -37,7 +38,7 @@ RecipeAllergyRoutes.route("/:recipeAllergyRecipeId")
             check("recipeAllergyRecipeId", "please provide a valid recipeAllergyRecipeId").isUUID()
         ]) , deleteRecipeAllergyController)
 
-// GET recipeAllergy by AllergyId
+// GET recipeAllergy by RecipeId
 RecipeAllergyRoutes.route("/recipeAllergyRecipeId/:recipeAllergyRecipeId")
     .get( isLoggedIn,
         asyncValidatorController([
