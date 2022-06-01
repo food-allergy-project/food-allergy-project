@@ -24,7 +24,7 @@ export function NavBar () {
                         <Nav.Link eventKey="link-2" className={'text-dark'}>My Account</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-2" className={'text-dark'}>My Favorite</Nav.Link>
+                        <Nav.Link eventKey="link-2" className={'text-dark'}>My Favorites</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link eventKey="link-2" className={'text-dark'}>Login</Nav.Link>
