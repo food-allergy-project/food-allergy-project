@@ -85,8 +85,8 @@ export async function deleteRecipeAllergyController (request: Request, response:
         const profile = request.session.profile as Profile
         const recipeAllergyProfileId = profile.profileId as string
 
-        const recipeAllergy: RecipeAllergy = {recipeAllergyRecipeId, recipeAllergyProfileId}
-        const mySqlResult = await selectRecipeAllergyByPrimaryKey(recipeAllergyRecipeId, recipeAllergyProfileId)
+        const recipeAllergy: RecipeAllergy = {recipeAllergyProfileId, recipeAllergyRecipeId}
+        const mySqlResult = await selectRecipeAllergyByPrimaryKey(recipeAllergyProfileId, recipeAllergyRecipeId)
         if (mySqlResult === null) {
             return response.json({status: 404, message: 'recipeAllergy does not exists', data: null})
         }

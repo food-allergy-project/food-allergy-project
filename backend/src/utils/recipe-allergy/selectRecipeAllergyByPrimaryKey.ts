@@ -3,7 +3,7 @@ import {RecipeAllergy} from "../interfaces/RecipeAllergy";
 import {RowDataPacket} from "mysql2";
 
 
-export async function selectRecipeAllergyByPrimaryKey(recipeAllergyRecipeId: string, recipeAllergyProfileId: string) : Promise<RecipeAllergy | null> {
+export async function selectRecipeAllergyByPrimaryKey(recipeAllergyProfileId: string,recipeAllergyRecipeId: string) : Promise<RecipeAllergy | null> {
     try {
         const mySqlConnection = await connect();
         const mySqlQuery : string = "SELECT BIN_TO_UUID(recipeAllergyRecipeId) as recipeAllergyRecipeId, BIN_TO_UUID(recipeAllergyProfileId) as recipeAllergyProfileId FROM recipeAllergy WHERE recipeAllergyRecipeId = UUID_TO_BIN(:recipeAllergyRecipeId) and recipeAllergyProfileId = UUID_TO_BIN(:recipeAllergyProfileId)"
