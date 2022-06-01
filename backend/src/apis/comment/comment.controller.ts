@@ -78,16 +78,19 @@ export async function postComment (request: Request, response: Response): Promis
 export async function deleteCommentController(request: Request, response: Response) : Promise<Response> {
     try {
         const {commentId} = request.params;
-        const {commentContent, commentRecipeId} = request.body
+        //const {commentContent, commentRecipeId} = request.body
         const profile = request.session.profile as Profile
         const commentProfileId = profile.profileId as string
 
-        const comment: Comment ={commentId: null, commentProfileId, commentRecipeId, commentContent, commentDate: null}
+        //const comment: Comment ={commentId: null, commentProfileId, commentRecipeId, commentContent, commentDate: null}
         const mySqlResult = await selectCommentByCommentId(commentId)
         if (mySqlResult === null){
             return response.json({status:404,message:'comment does not exists',data:null})
         }
-        const result = await deleteComment(comment)
+        if (mySqlResult.commentProfileId !== commentProfileId) {
+            return response.json({status:400, message:"You do not have permission to perform this task", data:null})
+        }
+        const result = await deleteComment(commentId)
         const status: Status = {status: 200, message: result, data:null}
         return response.json(status)
 
