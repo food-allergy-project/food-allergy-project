@@ -78,7 +78,7 @@ export async function postComment (request: Request, response: Response): Promis
 export async function deleteCommentController(request: Request, response: Response) : Promise<Response> {
     try {
         const {commentId} = request.params;
-        const {commentRecipeId, commentContent} = request.body
+        const {commentContent, commentRecipeId} = request.body
         const profile = request.session.profile as Profile
         const commentProfileId = profile.profileId as string
 
