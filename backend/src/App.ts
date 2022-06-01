@@ -9,6 +9,7 @@ import { ProfileRoute } from './apis/profile/profile.route';
 import session from 'express-session';
 import { allergyRoute } from './apis/allergy/allergy.route';
 import { RecipeRoute } from './apis/recipe/recipe.route';
+import {favoritedreciperoute} from "./apis/favorited recipe/favoritedrecipes.route";
 const MemoryStore = require('memorystore')(session);
 
 
@@ -56,6 +57,7 @@ export class App {
         this.app.use('/apis/profile', ProfileRoute);
         this.app.use('/apis/allergy', allergyRoute);
         this.app.use('/apis/recipe', RecipeRoute)
+        this.app.use('/apis/favoritedrecipes', favoritedreciperoute )
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
