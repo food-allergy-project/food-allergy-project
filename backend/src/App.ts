@@ -1,8 +1,6 @@
 import express, { Application, Errback, ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import SignupRoute from './apis/sign-up/signup.route';
 import morgan from 'morgan';
-
-// Routes
 import { indexRoute } from './apis/index.routes';
 import {SignInRouter} from './apis/sign-in/sign-in.route';
 import { ProfileRoute } from './apis/profile/profile.route';
@@ -10,6 +8,8 @@ import session from 'express-session';
 import { allergyRoute } from './apis/allergy/allergy.route';
 import { RecipeRoute } from './apis/recipe/recipe.route';
 import {favoritedreciperoute} from "./apis/favorited recipe/favoritedrecipes.route";
+import { CommentRoute } from './apis/comment/comment.route';
+import {RecipeAllergyRoutes} from "./apis/recipe-allergy/recipe-allergy.routes";
 const MemoryStore = require('memorystore')(session);
 
 
@@ -58,6 +58,8 @@ export class App {
         this.app.use('/apis/allergy', allergyRoute);
         this.app.use('/apis/recipe', RecipeRoute)
         this.app.use('/apis/favoritedrecipes', favoritedreciperoute )
+        this.app.use('/apis/recipe-allergy', RecipeAllergyRoutes);
+        this.app.use('/apis/comment', CommentRoute)
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
