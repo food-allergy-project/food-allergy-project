@@ -57,7 +57,9 @@ export class App {
         this.app.use('/apis/sign-in', SignInRouter);
         this.app.use('/apis/profile', ProfileRoute);
         this.app.use('/apis/allergy', allergyRoute);
-        this.app.use('/apis/recipe', RecipeRoute)
+        this.app.use('/apis/recipe', RecipeRoute);
+        this.app.use('/apis/recipe-allergy', RecipeAllergyRoutes);
+        this.app.use('/apis/comment', CommentRoute)
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
