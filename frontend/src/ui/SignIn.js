@@ -1,6 +1,6 @@
 import React from "react";
-import {Container} from "react-bootstrap";
-
+import {Button, Container} from "react-bootstrap";
+import './App.css'
 
 export function SignIn () {
     return (
@@ -13,15 +13,18 @@ export function SignIn () {
                     <h3>Login</h3>
                 </div>
                 <form>
-                    <div className='form-floating mb-1 col-md-15'>
+                    <div className='form-floating mb-1 col-md-8'>
                         <input type='text' className='form-control border border-dark border-2'/>
                         <label className='form-label'>Email: </label>
                     </div>
-                    <div className='form-floating mb-1 col-md-15'>
+                    <div className='form-floating mb-1 col-md-8'>
                         <input type='text' className='form-control border border-dark border-2'/>
                         <label className='form-label'>Password: </label>
                     </div>
                 </form>
+                <div className='text-center p-5'>
+                    <Button variant="success" className='buttonBlockSize2'>Sign In</Button>
+                </div>
             </Container>
         </>
     )
