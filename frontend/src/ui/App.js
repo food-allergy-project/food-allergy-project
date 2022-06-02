@@ -3,12 +3,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
 import React from 'react'
+import {SignIn} from "./SignIn";
 
 export const App = () => (
     <>
         <BrowserRouter>
             <Routes>
                 <Route  path='/' element={<Home />} />
+                <Route  path='/sign-in' element={<SignIn />} />
                 <Route path='*' element={<FourOhFour />} />
             </Routes>
         </BrowserRouter>
