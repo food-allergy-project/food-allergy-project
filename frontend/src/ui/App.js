@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
 import React from 'react'
+import {PersonlizedHomePage} from "./PersonlizedHomePage";
 
 export const App = () => (
     <>
@@ -10,6 +11,7 @@ export const App = () => (
             <Routes>
                 <Route  path='/' element={<Home />} />
                 <Route path='*' element={<FourOhFour />} />
+                <Route path='/personalized-homepage' element={<PersonlizedHomePage/>} />
             </Routes>
         </BrowserRouter>
 
