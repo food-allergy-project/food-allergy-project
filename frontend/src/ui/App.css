@@ -1,3 +1,11 @@
 .disableLinkDecoration {
     text-decoration: none;
 }
+
+.textJustify {
+    text-align: justify;
+}
+
+.aboutPageBannerColor {
+    background: gray;
+}
