@@ -4,10 +4,12 @@ import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
 import React from 'react'
 import {SignIn} from "./SignIn";
+import {NavBar} from "./shared/components/NavBar";
 
 export const App = () => (
     <>
         <BrowserRouter>
+            <NavBar/>
             <Routes>
                 <Route  path='/' element={<Home />} />
                 <Route  path='/sign-in' element={<SignIn />} />

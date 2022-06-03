@@ -6,7 +6,6 @@ import {TakeQuizButtonAndImg} from "./LandingPage/TakeQuizButtonAndImg";
 export const Home = () => {
     return (
         <>
-            <NavBar />
             <AboutPageBanner />
             <TakeQuizButtonAndImg />
         </>
