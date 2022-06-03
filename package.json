@@ -1,0 +1,8 @@
+{
+  "name": "food-allergy-project",
+  "version": "1.0.0",
+  "devDependencies": {
+    "react-bootstrap": "^2.4.0",
+    "react-router-dom": "^6.3.0"
+  }
+}

@@ -2,13 +2,17 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
+import { FavoritePage} from './FavoritePage'
 import React from 'react'
+import { NavBar} from '../ui/shared/components/NavBar'
 
 export const App = () => (
     <>
         <BrowserRouter>
-            <Routes>
-                <Route  path='/' element={<Home />} />
+          <NavBar/>
+          <Routes>
+                <Route exact path='/favorite' element={<FavoritePage/>} />
+                <Route exact path='/' element={<Home />} />
                 <Route path='*' element={<FourOhFour />} />
             </Routes>
         </BrowserRouter>
