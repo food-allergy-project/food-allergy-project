@@ -2,6 +2,7 @@
     text-decoration: none;
 }
 
+
 /* Justify text */
 .textJustify {
     text-align: justify;
@@ -29,4 +30,11 @@
 .centerBlockParent {
     display: grid;
     place-items: center;
+}
+/*Recipe page Image*/
+.recipeImg {
+    border: black 5px solid;
+    alignment: center;
+    margin-left: 28%;
+
 }
