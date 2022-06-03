@@ -1,4 +1,9 @@
 .disableLinkDecoration {
     text-decoration: none;
 }
-
+/*Recipe page Image*/
+.recipeImg {
+    border: black 5px solid;
+    alignment: center;
+    margin-left: 28%;
+}

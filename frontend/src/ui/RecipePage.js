@@ -1,34 +1,38 @@
-import React from "react"
-import {Container, Row, Col, Figure, Button} from 'react-bootstrap'
-import lsangua from '../ui/shared/imgs/lsangua.jpg'
-import FigureImage from "react-bootstrap/FigureImage";
+import React from 'react'
+import { Container, Row, Col, Figure, Button } from 'react-bootstrap'
+import testFoodimg from '../ui/shared/imgs/testFoodIImg.jpg'
+import FigureImage from 'react-bootstrap/FigureImage'
 
 export const RecipePage = () => {
   return (
     <>
-      <div>
-        <h1 className='text-center my-5'>Gluten Free Lasenga</h1>
-        <Button variant="secondary" className='m-3 my-4'>Back to Recipes</Button>
-      </div>
-      <Container className="center">
-        <Figure>
-        <FigureImage
-          className='m-3'
-          src={lsangua}
-          alt= 'test'
-        />
-        </Figure>
+      <Container>
+        <h1 className="text-center my-5">Gluten Free Lasenga</h1>
+        <Button variant="secondary" className="m-3 my-4">Back to Recipes</Button>
       </Container>
-    <Container>
-      <Row>
-        <Col className='justify-content-end'>
-          <Button variant="success" className='my-5'>Favorite</Button>
-          <Button variant="success" className='m-5'>Comment</Button>
-        </Col>
-      </Row>
-    </Container>
+      <Container>
+        <Row>
+          <Col className="alignment-center col-8 p-4">
+            <Figure>
+              <FigureImage fluid
+                className="recipeImg"
+                src={testFoodimg}
+                alt="test"
+              />
+            </Figure>
+          </Col>
+        </Row>
+      </Container>
+      <Container>
+        <Row>
+          <Col className="ms-auto">
+            <Button variant="success" className="my-2">Favorite</Button>
+            <Button variant="success" className="m-2">Comment</Button>
+          </Col>
+        </Row>
+      </Container>
 
-          
+
       <Container className="p-5">
         <Row>
           <Col>
@@ -45,12 +49,18 @@ export const RecipePage = () => {
           <Col>
             <h3>Instructions</h3>
             <p>
-              1. Combine ground beef, chopped onion and 2 tablespoons barbecue sauce in a medium bowl, mixing lightly but thoroughly. Shape into four 1/2-inch thick patties.
-              2. Place patties on grid over medium, ash-covered coals. Grill, covered, 8 to 10 minutes (over medium heat on preheated gas grill, 7 to 9 minutes) until instant-read thermometer inserted horizontally into center registers 160 °F, turning occasionally. About 1 minute before burgers are done, brush with remaining 2 tablespoons of barbecue sauce and top with cheese. Tip: Cooking times are for fresh or thoroughly thawed ground beef. Ground beef should be cooked to an internal temperature of 160 °F. Color is not a reliable indicator of ground beef doneness.
+              1. Combine ground beef, chopped onion and 2 tablespoons barbecue sauce in a medium bowl, mixing lightly
+              but thoroughly. Shape into four 1/2-inch thick patties.
+              2. Place patties on grid over medium, ash-covered coals. Grill, covered, 8 to 10 minutes (over medium heat
+              on preheated gas grill, 7 to 9 minutes) until instant-read thermometer inserted horizontally into center
+              registers 160 °F, turning occasionally. About 1 minute before burgers are done, brush with remaining 2
+              tablespoons of barbecue sauce and top with cheese. Tip: Cooking times are for fresh or thoroughly thawed
+              ground beef. Ground beef should be cooked to an internal temperature of 160 °F. Color is not a reliable
+              indicator of ground beef doneness.
             </p>
           </Col>
         </Row>
       </Container>
     </>
   )
-};
+}
