@@ -11,22 +11,22 @@ export const PersonalizedInfo = () => {
             <Card body bg="light" border="light" style={{height: '20rem'}}>
                 <Container>
                     <Row>
-                        <Col xs={6} className='justify-content-center text-center'>
+                        <Col xs={6} className='justify-content-center text-start'>
                             <Figure>
-                                <FigureImage roundedCircle className='mt-5'
+                                <FigureImage roundedCircle className='mt-5 mx-5'
                                     src={avatarImage}
                                     alt="avatar"
                                     width={120}
                                     height={120}
                                 />
                             </Figure>
-                            <p className='justify-content-center text-center'>Allergic to: dairy,gluten</p>
+                            <p className='justify-content-center text-start mr-5 px-4'>Allergic to: dairy,gluten</p>
                         </Col>
                         <Col xs={6}>
-                            <h3 className='text-end px-5 pt-5 mt-5'>
+                            <h3 className='text-end pt-5 mt-5'>
                                 Welcome,
                             </h3>
-                            <p className='text-end px-5'>This is Your Personalized Homepage, Adam!</p>
+                            <p className='text-end'>This is Your Personalized Homepage, Adam!</p>
                         </Col>
                     </Row>
                 </Container>

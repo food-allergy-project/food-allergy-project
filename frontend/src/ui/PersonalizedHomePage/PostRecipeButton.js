@@ -1,13 +1,17 @@
 import React from "react";
-import {Button, Container} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 
 
-export function PostRecipeButton () {
+export function PostRecipeButton() {
     return (
-        <Container className='p-5'>
-            <div className='text-center'>
-                <Button variant="success" size="sm">Post Recipe</Button>
-            </div>
+        <Container className='py-5'>
+            <Row>
+                <Col>
+                    <div className='text-end'>
+                        <Button variant="success" size="sm">Post Recipe</Button>
+                    </div>
+                </Col>
+            </Row>
         </Container>
     )
 }

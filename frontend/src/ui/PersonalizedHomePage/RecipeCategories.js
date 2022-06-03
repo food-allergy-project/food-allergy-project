@@ -11,7 +11,7 @@ export const RecipeCategories = () => {
     return(
         <>
 
-            <Card body style={{height: '30rem'}} border="light">
+            <Card body style={{height: '35rem'}}>
                 <Container>
                     <Row>
                         <Col>
