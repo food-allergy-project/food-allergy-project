@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
 import React from 'react'
-import {PersonlizedHomePage} from "./PersonlizedHomePage";
+import {PersonlizedHomePage} from "./PersonalizedHomePage/PersonlizedHomePage";
 
 export const App = () => (
     <>
