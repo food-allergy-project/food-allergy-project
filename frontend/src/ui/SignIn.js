@@ -5,7 +5,7 @@ import './App.css'
 export function SignIn () {
     return (
         <>
-            <Container className='text-center border border-dark border-4 p-3 col-md-6 pt-3'>
+            <Container className='text-center border border-dark border-4 rounded p-3 col-md-6 pt-3'>
                 <div>
                     <h1>Welcome Back!</h1>
                 </div>
@@ -14,11 +14,11 @@ export function SignIn () {
                 </div>
                 <form>
                     <div className='form-floating mb-1 col-md-8'>
-                        <input type='text' className='form-control border border-dark border-2'/>
+                        <input type='email' className='form-control border border-dark border-2' placeholder='email' name='email'/>
                         <label className='form-label'>Email: </label>
                     </div>
                     <div className='form-floating mb-1 col-md-8'>
-                        <input type='text' className='form-control border border-dark border-2'/>
+                        <input type='text' className='form-control border border-dark border-2' placeholder='password' name='password'/>
                         <label className='form-label'>Password: </label>
                     </div>
                     {/*<div className="input-group mb-3 col-md-8 border border-dark border-2 rounded">*/}
