@@ -21,9 +21,17 @@ export function SignIn () {
                         <input type='text' className='form-control border border-dark border-2'/>
                         <label className='form-label'>Password: </label>
                     </div>
+                    {/*<div className="input-group mb-3 col-md-8 border border-dark border-2 rounded">*/}
+                    {/*    <span className="input-group-text" id="basic-addon1">?</span>*/}
+                    {/*    <input type="email" className="form-control " placeholder="Email" aria-label="Email"*/}
+                    {/*           aria-describedby="basic-addon1"/>*/}
+                    {/*</div>*/}
                 </form>
-                <div className='text-center p-5'>
+                <div className='text-center py-5'>
                     <Button variant="success" className='buttonBlockSize2'>Sign In</Button>
+                </div>
+                <div className='my-1 pb-5'>
+                    <a href="/" className="link-dark">Create Account</a>
                 </div>
             </Container>
         </>
