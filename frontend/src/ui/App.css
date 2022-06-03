@@ -19,3 +19,17 @@
     font-size: xx-large;
     font-weight: bold;
 }
+
+.headerSize {
+    font-size: 380%;
+}
+
+.centerBlock {
+    margin: auto;
+    display: block;
+}
+
+.centerBlockParent {
+    display: grid;
+    place-items: center;
+}
