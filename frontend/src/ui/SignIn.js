@@ -34,7 +34,7 @@ export function SignIn () {
                     <Button variant="success" className='buttonBlockSize2'>Sign In</Button>
                 </div>
                 <div className='my-1 pb-5'>
-                    <a href="/" className="link-dark">Create Account</a>
+                    <a href="/sign-up" className="link-dark">Create Account</a>
                 </div>
             </Container>
 
