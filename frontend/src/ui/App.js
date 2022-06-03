@@ -4,7 +4,7 @@ import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
 import { FavoritePage} from './FavoritePage'
 import React from 'react'
-import { NavBar} from '../ui/shared/components/NavBar'
+import {NavBar} from './shared/components/NavBar'
 
 export const App = () => (
     <>
