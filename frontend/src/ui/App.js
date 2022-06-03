@@ -3,15 +3,17 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
 import React from 'react'
-import {PersonlizedHomePage} from "./PersonalizedHomePage/PersonlizedHomePage";
+import {SignIn} from "./SignIn";
+import {NavBar} from "./shared/components/NavBar";
 
 export const App = () => (
     <>
         <BrowserRouter>
+            <NavBar/>
             <Routes>
                 <Route  path='/' element={<Home />} />
+                <Route  path='/sign-in' element={<SignIn />} />
                 <Route path='*' element={<FourOhFour />} />
-                <Route path='/personalized-homepage' element={<PersonlizedHomePage/>} />
             </Routes>
         </BrowserRouter>
 

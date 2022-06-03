@@ -2,11 +2,31 @@
     text-decoration: none;
 }
 
+/* Justify text */
 .textJustify {
     text-align: justify;
 }
 
-.aboutPageBannerColor {
-    background: gray;
+/* Stying size of the button in Landing Page (Take Quiz) */
+.buttonBlockSize {
+    width: 300px;
+    height: 100px;
+    font-size: xx-large;
+    font-weight: bold;
 }
-
+/* Stying size of the button in SignIn and SignUp pages*/
+.buttonBlockSize2 {
+    width: 200px;
+    height: 80px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+/* Increase the size of the header tag (using on "Welcome Back!" in SignIn)*/
+.headerSize {
+    font-size: 380%;
+}
+/* Center input boxes in SignIn and SignUp page*/
+.centerBlockParent {
+    display: grid;
+    place-items: center;
+}
