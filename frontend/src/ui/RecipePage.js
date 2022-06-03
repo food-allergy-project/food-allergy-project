@@ -14,7 +14,7 @@ export const RecipePage = () => {
         <Row>
           <Col className="alignment-center col-8 p-4">
             <Figure>
-              <FigureImage fluid
+              <FigureImage
                 className="recipeImg"
                 src={testFoodimg}
                 alt="test"
