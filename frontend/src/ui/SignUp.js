@@ -16,7 +16,7 @@ export function SignUp () {
                     <form className='mx-auto col-form-label-lg centerBlockParent'>
                         <div className='form-floating mb-1 col-md-8'>
                             <input type='text' className='form-control border border-dark border-2' placeholder='name' name='name'/>
-                            <label className='form-label'>Email: </label>
+                            <label className='form-label'>Name: </label>
                         </div>
                         <div className='form-floating mb-1 col-md-8'>
                             <input type='email' className='form-control border border-dark border-2' placeholder='email' name='email'/>
@@ -31,7 +31,7 @@ export function SignUp () {
                 </div>
 
                 <div className='text-center py-5'>
-                    <Button variant="success" className='buttonBlockSize2'>Sign In</Button>
+                    <Button variant="success" className='buttonBlockSize2'>Sign Up</Button>
                 </div>
                 <div className='my-1 pb-5'>
                     <a href="/" className="link-dark">Create Account</a>
