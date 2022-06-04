@@ -13,7 +13,6 @@ export const App = () => (
     <>
         <BrowserRouter>
           <NavBar/>
-
           <Routes>
                 <Route exact path='/favorite' element={<FavoritePage/>} />
                 <Route exact path='/' element={<Home />} />
