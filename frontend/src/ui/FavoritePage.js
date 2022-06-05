@@ -1,6 +1,10 @@
 import React, {useState} from 'react'
 import {Container, Row, Tab, Tabs} from 'react-bootstrap'
-import {FavoriteRecipeCards} from "./YourFavoriteCards";
+import {FavoriteRecipeCardsBreakfast} from "./YourFavoriteCardsBreakfast";
+import {FavoriteRecipeCardsDinner} from "./YourFavoriteCardsDinner";
+import {FavoriteRecipeCardLunch} from "./YourFavoriteCardLunch";
+import {FavoriteRecipeCardLunchDessert} from "./YourFavoriteCardsDessert";
+import {FavoriteRecipeCardsSnack} from "./YourFavoriteCardsSnack";
 
 function Sonnet() {
     return null;
@@ -10,19 +14,19 @@ export function FavoritePage () {
     const [key, setKey] = useState('home');
   return (
     <>
-      <Container className='text-center m-5'>
-        <h1>Your Favorites</h1>
+      <Container className='m-5'>
+        <h1 className='text-md-start'>Your Favorites</h1>
       </Container>
         <Tabs
             id="controlled-tab-example"
             activeKey={key}
             onSelect={(k) => setKey(k)}
-            className="mb-5"
+            className="m-5 text-center"
         >
             <Tab eventKey="Breakfast" title="Breakfast">
                 <Container>
                     <Row>
-                <FavoriteRecipeCards/>
+                <FavoriteRecipeCardsBreakfast/>
                 <Sonnet />
                     </Row>
                 </Container>
@@ -30,7 +34,7 @@ export function FavoritePage () {
             <Tab eventKey="Lunch" title="Lunch">
                 <Container>
                     <Row>
-                        <FavoriteRecipeCards/>
+                        <FavoriteRecipeCardLunch/>
                         <Sonnet />
                     </Row>
                 </Container>
@@ -39,7 +43,7 @@ export function FavoritePage () {
             <Tab eventKey="Dinner" title="Dinner">
                 <Container>
                     <Row>
-                        <FavoriteRecipeCards/>
+                        <FavoriteRecipeCardsDinner/>
                         <Sonnet />
                     </Row>
                 </Container>
@@ -47,7 +51,7 @@ export function FavoritePage () {
             <Tab eventKey="Dessert" title="Dessert">
                 <Container>
                     <Row>
-                        <FavoriteRecipeCards/>
+                        <FavoriteRecipeCardLunchDessert/>
                         <Sonnet />
                     </Row>
                 </Container>
@@ -55,7 +59,7 @@ export function FavoritePage () {
             <Tab eventKey="Snacks" title="Snacks">
                 <Container>
                     <Row>
-                        <FavoriteRecipeCards/>
+                        <FavoriteRecipeCardsSnack/>
                         <Sonnet />
                     </Row>
                 </Container>

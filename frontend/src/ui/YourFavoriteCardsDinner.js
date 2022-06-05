@@ -3,7 +3,7 @@ import {Card, Col} from "react-bootstrap";
 import "../FavoritedCardRecipe.css"
 
 
-export function FavoriteRecipeCards() {
+export function FavoriteRecipeCardsDinner() {
     const recipes = [
         {
             id: 1,
