@@ -8,6 +8,7 @@ import {SignIn} from "./SignIn";
 import {RecipePage} from './RecipePage'
 import {NavBar} from './shared/components/NavBar'
 import "./App.css"
+import {Footer} from "./shared/components/Footer";
  
 export const App = () => (
     <>
@@ -22,6 +23,7 @@ export const App = () => (
                 <Route path='/sign-in' element={<SignIn />} />
 
             </Routes>
+            <Footer/>
         </BrowserRouter>
 
     </>
