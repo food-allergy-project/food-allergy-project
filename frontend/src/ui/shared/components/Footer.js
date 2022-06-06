@@ -1,10 +1,10 @@
 import React from "react";
 import {Figure} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
-import GitHubIcon from '../imgs/GitHubIcon.png'
+import GitHubIcon from '../imgs/GItHubIcon.png'
 import LinkInLogo from '../imgs/LInkedInIcon.png'
 import "../../Footer.css"
-import FoodieLogo from "../imgs/JustCarrotIcon.png";
+import FoodieLogo from "../imgs/1.png";
 
 
 
@@ -23,7 +23,7 @@ export function Footer() {
                                 height={100}
                             />
                         </Figure>
-                        <h2>Allergic Foodies Creators </h2>
+                        <h3>Allergic Foodies Creators </h3>
 
                         <p>June 2022 </p>
                     </div>
