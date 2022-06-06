@@ -8,6 +8,7 @@ import {SignIn} from "./SignIn";
 import {RecipePage} from './RecipePage'
 import {NavBar} from './shared/components/NavBar'
 import "./App.css"
+import {AccountPage} from "./AccountPage/AccountPage";
  
 export const App = () => (
     <>
@@ -18,6 +19,7 @@ export const App = () => (
                 <Route path='/' element={<Home />} />
                 <Route path='*' element={<FourOhFour/>} />
                 <Route path='/recipes' element={<RecipePage />} />
+                <Route path='/account' element={<AccountPage />} />
                 <Route  path='/sign-up' element={<SignUp />} />
                 <Route path='/sign-in' element={<SignIn />} />
 
