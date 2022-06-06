@@ -11,10 +11,10 @@ export const SuggestedRecipes = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <h6 className='text-start pt-5 text-uppercase'>Suggested Recipes: </h6>
+                            <h6 className='text-start pt-3 text-uppercase'>Suggested Recipes: </h6>
                         </Col>
                     </Row>
-                    <Row  ClassName='mt-5 py-5'>
+                    <Row  ClassName='mt-5 py-5 justify-content-center'>
                         <SuggestedRecipeCards/>
                     </Row>
                 </Container>

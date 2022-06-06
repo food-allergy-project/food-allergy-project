@@ -1,6 +1,6 @@
 import React from "react";
 import {Card, Col} from "react-bootstrap";
-import "../App.css"
+import "./PersonalizedHomePageStyle.css"
 
 
 export function SuggestedRecipeCards() {
