@@ -8,9 +8,13 @@ import {RecipePage} from './RecipePage'
 import {NavBar} from './shared/components/NavBar'
 import "./App.css"
 import {SignIn} from "./SignIn";
+import { Provider } from 'react-redux'
 
-export const App = () => (
+
+export const App = ({store}) => (
+
     <>
+        <Provider store={store}>
         <BrowserRouter>
           <NavBar/>
           <Routes>
@@ -22,6 +26,6 @@ export const App = () => (
 
             </Routes>
         </BrowserRouter>
-
+        </Provider>
     </>
 )

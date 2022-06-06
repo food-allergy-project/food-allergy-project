@@ -1,6 +1,6 @@
 import React from "react";
 import {Card, Col} from "react-bootstrap";
-import "../FavoritedCardRecipe.css"
+import "./FavoritedCardRecipe.css"
 
 
 export function FavoriteRecipeCardLunch() {
