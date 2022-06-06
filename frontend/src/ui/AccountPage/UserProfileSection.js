@@ -4,6 +4,8 @@ import FigureImage from "react-bootstrap/FigureImage";
 import avatarImage2 from "./imgs/greenAvatar2.png"
 
 
+
+
 export const UserProfileSection = () => {
     return (
         <>
@@ -24,7 +26,6 @@ export const UserProfileSection = () => {
                         </div>
                     </Col>
                 </Container>
-
             </div>
 
         </>
