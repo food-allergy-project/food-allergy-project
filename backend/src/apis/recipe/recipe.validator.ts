@@ -37,7 +37,7 @@ export const recipeValidator: Schema = {
         trim: true,
         isLength: {
             errorMessage: 'recipe name must be between 1-20 characters',
-            options: {min: 1, max: 20}
+            options: {min: 1, max: 120}
         }
     },
     recipeInstructions: {

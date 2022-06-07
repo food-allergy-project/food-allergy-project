@@ -3,7 +3,9 @@ import {Card, Col, Container, Row} from "react-bootstrap";
 import '../App.css'
 import {SuggestedRecipeCards} from "./SuggestedRecipeCards";
 
-export const SuggestedRecipes = () => {
+export const SuggestedRecipes = (props) => {
+    const {recipes} = props
+    console.log(recipes)
     return(
         <>
 
@@ -14,8 +16,8 @@ export const SuggestedRecipes = () => {
                             <h6 className='text-start pt-3 text-uppercase'>Suggested Recipes: </h6>
                         </Col>
                     </Row>
-                    <Row  ClassName='mt-5 py-5 justify-content-center'>
-                        <SuggestedRecipeCards/>
+                    <Row  className='mt-5 py-5 d-flex align-items-center'>
+                        {recipes.map(recipe => <SuggestedRecipeCards recipe = {recipe}/>)}
                     </Row>
                 </Container>
             </Card>

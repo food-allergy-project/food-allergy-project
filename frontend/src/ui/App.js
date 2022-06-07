@@ -13,15 +13,13 @@ import {PersonalizedHomePage} from "./PersonalizedHomePage/PersonlizedHomePage";
 
 
 export const App = ({store}) => (
-
-
     <>
         <Provider store={store}>
         <BrowserRouter>
             <NavBar/>
             <Routes>
-                <Route  path='/' element={<Home />} />
-                <Route  path='/sign-in' element={<SignIn />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/sign-in' element={<SignIn />} />
                 <Route path='*' element={<FourOhFour />} />
                 <Route path='/yourhomepage' element={<PersonalizedHomePage/>}/>
                 <Route path='/recipes' element={<RecipePage />} />

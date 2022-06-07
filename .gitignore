@@ -2,4 +2,4 @@
 /.idea
 **/node_modules
 /foodgroup.env
-**/setupProxy.js
+frontend/src/setupProxy.js
