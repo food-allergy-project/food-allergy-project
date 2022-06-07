@@ -11,6 +11,7 @@ import {NavBar} from "./shared/components/NavBar";
 import {PersonalizedHomePage} from "./PersonalizedHomePage/PersonlizedHomePage";
 import "./App.css"
 import {QuizPage} from "./QuizPage/QuizPage";
+import {SignUpForm} from "./SignUpForm";
 
 
 export const App = ({store}) => (
@@ -27,7 +28,7 @@ export const App = ({store}) => (
                 <Route path='/recipes' element={<RecipePage />} />
                 <Route exact path='/favorite' element={<FavoritePage/>} />
                 <Route path='/quiz' element={<QuizPage/>} />
-
+                <Route exact path='/sign-up' element={<SignUpForm/>} />
             </Routes>
         </BrowserRouter>
         </Provider>

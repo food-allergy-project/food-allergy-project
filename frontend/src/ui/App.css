@@ -14,7 +14,7 @@
     font-size: xx-large;
     font-weight: bold;
 }
-/* Stying size of the button in SignIn and SignUp pages*/
+/* Stying size of the button in SignIn and SignUpForm pages*/
 .buttonBlockSize2 {
     width: 200px;
     height: 80px;
@@ -25,7 +25,7 @@
 .headerSize {
     font-size: 380%;
 }
-/* Center input boxes in SignIn and SignUp page*/
+/* Center input boxes in SignIn and SignUpForm page*/
 .centerBlockParent {
     display: grid;
     place-items: center;

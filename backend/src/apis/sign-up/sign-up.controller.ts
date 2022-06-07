@@ -58,11 +58,22 @@ export async function signupProfileController(request: Request, response: Respon
 
     } catch (error: any) {
     console.error(error)
-        const status: Status = {
+
+            if (error.message === "Forbidden") {
+                const status: Status = {
+                    status: 200,
+                    message: 'Profile successfully created; please sign in!',
+                    data: null
+                };
+                return response.json(status)
+            }
+
+                const status: Status = {
             status: 500,
             message: error.message,
             data: null
         };
+
 
         return response.json(status);
     }
