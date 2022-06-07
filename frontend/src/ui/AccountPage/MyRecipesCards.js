@@ -1,6 +1,6 @@
 import React from "react";
 import {Card, Col} from "react-bootstrap";
-
+import '../AccountPage/AccountPage.css'
 
 export function MyRecipesCards () {
     const myRecipes = [
@@ -49,14 +49,14 @@ export function MyRecipesCards () {
                 myRecipes.map((myRecipe) => {
                     return (
                         <Col className='justify-content-center align-content-center'>
-                            <Card bg='light' text='dark' >
-                                <Card.Img variant="top"
+                            <Card bg='light' text='dark' className='myRecipeCardSize mt-4'>
+                                <Card.Img variant="top" className='myRecipeCardImg'
                                           src={
                                             myRecipe.img
                                           }
                                 />
                                 <Card.Body>
-                                    <Card.Title>
+                                    <Card.Title className='myRecipeCardTitle'>
                                         {myRecipe.name}
                                     </Card.Title>
                                 </Card.Body>
