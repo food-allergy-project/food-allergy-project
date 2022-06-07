@@ -1,11 +1,11 @@
 import React from "react";
-import {PostRecipeButton} from "./PostRecipeButton";
 import {PersonalizedInfo} from "./PersonalizedInfo";
 import {RecipeCategories} from "./RecipeCategories";
 import {SuggestedRecipes} from "./SuggestedRecipes";
 import {RefreshRecipesButton} from "./RefreshButton";
 import {useDispatch, useSelector} from "react-redux";
 import  {fetchAllRecipes} from "../../store/recipes";
+import {PostRecipeButton} from "./PostRecipeButton";
 
 export const PersonalizedHomePage = () => {
     const dispatch = useDispatch()
