@@ -18,6 +18,13 @@ export function MyRecipesCards () {
             name: "Gluten & Dairy Free Fudge Brownie",
             img: "https://images.pexels.com/photos/2067396/pexels-photo-2067396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         },
+        {
+            id: 4,
+            name: "World's Best Gluten & Dairy Free Hamburger",
+            img: "https://images.pexels.com/photos/580612/pexels-photo-580612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+
+
 
     ]
     return (
