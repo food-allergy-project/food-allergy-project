@@ -2,6 +2,7 @@ import React from "react";
 import {Col, Container, Figure} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
 import avatarImage2 from "./imgs/greenAvatar2.png"
+import {EditProfile} from "./EditProfile";
 
 
 
@@ -24,6 +25,7 @@ export const UserProfileSection = () => {
                             <p> Your Name</p>
                             <p> allergies</p>
                         </div>
+                        <EditProfile />
                     </Col>
                 </Container>
             </div>
