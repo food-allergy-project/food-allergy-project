@@ -8,6 +8,7 @@ import {SignIn} from "./SignIn";
 import {RecipePage} from './RecipePage'
 import {NavBar} from './shared/components/NavBar'
 import "./App.css"
+import {QuizPage} from "./QuizPage/QuizPage";
  
 export const App = () => (
     <>
@@ -20,6 +21,7 @@ export const App = () => (
                 <Route path='/recipes' element={<RecipePage />} />
                 <Route  path='/sign-up' element={<SignUp />} />
                 <Route path='/sign-in' element={<SignIn />} />
+                <Route path='/quiz' element={<QuizPage/>} />
 
             </Routes>
         </BrowserRouter>
