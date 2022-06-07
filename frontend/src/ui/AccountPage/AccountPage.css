@@ -1,0 +1,22 @@
+/*Card Sizing (Suggested Recipes on My Account Page)*/
+.myRecipeCardSize {
+    height: 450px;
+    width: 265px;
+}
+
+/*Card Image Sizing (Suggested Recipes on My Account Page)*/
+.myRecipeCardImg {
+    width: 100%;
+    min-height: 350px;
+}
+
+/*Card Title Sizing (Suggested Recipes on My Account Page)*/
+.myRecipeCardTitle {
+    margin: auto;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+}
