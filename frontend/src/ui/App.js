@@ -9,6 +9,7 @@ import {SignIn} from "./SignIn";
 import { Provider } from 'react-redux'
 import {NavBar} from "./shared/components/NavBar";
 import {PersonalizedHomePage} from "./PersonalizedHomePage/PersonlizedHomePage";
+import {SignUpForm} from "./SignUpForm";
 
 
 
@@ -24,6 +25,7 @@ export const App = ({store}) => (
                 <Route path='/yourhomepage' element={<PersonalizedHomePage/>}/>
                 <Route path='/recipes' element={<RecipePage />} />
                 <Route exact path='/favorite' element={<FavoritePage/>} />
+                <Route exact path='/sign-up' element={<SignUpForm/>} />
             </Routes>
         </BrowserRouter>
         </Provider>

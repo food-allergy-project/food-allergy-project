@@ -10,23 +10,24 @@ export function SignIn () {
                     <h1 className='headerSize'>Welcome Back!</h1>
                 </div>
                 <div className='p-5'>
+
                     <h1>Login</h1>
                 </div>
+
                 <div>
-                        <form className='mx-auto col-form-label-lg centerBlockParent'>
-                            <div className='form-floating mb-1 col-md-8'>
+
+                    <form className='mx-auto col-form-label-lg centerBlockParent'>
+
+                        <div className='form-floating mb-1 col-md-8'>
                                 <input type='email' className='form-control border border-dark border-2' placeholder='email' name='email'/>
                                 <label className='form-label'>Email: </label>
                             </div>
-                            <div className='form-floating mb-1 col-md-8'>
+
+                        <div className='form-floating mb-1 col-md-8'>
                                 <input type='text' className='form-control border border-dark border-2' placeholder='password' name='password'/>
                                 <label className='form-label'>Password: </label>
                             </div>
-                            {/*<div className="input-group mb-3 col-md-8 border border-dark border-2 rounded">*/}
-                            {/*    <span className="input-group-text" id="basic-addon1">?</span>*/}
-                            {/*    <input type="email" className="form-control " placeholder="Email" aria-label="Email"*/}
-                            {/*           aria-describedby="basic-addon1"/>*/}
-                            {/*</div>*/}
+
                         </form>
                 </div>
 
@@ -38,7 +39,7 @@ export function SignIn () {
                 </div>
             </Container>
 
-            <div className="p-5"></div>
+
         </>
     )
 }
