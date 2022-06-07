@@ -4,6 +4,7 @@ import FigureImage from "react-bootstrap/FigureImage";
 import FoodieLogo from '../imgs/allergicfoodieslogo.png'
 
 
+
 export function NavBar () {
     return (
         <>

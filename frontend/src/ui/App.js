@@ -12,9 +12,12 @@ import {PersonalizedHomePage} from "./PersonalizedHomePage/PersonlizedHomePage";
 import "./App.css"
 import {QuizPage} from "./QuizPage/QuizPage";
 import {SignUpForm} from "./SignUpForm";
+import {Footer} from "./shared/components/Footer";
+import {store} from "../store/store";
 
 
-export const App = ({store}) => (
+
+export const App = () => (
 
     <>
         <Provider store={store}>
@@ -30,6 +33,7 @@ export const App = ({store}) => (
                 <Route path='/quiz' element={<QuizPage/>} />
                 <Route exact path='/sign-up' element={<SignUpForm/>} />
             </Routes>
+            <Footer/>
         </BrowserRouter>
         </Provider>
     </>
