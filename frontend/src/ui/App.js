@@ -13,11 +13,13 @@ import "./App.css"
 import {QuizPage} from "./QuizPage/QuizPage";
 import {SignUpForm} from "./SignUpForm";
 import {Footer} from "./shared/components/Footer";
-import {store} from "../store/store";
 
 
 
-export const App = () => (
+
+import {AccountPage} from "./AccountPage/AccountPage";
+
+export const App = ({store}) => (
 
     <>
         <Provider store={store}>
@@ -25,8 +27,9 @@ export const App = () => (
             <NavBar/>
             <Routes>
                 <Route path='/' element={<Home />} />
+                <Route path='*' element={<FourOhFour/>} />
+                <Route path='/account' element={<AccountPage />} />
                 <Route path='/sign-in' element={<SignIn />} />
-                <Route path='*' element={<FourOhFour />} />
                 <Route path='/yourhomepage' element={<PersonalizedHomePage/>}/>
                 <Route path='/recipes' element={<RecipePage />} />
                 <Route exact path='/favorite' element={<FavoritePage/>} />
