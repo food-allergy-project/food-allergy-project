@@ -1,7 +1,7 @@
 import React from "react";
 import {Figure} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
-import GitHubIcon from '../imgs/GItHubIcon.png'
+import GitHubIcon from '../imgs/GitHubIcon.png'
 import LinkInLogo from '../imgs/LInkedInIcon.png'
 import "../../Footer.css"
 import FoodieLogo from "../imgs/1.png";
