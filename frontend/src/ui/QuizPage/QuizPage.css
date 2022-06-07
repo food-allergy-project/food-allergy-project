@@ -1,0 +1,38 @@
+/*Card Sizing (Suggested Recipes on Personalized Homepage)*/
+.quizButtonCardSize {
+    height: 330px;
+    width: 302px;
+
+}
+
+/*Card Image Sizing (Suggested Recipes on Personalized Homepage)*/
+.quizButtonCardImg {
+    width: 300px;
+    height: 250px;
+}
+
+/*Card Title Sizing (Suggested Recipes on Personalized Homepage)*/
+.quizButtonCardTitle {
+    margin: auto;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.buttonSize {
+    width: 300px;
+    height: 70px;
+    margin-top: 100px;
+    margin-bottom: 170px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.container {
+    margin-top: 50px;
+}
