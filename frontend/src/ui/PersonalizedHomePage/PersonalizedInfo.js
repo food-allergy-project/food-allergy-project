@@ -4,7 +4,9 @@ import FigureImage from "react-bootstrap/FigureImage";
 import avatarImage from "./imgs/greenAvatar.png"
 
 
-export const PersonalizedInfo = () => {
+export const PersonalizedInfo = (props) => {
+    const {profile} = props
+    console.log(profile)
     return(
         <>
 
@@ -26,7 +28,7 @@ export const PersonalizedInfo = () => {
                             <h3 className='text-end pt-5 mt-5'>
                                 Welcome,
                             </h3>
-                            <p className='text-end'>This is Your Personalized Homepage, Adam!</p>
+                            <p className='text-end'>This is Your Personalized Homepage, {profile &&<p>{profile.profileFullName}</p>}!</p>
                         </Col>
                     </Row>
                 </Container>

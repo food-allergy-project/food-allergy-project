@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {PersonalizedInfo} from "./PersonalizedInfo";
 import {RecipeCategories} from "./RecipeCategories";
 import {SuggestedRecipes} from "./SuggestedRecipes";
@@ -6,22 +6,27 @@ import {RefreshRecipesButton} from "./RefreshButton";
 import {useDispatch, useSelector} from "react-redux";
 import  {fetchAllRecipes} from "../../store/recipes";
 import {PostRecipeButton} from "./PostRecipeButton";
+import {fetchAuth} from "../../store/auth";
 
 export const PersonalizedHomePage = () => {
-
+    const auth = useSelector(state => state.auth);
+    console.log(auth)
     const dispatch = useDispatch()
-    const initialEffects = () => {
+    const effects = () => {
         dispatch(fetchAllRecipes());
-    }
-    React.useEffect(initialEffects, [dispatch])
+        dispatch(fetchAuth());
+    };
 
-    // use the misquotes' data from the store
+    const inputs = [];
+    useEffect(effects, inputs);
+
+    React.useEffect(effects, [dispatch])
     const recipes = useSelector((state) => state.recipes ? state.recipes : [])
 
     return(
         <>
             <PostRecipeButton/>
-            <PersonalizedInfo/>
+            <PersonalizedInfo  profile={auth}/>
             <RecipeCategories/>
             <RefreshRecipesButton/>
             <SuggestedRecipes recipes = {recipes}/>
