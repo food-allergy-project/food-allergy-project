@@ -32,6 +32,7 @@ export async function signInController(request: Request, response: Response): Pr
             const authorization: string = generateJwt({
                 profileId,
                 profileEmail,
+                profileFullName,
             }, signature);
 
             const signInFailed = (message: string) => response.json({
