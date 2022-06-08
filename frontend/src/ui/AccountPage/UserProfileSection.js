@@ -7,7 +7,12 @@ import {EditProfile} from "./EditProfile";
 
 
 
-export const UserProfileSection = () => {
+
+
+export const UserProfileSection = (props) => {
+    const {profile} = props
+    console.log(profile)
+
     return (
         <>
             <div className='p-3 my-4 bg-light'>
@@ -22,7 +27,7 @@ export const UserProfileSection = () => {
                             />
                         </Figure>
                         <div>
-                            <p> Your Name</p>
+                            {profile &&<p>{profile.profileFullName}</p>}
                             <p> allergies</p>
                         </div>
                         <EditProfile />
