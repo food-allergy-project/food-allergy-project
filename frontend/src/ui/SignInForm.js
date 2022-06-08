@@ -36,8 +36,11 @@ export const SignInForm = () => {
                     window.localStorage.removeItem("authorization");
                     window.localStorage.setItem("authorization", reply.headers["authorization"]);
                     resetForm();
+
                     let jwtToken = jwtDecode(reply.headers["authorization"])
                     dispatch(getAuth(jwtToken))
+
+                    window.location = '/quiz';
                 }
                 setStatus({message, type});
             });
