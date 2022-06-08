@@ -32,7 +32,7 @@ export const App = ({store}) => (
                 <Route path='/sign-in' element={<SignInForm />} />
                 <Route path='/yourhomepage' element={<PersonalizedHomePage/>}/>
                 <Route path='/recipes' element={<RecipePage />} />
-                <Route exact path='/favoriteRecipes' element={<FavoritePage/>} />
+                <Route exact path='/favorites' element={<FavoritePage/>} />
                 <Route path='/quiz' element={<QuizPage/>} />
                 <Route exact path='/sign-up' element={<SignUpForm/>} />
             </Routes>

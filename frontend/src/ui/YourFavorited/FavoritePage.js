@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Container, Row, Tab, Tabs} from 'react-bootstrap'
 import {FavoriteRecipeCardsBreakfast} from "./YourFavoriteCardsBreakfast";
 import {FavoriteRecipeCardsDinner} from "./YourFavoriteCardsDinner";
@@ -14,13 +14,17 @@ function Sonnet() {
 }
 
 export function FavoritePage () {
-    const [key, setKey] = useState('home');
+    const [key, setKey] = useState('');
+
     const auth = useSelector(state => state.auth);
     console.log(auth)
     const dispatch = useDispatch()
     const effects = () => {
         dispatch(fetchAuth());
     };
+    const inputs = [];
+    useEffect(effects, inputs);
+
 
     return (
         <>
