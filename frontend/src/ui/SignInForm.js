@@ -126,7 +126,10 @@ function SignInFormContent (props) {
                 </div>
 
                 <div className='text-center py-5'>
-                    <Button variant="success" className='buttonBlockSize2'>Sign In</Button>
+                    <Button
+                        variant="success"
+                        onClick={handleSubmit}
+                        className='btn buttonBlockSize2'>Sign In</Button>
                 </div>
                 <div className='my-1 pb-5'>
                     <a href="/sign-up" className="link-dark">Create Account</a>
