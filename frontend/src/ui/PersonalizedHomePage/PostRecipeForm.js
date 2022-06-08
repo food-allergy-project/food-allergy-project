@@ -1,16 +1,17 @@
 import React from 'react';
-
 import * as Yup from "yup";
 import {Formik} from "formik";
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {DisplayError} from "../shared/components/display-error/DIsplayError";
+import {DisplayStatus} from "../shared/components/display-status/DIsplayStatus";
+import {httpConfig} from "../../utils/httpConfig";
 
 
 export const PostRecipeForm = () => {
     const recipe = {
         recipeIngredients: "",
         recipeImage: "",
-        recipeImageAlt: "",
         recipeInstructions: "",
         recipeTitle: "",
     };
@@ -70,7 +71,7 @@ function  PostRecipeFormContent(props){
             <Form onSubmit={handleSubmit}>
                 {/*controlId must match what is passed to the initialValues prop*/}
                 <Form.Group className="mb-1" controlId="recipeTitle">
-                    <Form.Label>recipeTitle</Form.Label>
+                    <Form.Label>Recipe Name</Form.Label>
                     <InputGroup>
                         <InputGroup.Text>
                             <FontAwesomeIcon icon="envelope"/>
@@ -89,25 +90,6 @@ function  PostRecipeFormContent(props){
                     <DisplayError errors={errors} touched={touched} field={"recipeTitle"} />
                 </Form.Group>
                 {/*controlId must match what is defined by the initialValues object*/}
-                <Form.Group className="mb-1" controlId="profilePassword">
-                    <Form.Label>Password</Form.Label>
-                    <InputGroup>
-                        <InputGroup.Text>
-                            <FontAwesomeIcon icon="key"/>
-                        </InputGroup.Text>
-                        <FormControl
-                            className="form-control"
-                            name="profilePassword"
-                            type="password"
-                            value={values.profilePassword}
-                            placeholder="P@ssword1"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-
-                        />
-                    </InputGroup>
-                    <DisplayError errors={errors} touched={touched} field={"recipeIngredients"} />
-                </Form.Group>
                 <Form.Group className="mb-1" controlId="recipeIngredients">
                     <Form.Label>Ingredients</Form.Label>
                     <InputGroup>
@@ -174,7 +156,7 @@ function  PostRecipeFormContent(props){
                         className="btn btn-danger"
                         onClick={handleReset}
                         disabled={!dirty || isSubmitting}
-                    >Reset
+                    >Clear All
                     </Button>
                 </Form.Group>
 

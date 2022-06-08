@@ -1,20 +1,20 @@
 import React, {useState} from "react";
-import {Button, Modal} from "react-bootstrap";
+import {Button, Container, Modal} from "react-bootstrap";
 import {PostRecipeForm} from "./PostRecipeForm";
 
- /* export function PostRecipeButton() {
-      return (
-          <Container className='py-5'>
-              <Row>
-                  <Col>
-                      <div className='text-end'>
-                          <Button variant="success" size="sm">Post Recipe</Button>
-                      </div>
-                  </Col>
-              </Row>
-          </Container>
-      )
-  }*/
+/* export function PostRecipeButton() {
+     return (
+         <Container className='py-5'>
+             <Row>
+                 <Col>
+                     <div className='text-end'>
+                         <Button variant="success" size="sm">Post Recipe</Button>
+                     </div>
+                 </Col>
+             </Row>
+         </Container>
+     )
+ }*/
 
 export const PostRecipeButton = () => {
     const [show, setShow] = useState(false);
@@ -24,10 +24,13 @@ export const PostRecipeButton = () => {
 
     return (
         <>
-            <Button variant="success" onClick={handleShow}>
-                Post Recipe
-            </Button>
-
+            <Container className='py-5'>
+                <div className='text-end'>
+                    <Button variant="success" onClick={handleShow}>
+                        Post Recipe
+                    </Button>
+                </div>
+            </Container>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Post Recipe</Modal.Title>
@@ -39,9 +42,6 @@ export const PostRecipeButton = () => {
         </>
     );
 }
-
-
-
 
 
 /*export function PostRecipeButton() {
