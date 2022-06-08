@@ -8,13 +8,14 @@ import  {fetchAllRecipes} from "../../store/recipes";
 import {PostRecipeButton} from "./PostRecipeButton";
 
 export const PersonalizedHomePage = () => {
+
     const dispatch = useDispatch()
     const initialEffects = () => {
-        dispatch(fetchAllRecipes())
+        dispatch(fetchAllRecipes());
     }
     React.useEffect(initialEffects, [dispatch])
 
-    // use the misquotes data from the store
+    // use the misquotes' data from the store
     const recipes = useSelector((state) => state.recipes ? state.recipes : [])
 
     return(

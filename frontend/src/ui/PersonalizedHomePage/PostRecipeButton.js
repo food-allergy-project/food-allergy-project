@@ -1,22 +1,50 @@
 import React, {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
-import {render} from "react-dom";
+import {PostRecipeForm} from "./PostRecipeForm";
 
-    /*export function PostRecipeButton() {
-        return (
-            <Container className='py-5'>
-                <Row>
-                    <Col>
-                        <div className='text-end'>
-                            <Button variant="success" size="sm" >Post Recipe</Button>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }*/
+ /* export function PostRecipeButton() {
+      return (
+          <Container className='py-5'>
+              <Row>
+                  <Col>
+                      <div className='text-end'>
+                          <Button variant="success" size="sm">Post Recipe</Button>
+                      </div>
+                  </Col>
+              </Row>
+          </Container>
+      )
+  }*/
 
-export function PostRecipeButton() {
+export const PostRecipeButton = () => {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+        <>
+            <Button variant="success" onClick={handleShow}>
+                Post Recipe
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Post Recipe</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <PostRecipeForm/>
+                </Modal.Body>
+            </Modal>
+        </>
+    );
+}
+
+
+
+
+
+/*export function PostRecipeButton() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -46,4 +74,4 @@ export function PostRecipeButton() {
     );
 }
 
-render(<PostRecipeButton/>);
+render(<PostRecipeButton/>);*/
