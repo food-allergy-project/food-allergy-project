@@ -16,7 +16,7 @@ export const {setFavoritedRecipes} = slice.actions
 export default slice.reducer
 
 // create an export to allow async calls to our action
-export const fetchFavoritedRecipesByProfileId = (profileId) => async dispatch => {
-    const {data} = await httpConfig('/apis/favoritedrecipes/')
+export const fetchFavoritedRecipesByProfileId = () => async dispatch => {
+    const {data} = await httpConfig('/apis/recipe/favorites/profile')
     dispatch(setFavoritedRecipes(data))
 }
