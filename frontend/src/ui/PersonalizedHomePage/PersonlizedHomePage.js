@@ -5,7 +5,7 @@ import {SuggestedRecipes} from "./SuggestedRecipes";
 import {RefreshRecipesButton} from "./RefreshButton";
 import {useDispatch, useSelector} from "react-redux";
 import  {fetchAllRecipes} from "../../store/recipes";
-import {PostRecipeButton} from "./PostRecipeButton";
+import {PostRecipeButton} from "./PostRecipe/PostRecipeButton";
 import {fetchAuth} from "../../store/auth";
 
 export const PersonalizedHomePage = () => {
@@ -19,6 +19,7 @@ export const PersonalizedHomePage = () => {
 
     const inputs = [];
     useEffect(effects, inputs);
+
 
     React.useEffect(effects, [dispatch])
     const recipes = useSelector((state) => state.recipes ? state.recipes : [])
