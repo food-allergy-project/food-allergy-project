@@ -1,0 +1,260 @@
+import React, {useState} from 'react';
+import * as Yup from "yup";
+import {Formik} from "formik";
+import { Button, Form, FormControl, InputGroup, Image } from 'react-bootstrap'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {DisplayError} from "../../shared/components/display-error/DIsplayError";
+import {DisplayStatus} from "../../shared/components/display-status/DIsplayStatus";
+import {httpConfig} from "../../../utils/httpConfig";
+import {useDropzone} from "react-dropzone";
+
+
+
+export const PostRecipeForm = () => {
+   // const {profile} = props
+   // const dispatch = useDispatch()
+
+    const validator = Yup.object().shape({
+        recipeTitle: Yup.string()
+            .required('Recipe name is required'),
+        recipeImage: Yup.string()
+            .required("An image is required"),
+        recipeIngredients: Yup.string()
+            .required("Ingredient list is required"),
+        recipeInstructions: Yup.string()
+            .required("Cooking instruction is required")
+    });
+
+    const recipe = {
+        recipeIngredients: "",
+        recipeImage: "",
+        recipeInstructions: "",
+        recipeTitle: "",
+    };
+
+    const submitRecipe = (values, {resetForm, setStatus}) => {
+        httpConfig.post("/apis/yourhomepage/", values)
+            .then(reply => {
+                    let {message, type} = reply;
+
+                    if(reply.status === 200) {
+                        resetForm();
+                    }
+                    setStatus({message, type});
+                }
+            );
+    };
+
+    return (
+
+        <Formik
+            initialValues={recipe}
+            onSubmit={submitRecipe}
+            validationSchema={validator}
+        >
+            {PostRecipeFormContent}
+        </Formik>
+
+    )
+};
+function  PostRecipeFormContent(props){
+    const [selectedImage, setSelectedImage] = useState(null)
+    const {
+        setFieldValue,
+        status,
+        values,
+        errors,
+        touched,
+        dirty,
+        isSubmitting,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        handleReset
+    } = props;
+
+    if (values.recipeImage !== ""){
+        console.log(values.recipeImage.get("image"))
+    }
+    console.log(values.recipeImage)
+
+    return (
+        <>
+            <Form onSubmit={handleSubmit}>
+
+                <Form.Group className="mb-1" controlId="recipeTitle">
+
+                    {/*Image Input*/}
+                    <ImageDropZone
+                    formikProps={{
+                        values,
+                        handleChange,
+                        handleBlur,
+                        setFieldValue,
+                        fieldValue: 'recipeImage', setSelectedImage: setSelectedImage
+                    }}>
+                    </ImageDropZone>
+                    <div>
+                        {selectedImage !== null ? <img src={selectedImage}/> : ""}
+                    </div>
+
+                {
+                    errors.recipeImage && touched.recipeImage && (
+                        <div className="alert alert-danger">
+                            {errors.recipeImage}
+                        </div>
+                    )
+                }
+
+
+                    <Form.Label>Recipe Name</Form.Label>
+                    <InputGroup>
+                        <InputGroup.Text>
+                            <FontAwesomeIcon icon="envelope"/>
+                        </InputGroup.Text>
+                        <FormControl
+                            className="form-control"
+                            name="recipeTitle"
+                            type="text"
+                            value={values.recipeTitle}
+                            placeholder="Please enter the recipe name"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+
+                        />
+                    </InputGroup>
+                    <DisplayError errors={errors} touched={touched} field={"recipeTitle"} />
+                </Form.Group>
+
+                <Form.Group className="mb-1" controlId="recipeIngredients">
+                    <Form.Label>Ingredients</Form.Label>
+                    <InputGroup>
+                        <InputGroup.Text>
+                            <FontAwesomeIcon icon="key"/>
+                        </InputGroup.Text>
+                        <FormControl
+                            className="form-control"
+                            name="recipeIngredients"
+                            type="text"
+                            value={values.recipeIngredients}
+                            placeholder="Please provide a list of Ingredients"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+
+                        />
+                    </InputGroup>
+                    <DisplayError errors={errors} touched={touched} field={"recipeInstructions"} />
+                </Form.Group>
+
+                <Form.Group className="mb-1" controlId="recipeInstructions">
+                    <Form.Label>Instructions</Form.Label>
+                    <InputGroup>
+                        <InputGroup.Text>
+                            <FontAwesomeIcon icon="dove"/>
+                        </InputGroup.Text>
+                        <FormControl
+                            className="form-control"
+                            name="recipeInstructions"
+                            type="text"
+                            value={values.recipeInstructions}
+                            placeholder="Provide instructions on how to make this."
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+
+                        />
+
+                    </InputGroup>
+                    <DisplayError errors={errors} touched={touched} field={"recipeInstructions"} />
+                </Form.Group>
+
+                <Form.Group className="mb-1" controlId="recipeImage">
+                    <Form.Label>Recipe Image</Form.Label>
+                    <InputGroup>
+                        <InputGroup.Text>
+                            <FontAwesomeIcon icon="phone"/>
+                        </InputGroup.Text>
+                        <FormControl
+                            className="form-control"
+                            name="recipeImage"
+                            type="URL"
+                            value={values.recipeImage}
+                            placeholder="Please provide a URL of your image"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+
+                        />
+                    </InputGroup>
+                    <DisplayError errors={errors} touched={touched} field={"recipeImage"} />
+                </Form.Group>
+                <Form.Group className={"mt-3"}>
+                    <Button className="btn btn-success" type="submit">Submit</Button>
+                    {" "}
+                    <Button
+                        className="btn btn-danger"
+                        onClick={handleReset}
+                        disabled={!dirty || isSubmitting}
+                    >Clear All
+                    </Button>
+                </Form.Group>
+            </Form>
+            <DisplayStatus status={status} />
+
+        </>
+
+
+    )
+}
+
+function ImageDropZone ({ formikProps }) {
+
+    const onDrop = React.useCallback(acceptedFiles => {
+
+        const formData = new FormData()
+        formData.append('image', acceptedFiles[0])
+
+        const fileReader = new FileReader()
+        fileReader.readAsDataURL(acceptedFiles[0])
+        fileReader.addEventListener("load", () => {
+            formikProps.setSelectedImage(fileReader.result)
+        })
+
+        formikProps.setFieldValue(formikProps.fieldValue, formData)
+
+    }, [formikProps])
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+    return (
+        <Form.Group className={"mb-3"} {...getRootProps()}>
+            <Form.Label>Recipe Images</Form.Label>
+
+            <InputGroup size="lg" className="">
+                {
+                    formikProps.values.recipeImage &&
+                    <>
+                        <div className="bg-transparent m-0">
+                            <Image alt="food image" src={formikProps.values.recipeImage} />
+                        </div>
+
+                    </>
+                }
+                <div className="d-flex flex-fill bg-light justify-content-center align-items-center border rounded">
+                    <FormControl
+                        aria-label="recipe image files drag and drop area"
+                        aria-describedby="image drag drop area"
+                        className="form-control-file"
+                        accept="image/*"
+                        onChange={formikProps.handleChange}
+                        onBlur={formikProps.handleBlur}
+                        {...getInputProps()}
+                    />
+                    {
+                        isDragActive ?
+                            <span className="align-items-center" >Drop image here</span> :
+                            <span className="align-items-center" >Drag and drop image here, or click here to select an image</span>
+                    }
+                </div>
+            </InputGroup>
+        </Form.Group>
+    )
+}
+

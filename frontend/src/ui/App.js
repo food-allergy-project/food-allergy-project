@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
-import { FavoritePage} from './FavoritePage'
+import { FavoritePage} from './YourFavorited/FavoritePage'
 import {RecipePage} from './RecipePage'
 import React from 'react'
 import {SignInForm} from "./SignInForm";
@@ -32,7 +32,7 @@ export const App = ({store}) => (
                 <Route path='/sign-in' element={<SignInForm />} />
                 <Route path='/yourhomepage' element={<PersonalizedHomePage/>}/>
                 <Route path='/recipes' element={<RecipePage />} />
-                <Route exact path='/favorite' element={<FavoritePage/>} />
+                <Route exact path='/favorites' element={<FavoritePage/>} />
                 <Route path='/quiz' element={<QuizPage/>} />
                 <Route exact path='/sign-up' element={<SignUpForm/>} />
             </Routes>

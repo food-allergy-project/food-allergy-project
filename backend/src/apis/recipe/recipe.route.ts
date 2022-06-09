@@ -4,7 +4,13 @@ import {asyncValidatorController} from "../../utils/controllers/async-validator.
 import {check, checkSchema} from "express-validator";
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import { recipeValidator } from "./recipe.validator";
-import { putRecipeController, getRecipeByRecipeIdController, getAllRecipeControllers, postRecipeController, } from "./recipe.controller";
+import {
+    putRecipeController,
+    getRecipeByRecipeIdController,
+    getAllRecipeControllers,
+    postRecipeController,
+    getRecipeByFavoriteProfileId,
+} from "./recipe.controller";
 
 
 
@@ -29,3 +35,7 @@ RecipeRoute.route('/')
     
     .post(isLoggedIn, asyncValidatorController(checkSchema(recipeValidator)),
         postRecipeController)
+
+RecipeRoute.route("/favorites/profile")
+    .get(
+        isLoggedIn,getRecipeByFavoriteProfileId)
