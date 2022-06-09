@@ -1,13 +1,28 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Container, Row, Col, Figure, Button } from 'react-bootstrap'
-import testFoodimg from '../ui/shared/imgs/testFoodIImg.jpg'
 import FigureImage from 'react-bootstrap/FigureImage'
+import {fetchAllRecipesAndProfiles} from "../../store/profilePostedRecipes";
+import {useDispatch, useSelector} from "react-redux";
+import {RecipeCard} from "../PersonalizedHomePage/RecipeCard";
+
 
 export const RecipePage = () => {
+  const dispatch = useDispatch()
+
+  useEffect(
+      () => {
+        dispatch(fetchAllRecipesAndProfiles())
+      },
+      []
+  )
+
+  const recipes = useSelector(state => (state.recipes ? state.recipes : []))
+
+
   return (
     <>
       <Container>
-        <h1 className="text-center my-5">Gluten Free Lasenga</h1>
+        <h1 className="text-center my-5">Gluten Free Pizza</h1>
         <Button variant="secondary" className="m-3 my-4">Back to Recipes</Button>
       </Container>
       <Container>
@@ -15,9 +30,9 @@ export const RecipePage = () => {
           <Col className="alignment-center col-8 p-4">
             <Figure>
               <FigureImage
-                className="recipeImg"
-                src={testFoodimg}
-                alt="test"
+                  {
+                    recipe.map(recipe => <RecipeCard post={recipe} key={recipe.recipeId}/>)
+                  }
               />
             </Figure>
           </Col>

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
 import { FavoritePage} from './FavoritePage'
-import {RecipePage} from './RecipePage'
+import {RecipePage} from './RecipePage/RecipePage'
 import React from 'react'
 import {SignInForm} from "./SignInForm";
 import { Provider } from 'react-redux'
