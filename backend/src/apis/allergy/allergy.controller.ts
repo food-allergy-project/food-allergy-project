@@ -4,6 +4,7 @@ import {insertAllergy} from "../../utils/allergy/insertAllergy";
 import {selectAllergyByAllergyId} from "../../utils/allergy/selectAllergyByAllergyId";
 import {Status} from "../../utils/interfaces/Status";
 import {selectAllAllergies} from "../../utils/allergy/selectAllAllergies";
+import {selectAllergiesByProfileId} from "../../utils/allergy/selectAllergiesByProfileId";
 
 export async function postAllergyController(request: Request, response: Response) : Promise<Response> {
     try {

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Modal} from "react-bootstrap";
+import {Button, Container, Modal} from "react-bootstrap";
 import {EditProfileForm} from "./EditProfileForm";
 
 
@@ -13,25 +13,20 @@ export function EditProfile () {
 
     return (
         <>
-            <Button variant="success" onClick={handleShow}>
-                Edit Profile
-            </Button>
-
+            <Container className='py-5'>
+                <div className='text-end'>
+                    <Button variant='success' onClick={handleShow}>
+                        Edit Profile
+                    </Button>
+                </div>
+            </Container>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title> Edit Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <EditProfileForm />
+
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </>
     );
