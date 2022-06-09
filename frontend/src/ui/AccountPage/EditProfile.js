@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {Button, Container, Modal} from "react-bootstrap";
 import {EditProfileForm} from "./EditProfileForm";
+import {PostRecipeForm} from "./EditTestForm";
+
+
 
 
 
@@ -13,8 +16,8 @@ export function EditProfile () {
 
     return (
         <>
-            <Container className='py-5'>
-                <div className='text-end'>
+            <Container>
+                <div className='text-center'>
                     <Button variant='success' onClick={handleShow}>
                         Edit Profile
                     </Button>
@@ -25,7 +28,7 @@ export function EditProfile () {
                     <Modal.Title> Edit Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
+                    <PostRecipeForm />
                 </Modal.Body>
             </Modal>
         </>

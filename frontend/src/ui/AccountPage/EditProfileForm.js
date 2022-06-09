@@ -2,9 +2,10 @@ import React from "react";
 import * as Yup from "yup";
 import {httpConfig} from "../../utils/httpConfig";
 import {Form, Formik} from "formik";
-import {FormControl, InputGroup} from "react-bootstrap";
+import {Button, FormControl, InputGroup} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {DisplayError} from "../shared/components/display-error/DIsplayError";
+import {DisplayStatus} from "../shared/components/display-status/DIsplayStatus";
 
 export const EditProfileForm = () => {
     const editProfile = {
@@ -58,7 +59,7 @@ function EditProfileFormContent(props){
         <>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-1" controlId="profileFullName">
-                    <Form.Label>Recipe Name</Form.Label>
+                    <Form.Label>Full Name</Form.Label>
                     <InputGroup>
                         <InputGroup.Text>
                             <FontAwesomeIcon icon="envelope"/>
@@ -75,7 +76,19 @@ function EditProfileFormContent(props){
                     </InputGroup>
                     <DisplayError errors={errors} touched={touched} field={"profileFullName"} />
                 </Form.Group>
+                <Form.Group className={"mt-3"}>
+                    <Button className="btn btn-success" type="submit">Submit</Button>
+                    {" "}
+                    <Button
+                        className="btn btn-danger"
+                        onClick={handleReset}
+                        disabled={!dirty || isSubmitting}
+                    >Clear All
+                    </Button>
+                </Form.Group>
+
             </Form>
+            <DisplayStatus status={status} />
         </>
     )
 }
