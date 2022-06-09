@@ -24,7 +24,7 @@ CREATE TABLE profile (
 
 CREATE TABLE allergy (
     allergyId       BINARY(16)  NOT NULL,
-    allergyImage    VARCHAR(255)    NOT NULL,
+    allergyImage    VARCHAR(333)    NOT NULL,
     allergyImageAlt VARCHAR(32),
     allergyName     VARCHAR(32) NOT NULL,
     INDEX (allergyId),
