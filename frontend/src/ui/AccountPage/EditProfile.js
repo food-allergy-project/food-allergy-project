@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, Container, Modal} from "react-bootstrap";
 import {EditProfileForm} from "./EditProfileForm";
-import {PostRecipeForm} from "./EditTestForm";
+
 
 
 
@@ -28,7 +28,7 @@ export function EditProfile () {
                     <Modal.Title> Edit Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <PostRecipeForm />
+                    <EditProfileForm />
                 </Modal.Body>
             </Modal>
         </>

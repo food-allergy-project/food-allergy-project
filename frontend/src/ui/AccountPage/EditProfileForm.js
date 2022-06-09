@@ -1,8 +1,8 @@
 import React from "react";
 import * as Yup from "yup";
 import {httpConfig} from "../../utils/httpConfig";
-import {Form, Formik} from "formik";
-import {Button, FormControl, InputGroup} from "react-bootstrap";
+import {Formik} from "formik";
+import {Button, FormControl, InputGroup, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {DisplayError} from "../shared/components/display-error/DIsplayError";
 import {DisplayStatus} from "../shared/components/display-status/DIsplayStatus";
@@ -13,7 +13,7 @@ export const EditProfileForm = () => {
     };
     const validator = Yup.object().shape({
         profileFullName: Yup.string()
-            .required("profile handle is required"),
+            .required("profile name is required"),
     });
 
     const submitEditProfile = (values, {resetForm, setStatus}) => {
