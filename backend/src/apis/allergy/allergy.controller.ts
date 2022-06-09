@@ -41,3 +41,16 @@ export async function getAllAllergyControllers(request: Request, response: Respo
         return(response.json({status: 400, data: null, message: error.message}))
     }
 }
+
+// GET allergies by profileId
+export async function getAllergiesByProfileId (request: Request, response: Response) : Promise<Response> {
+    try {
+        const {profileId} = request.params;
+        const mySqlResult = await selectAllergiesByProfileId(profileId);
+        const data = mySqlResult ?? null
+        const status : Status = {status: 200, data, message: null}
+        return response.json(status)
+    } catch (error: any) {
+        return (response.json({status:400, data: null, message: error.message}))
+    }
+}
