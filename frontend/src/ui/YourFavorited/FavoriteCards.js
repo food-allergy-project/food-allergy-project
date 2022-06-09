@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col} from "react-bootstrap";
+import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import "./FavoritedCardRecipe.css"
 
 
@@ -13,20 +13,27 @@ export function FavoriteCards(props) {
             {
                 recipes.map((recipe) => {
                     return (
-                        <Col className="justify-content-center align-content-center">
-                            <Card bg='light' text='dark' className="favoriteRecipeCardSize mt-5">
-                                <Card.Img variant="top" className="favoriteRecipeCardImg"
-                                          src={
-                                              recipe.recipeImage
-                                          }/>
-                                <Card.Body>
-                                    <Card.Title className="FavoriteRecipeCards">
-                                        {
-                                            recipe.recipeTitle
-                                        }</Card.Title>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                        <Container>
+                            <Row>
+                            <Col className="justify-content-center align-content-center">
+                                <Card bg='light' text='dark' className="favoriteRecipeCardSize mt-5">
+                                    <Card.Img variant="top" className="favoriteRecipeCardImg"
+                                              src={
+                                                  recipe.recipeImage
+                                              }/>
+                                    <Card.Body>
+                                        <Card.Title className="FavoriteRecipeCards">
+                                            {
+                                                recipe.recipeTitle
+                                            }</Card.Title>
+                                    </Card.Body>
+                                    <Button>
+                                        go to recipe
+                                    </Button>
+                                </Card>
+                            </Col>
+                            </Row>
+                        </Container>
                     )
                 })
             }
