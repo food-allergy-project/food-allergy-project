@@ -2,9 +2,13 @@ import React from "react";
 import {Card, Col, Container, Row} from "react-bootstrap";
 import {MyRecipesCards} from "./MyRecipesCards";
 import {MyRecentFavoritesCards} from "./MyRecentFavoritesCards";
+import favoritedRecipes from "../../store/favoritedRecipes";
 
 
-export const MyRecipes = () => {
+export const MyRecipes = (props) => {
+    const {myFavoritedRecipes} = props
+    console.log(myFavoritedRecipes)
+
     return(
         <>
             <Card body style={{height: '30rem'}} border='light'>
@@ -27,7 +31,7 @@ export const MyRecipes = () => {
                         </Col>
                     </Row>
                     <Row className='py-5 justify-content-center'>
-                        <MyRecentFavoritesCards />
+                        {myFavoritedRecipes.map(favoritedRecipes => <MyRecentFavoritesCards favoritedRecipes = {favoritedRecipes} />)}
                     </Row>
                 </Container>
             </Card>

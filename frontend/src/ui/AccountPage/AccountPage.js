@@ -4,6 +4,7 @@ import {UserProfileSection} from "./UserProfileSection";
 import {MyRecipes} from "./MyRecipes";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAuth} from "../../store/auth";
+import {fetchFavoritedRecipesByProfileId} from "../../store/favoritedRecipes";
 
 
 // import {MyRecentFavorites} from "./MyRecentFavorites";
@@ -14,10 +15,14 @@ export const AccountPage = () => {
     console.log(auth)
     const dispatch = useDispatch()
     const effects = () => {
+        dispatch(fetchFavoritedRecipesByProfileId());
         dispatch(fetchAuth());
     };
     const inputs = [];
     useEffect(effects, inputs);
+
+    React.useEffect(effects, [dispatch])
+    const myFavoritedRecipes = useSelector((state) => state.favoritedRecipes ? state.favoritedRecipes : [])
 
     return (
         <>
