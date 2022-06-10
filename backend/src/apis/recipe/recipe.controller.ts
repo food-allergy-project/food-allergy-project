@@ -7,6 +7,11 @@ import { selectRecipeByRecipeId } from "../../utils/recipe/selectRecipeByRecipeI
 import { selectAllRecipes } from "../../utils/recipe/selectAllRecipe";
 import { Profile } from "../../utils/interfaces/Profile";
 import { profile } from "console";
+import {selectRecipeByFavoritedProfileId} from "../../utils/recipe/selectRecipeByFavoritedProfileId";
+import {
+    selectProfileAllergyByProfileAllergyProfileId
+} from "../../utils/profile-allergy/selectProfileAlleryByProfileAllergyProfileId";
+import {commentValidator} from "../comment/comment.validator";
 //import { deleteRecipeByRecipeId } from "../../utils/recipe/deleteRecipeByRecipeId";
 
 export async function putRecipeController(request: Request, response: Response): Promise<Response> {
@@ -60,21 +65,7 @@ export async function getRecipeByRecipeIdController(request: Request, response: 
         return (response.json({status: 500, data: null, message: 'internal server error please try again.'}))
     }
 }
-/*
-export async function removeRecipeByRecipeId(request: Request, response: Response) : Promise<Response> {
-    try {
-        const {recipeId} = request.params;
-        const mySqlResult = await deleteRecipeByRecipeId(recipeId);
-        const data = mySqlResult ?? null
-        const status: Status = {status: 200, data, message: null}
-        return response.json(status)
 
-    } catch (error: any) {
-        return(response.json({status: 400, data: null, message: error.message}))
-
-    }
-
-}*/
 
 export async function getAllRecipeControllers(request: Request, response: Response) : Promise<Response> {
     try {
@@ -108,5 +99,23 @@ export async function postRecipeController(request: Request, response: Response)
 
     } catch (error: any) {
         return response.json( {status:400, data: null, message: error.message})
+    }
+}
+
+
+/*Is this a new comment color todo  create getRecipeByFavoriteProfileId*/
+
+export async function getRecipeByFavoriteProfileId(request: Request, response: Response) : Promise<Response> {
+    try {
+  /*      const {profileId} = request.params;*/
+        const profile = request.session.profile as Profile
+        const profileId = profile.profileId as string
+        const data = await selectRecipeByFavoritedProfileId(profileId);
+
+        const status: Status = {status: 200, data, message: null}
+        return response.json(status)
+
+    } catch (error: any) {
+        return(response.json({status: 400, data: null, message: error.message}))
     }
 }

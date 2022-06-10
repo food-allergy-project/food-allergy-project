@@ -4,14 +4,16 @@ import FigureImage from "react-bootstrap/FigureImage";
 import avatarImage from "./imgs/greenAvatar.png"
 
 
-export const PersonalizedInfo = () => {
+export const PersonalizedInfo = (props) => {
+    const {profile} = props
+    console.log(profile)
     return(
         <>
 
             <Card body bg="light" border="light" style={{height: '20rem'}}>
                 <Container>
                     <Row>
-                        <Col xs={6} className='justify-content-center text-start'>
+                        <Col className='justify-content-center text-start'>
                             <Figure>
                                 <FigureImage roundedCircle className='mt-5 mx-5'
                                     src={avatarImage}
@@ -22,11 +24,12 @@ export const PersonalizedInfo = () => {
                             </Figure>
                             <p className='justify-content-center text-start mr-5 px-4'>Allergic to: dairy,gluten</p>
                         </Col>
-                        <Col xs={6}>
+                        <Col>
                             <h3 className='text-end pt-5 mt-5'>
                                 Welcome,
                             </h3>
-                            <p className='text-end'>This is Your Personalized Homepage, Adam!</p>
+
+                             {profile && <p className='text-end'> This is Your Personalized Homepage, {profile.profileFullName}!</p>}
                         </Col>
                     </Row>
                 </Container>
