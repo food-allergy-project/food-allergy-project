@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSelector, createSlice} from '@reduxjs/toolkit'
 import {httpConfig} from "../utils/httpConfig";
 
 
@@ -38,9 +38,9 @@ export const fetchAllProfiles = () => async dispatch => {
 export const fetchProfileByProfileId = (id) => async (dispatch, getState) => {
 
     const profiles = getState().profile
-    console.log(profiles[id])
+    // console.log(profiles[id])
     if (profiles[id] === undefined) {
-        console.log(profiles[id])
+        // console.log(profiles[id])
         const { data } = await httpConfig(`/apis/profile/${id}`)
         dispatch(setProfileByProfileId({ id, data }))
     }

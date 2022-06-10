@@ -3,7 +3,7 @@ import { Container, Row, Col, Figure, Button } from 'react-bootstrap'
 import FigureImage from 'react-bootstrap/FigureImage'
 import {fetchAllRecipesAndProfiles} from "../../store/profilePostedRecipes";
 import {useDispatch, useSelector} from "react-redux";
-import {RecipeCard} from "../PersonalizedHomePage/RecipeCard";
+
 
 
 export const RecipePage = () => {
@@ -28,13 +28,13 @@ export const RecipePage = () => {
       <Container>
         <Row>
           <Col className="alignment-center col-8 p-4">
-            <Figure>
-              <FigureImage
-                  {
-                    recipe.map(recipe => <RecipeCard post={recipe} key={recipe.recipeId}/>)
-                  }
-              />
-            </Figure>
+            {/*<Figure>*/}
+            {/*  <FigureImage*/}
+            {/*      {*/}
+
+            {/*      }*/}
+            {/*  />*/}
+            {/*</Figure>*/}
           </Col>
         </Row>
       </Container>
