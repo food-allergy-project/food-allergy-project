@@ -31,7 +31,7 @@ export const MyRecipes = (props) => {
                         </Col>
                     </Row>
                     <Row className='py-5 justify-content-center'>
-                        {myFavoritedRecipes.map(favoritedRecipes => <MyRecentFavoritesCards favoritedRecipes = {favoritedRecipes} />)}
+                        {myFavoritedRecipes.map(myRecentFavorites => <MyRecentFavoritesCards myRecentFavorites = {myRecentFavorites} />)}
                     </Row>
                 </Container>
             </Card>

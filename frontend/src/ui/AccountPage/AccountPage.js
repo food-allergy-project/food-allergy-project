@@ -28,7 +28,7 @@ export const AccountPage = () => {
         <>
             <UserProfileSection profile={auth}/>
             <div className='pb-5'>
-                <MyRecipes />
+                <MyRecipes myFavoritedRecipes = {myFavoritedRecipes} />
             </div>
             {/*<div className='pb-5'></div>*/}
             {/*<div className='my-5'>*/}
