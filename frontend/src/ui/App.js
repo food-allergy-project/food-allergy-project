@@ -24,12 +24,12 @@ export const App = ({store}) => (
         <BrowserRouter>
             <NavBar/>
             <Routes>
+                <Route path='/recipe/:recipeId' element={ <RecipePage /> } recipeId=':recipeId'/>
                 <Route path='/' element={<Home />} />
                 <Route path='*' element={<FourOhFour/>} />
                 <Route path='/account' element={<AccountPage />} />
                 <Route path='/sign-in' element={<SignInForm />} />
                 <Route path='/yourhomepage' element={<PersonalizedHomePage/>}/>
-                <Route path='/recipes' element={<RecipePage />} />
                 <Route exact path='/favorites' element={<FavoritePage/>} />
                 <Route path='/quiz' element={<QuizPage/>} />
                 <Route exact path='/sign-up' element={<SignUpForm/>} />

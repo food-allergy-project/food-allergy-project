@@ -4,10 +4,10 @@ import auth from "./auth";
 import allergies from "./allergies";
 import favoritedRecipes from "./favoritedRecipes";
 import profiles from "./profiles";
-import profilePostedRecipes from "./profilePostedRecipes";
 
 
-const reducer = combineReducers({recipes,auth, profiles, profilePostedRecipes, allergies, favoritedRecipes})
+
+const reducer = combineReducers({recipes,auth, profiles, allergies, favoritedRecipes,})
 
 
 export const store = configureStore({reducer})
