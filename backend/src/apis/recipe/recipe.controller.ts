@@ -85,12 +85,12 @@ export async function getAllRecipeControllers(request: Request, response: Respon
 export async function postRecipeController(request: Request, response: Response) : Promise<Response> {
     try {
         
-        const {recipeTitle, recipeImageAlt, recipeInstructions, recipeIngredients, recipeCategory} = request.body
+        const {recipeTitle, recipeImageAlt, recipeInstructions, recipeIngredients, recipeCategory, recipeImage} = request.body
         
         const profile: Profile = request.session.profile as Profile
         const recipeProfileId: string = profile.profileId as string
         
-        const recipe: Recipe = {recipeId:null, recipeProfileId, recipeCategory,recipeDate:null, recipeIngredients, recipeImage:'URL', recipeImageAlt, recipeInstructions, recipeTitle}
+        const recipe: Recipe = {recipeId:null, recipeProfileId, recipeCategory,recipeDate:null, recipeIngredients, recipeImage, recipeImageAlt, recipeInstructions, recipeTitle}
 
         const result = await insertRecipe(recipe)
         const status: Status = {status: 200,message: result, data: null}
