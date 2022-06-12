@@ -10,46 +10,67 @@ import {useDropzone} from "react-dropzone";
 import "./PostRecipeFormStyle.css"
 
 
-export const PostRecipeForm = () => {
-   // const {profile} = props
-   // const dispatch = useDispatch()
+export const PostRecipeForm = (props) => {
+    const {profileId} = props
+
 
     const validator = Yup.object().shape({
         recipeTitle: Yup.string()
             .required('Recipe name is required'),
-        recipeImage: Yup.string()
+        recipeImage: Yup.string()                                //should this be .string?
             .required("An image is required"),
+        recipeImageAlt: Yup.string(),
         recipeIngredients: Yup.string()
             .required("Ingredient list is required"),
         recipeInstructions: Yup.string()
             .required("Cooking instruction is required")
     });
 
-    const recipe = {
-        recipeIngredients: "",
-        recipeImage: "",
-        recipeInstructions: "",
-        recipeTitle: "",
-    };
+            // const recipe = {
+            //     recipeIngredients: "",
+            //     recipeImage: "",
+            //     recipeInstructions: "",
+            //     recipeTitle: "",
+            // };
 
-    const submitRecipe = (values, {resetForm, setStatus}) => {
-        httpConfig.post("/apis/yourhomepage/", values)
-            .then(reply => {
+    function submitUserRecipe(values, {resetForm, setStatus}) {
+
+        const submitRecipe = (submitARecipe) => {
+            httpConfig.post(`/apis/recipe/`,submitARecipe) //{...values, recipeProfileId: profileId}
+                .then(reply => {
                     let {message, type} = reply;
 
-                    if(reply.status === 200) {
+                    if (reply.status === 200) {
                         resetForm();
                     }
                     setStatus({message, type});
-                }
-            );
-    };
+                    return (reply)
+                })
+        };
+
+        if (values.recipeImage !== undefined) {
+            httpConfig.post(`/apis/image-upload`, values.recipeImage)
+                .then(reply => {
+                        let {message, type} = reply;
+
+                        if (reply.status === 200) {
+                            submitRecipe({...values, recipeImage: message})
+                        } else {
+                            setStatus({message, type});
+                        }
+                    }
+                );
+        } else {
+            submitRecipe(values);
+        }
+
+    }
 
     return (
 
         <Formik
-            initialValues={recipe}
-            onSubmit={submitRecipe}
+            initialValues={profileId}
+            onSubmit={submitUserRecipe}
             validationSchema={validator}
         >
             {PostRecipeFormContent}
@@ -57,7 +78,8 @@ export const PostRecipeForm = () => {
 
     )
 };
-function  PostRecipeFormContent(props){
+
+function PostRecipeFormContent(props) {
     const [selectedImage, setSelectedImage] = useState(null)
     const {
         setFieldValue,
@@ -73,7 +95,7 @@ function  PostRecipeFormContent(props){
         handleReset
     } = props;
 
-    if (values.recipeImage !== ""){
+    if (values.recipeImage !== "") {
         console.log(values.recipeImage.get("image"))
     }
     console.log(values.recipeImage)
@@ -82,30 +104,30 @@ function  PostRecipeFormContent(props){
         <>
             <Form onSubmit={handleSubmit}>
 
-                <Form.Group className="mb-1" controlId="recipeTitle">
+                <Form.Group className="mb-1" controlId="recipeForm">
 
                     {/*Image Input*/}
                     <ImageDropZone
-                    formikProps={{
-                        values,
-                        handleChange,
-                        handleBlur,
-                        setFieldValue,
-                        fieldValue: 'recipeImage', setSelectedImage: setSelectedImage
-                    }}>
+                        formikProps={{
+                            values,
+                            handleChange,
+                            handleBlur,
+                            setFieldValue,
+                            fieldValue: 'recipeImage', setSelectedImage: setSelectedImage
+                        }}>
                     </ImageDropZone>
 
                     <div>
                         {selectedImage !== null ? <img src={selectedImage}/> : ""}
                     </div>
 
-                {
-                    errors.recipeImage && touched.recipeImage && (
-                        <div className="alert alert-danger">
-                            {errors.recipeImage}
-                        </div>
-                    )
-                }
+                    {
+                        errors.recipeImage && touched.recipeImage && (
+                            <div className="alert alert-danger">
+                                {errors.recipeImage}
+                            </div>
+                        )
+                    }
 
                     {/*Recipe Tile*/}
                     <Form.Label>Recipe Name</Form.Label>
@@ -124,7 +146,7 @@ function  PostRecipeFormContent(props){
 
                         />
                     </InputGroup>
-                    <DisplayError errors={errors} touched={touched} field={"recipeTitle"} />
+                    <DisplayError errors={errors} touched={touched} field={"recipeTitle"}/>
                 </Form.Group>
 
                 {/*Recipe Ingredients*/}
@@ -145,7 +167,7 @@ function  PostRecipeFormContent(props){
 
                         />
                     </InputGroup>
-                    <DisplayError errors={errors} touched={touched} field={"recipeInstructions"} />
+                    <DisplayError errors={errors} touched={touched} field={"recipeInstructions"}/>
                 </Form.Group>
 
                 {/*Recipe Instructions*/}
@@ -166,7 +188,7 @@ function  PostRecipeFormContent(props){
 
                         />
                     </InputGroup>
-                    <DisplayError errors={errors} touched={touched} field={"recipeInstructions"} />
+                    <DisplayError errors={errors} touched={touched} field={"recipeInstructions"}/>
                 </Form.Group>
 
                 {/*Form Buttons*/}
@@ -183,7 +205,7 @@ function  PostRecipeFormContent(props){
                 </Form.Group>
 
             </Form>
-            <DisplayStatus status={status} />
+            <DisplayStatus status={status}/>
 
         </>
 
@@ -192,7 +214,8 @@ function  PostRecipeFormContent(props){
 }
 
 {/*ImageDropZone Function*/}
-function ImageDropZone ({ formikProps }) {
+
+function ImageDropZone({formikProps}) {
 
     const onDrop = React.useCallback(acceptedFiles => {
 
@@ -208,7 +231,7 @@ function ImageDropZone ({ formikProps }) {
         formikProps.setFieldValue(formikProps.fieldValue, formData)
 
     }, [formikProps])
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
 
     return (
         <Form.Group className={"mb-3"} {...getRootProps()}>
@@ -219,14 +242,15 @@ function ImageDropZone ({ formikProps }) {
                     formikProps.values.recipeImage &&
                     <>
                         <div className="bg-transparent m-0">
-                           <Container>
-                               <Row>
-                                   <Col>
-                                <Image className="postRecipeImg" alt="food image" src={formikProps.values.recipeImage} />
-                                   </Col>
-                                   <Col>
-                                   </Col>
-                               </Row>
+                            <Container>
+                                <Row>
+                                    <Col>
+                                        <Image className="postRecipeImg" alt="food image"
+                                               src={formikProps.values.recipeImage}/>
+                                    </Col>
+                                    <Col>
+                                    </Col>
+                                </Row>
                             </Container>
                         </div>
 
@@ -244,8 +268,8 @@ function ImageDropZone ({ formikProps }) {
                     />
                     {
                         isDragActive ?
-                            <span className="align-items-center" >Drop image here</span> :
-                            <span className="align-items-center" >Drag and drop image here, or click here to select an image</span>
+                            <span className="align-items-center">Drop image here</span> :
+                            <span className="align-items-center">Drag and drop image here, or click here to select an image</span>
                     }
                 </div>
             </InputGroup>

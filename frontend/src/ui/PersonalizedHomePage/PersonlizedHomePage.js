@@ -27,7 +27,7 @@ export const PersonalizedHomePage = () => {
 
     return(
         <>
-            <PostRecipeButton/>
+            {auth && <PostRecipeButton profileId = {auth.profileId}/>}
             <PersonalizedInfo  profile={auth}/>
             <RecipeCategories/>
             <RefreshRecipesButton/>
