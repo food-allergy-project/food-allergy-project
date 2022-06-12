@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
+import {RecipePage} from './RecipePage/RecipePage'
 import { FavoritePage} from './YourFavorited/FavoritePage'
-import {RecipePage} from './RecipePage'
 import React from 'react'
 import {SignInForm} from "./SignInForm";
 import { Provider } from 'react-redux'
@@ -13,11 +13,9 @@ import "./App.css"
 import {QuizPage} from "./QuizPage/QuizPage";
 import {SignUpForm} from "./SignUpForm";
 import {Footer} from "./shared/components/Footer";
-
-
-
-
 import {AccountPage} from "./AccountPage/AccountPage";
+
+
 
 export const App = ({store}) => (
 
@@ -26,12 +24,12 @@ export const App = ({store}) => (
         <BrowserRouter>
             <NavBar/>
             <Routes>
+                <Route path='/recipe/:recipeId' element={ <RecipePage /> } recipeId=':recipeId'/>
                 <Route path='/' element={<Home />} />
                 <Route path='*' element={<FourOhFour/>} />
                 <Route path='/account' element={<AccountPage />} />
                 <Route path='/sign-in' element={<SignInForm />} />
                 <Route path='/yourhomepage' element={<PersonalizedHomePage/>}/>
-                <Route path='/recipes' element={<RecipePage />} />
                 <Route exact path='/favorites' element={<FavoritePage/>} />
                 <Route path='/quiz' element={<QuizPage/>} />
                 <Route exact path='/sign-up' element={<SignUpForm/>} />

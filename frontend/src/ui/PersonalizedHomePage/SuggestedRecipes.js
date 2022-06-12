@@ -9,7 +9,7 @@ export const SuggestedRecipes = (props) => {
     return(
         <>
 
-            <Card body style={{height: '30rem'}} border="light">
+            <div>
                 <Container>
                     <Row>
                         <Col>
@@ -20,7 +20,7 @@ export const SuggestedRecipes = (props) => {
                         {recipes.map(recipe => <SuggestedRecipeCards recipe = {recipe}/>)}
                     </Row>
                 </Container>
-            </Card>
+            </div>
         </>
     )
 }

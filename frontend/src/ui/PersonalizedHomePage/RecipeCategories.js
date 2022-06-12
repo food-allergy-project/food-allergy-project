@@ -11,7 +11,7 @@ export const RecipeCategories = () => {
     return(
         <>
 
-            <Card body style={{height: '35rem'}}>
+            <div>
                 <Container>
                     <Row>
                         <Col>
@@ -62,7 +62,7 @@ export const RecipeCategories = () => {
                     </Row>
 
                 </Container>
-            </Card>
+            </div>
         </>
     )
 }

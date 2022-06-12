@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col, Container, Row} from "react-bootstrap";
+import { Col, Container, Row} from "react-bootstrap";
 import {MyRecipesCards} from "./MyRecipesCards";
 import {MyRecentFavoritesCards} from "./MyRecentFavoritesCards";
 
@@ -7,7 +7,7 @@ import {MyRecentFavoritesCards} from "./MyRecentFavoritesCards";
 export const MyRecipes = () => {
     return(
         <>
-            <Card body style={{height: '30rem'}} border='light'>
+            <div>
                 <Container>
                     <Row>
                         <Col>
@@ -30,7 +30,7 @@ export const MyRecipes = () => {
                         <MyRecentFavoritesCards />
                     </Row>
                 </Container>
-            </Card>
+            </div>
         </>
     )
 }

@@ -118,7 +118,7 @@ function PostRecipeFormContent(props) {
                     </ImageDropZone>
 
                     <div>
-                        {selectedImage !== null ? <img src={selectedImage}/> : ""}
+                        {selectedImage !== null ? <img className="img-fluid" src={selectedImage}/> : ""}
                     </div>
 
                     {
@@ -238,24 +238,7 @@ function ImageDropZone({formikProps}) {
             <Form.Label>Recipe Images</Form.Label>
 
             <InputGroup size="lg" className="">
-                {
-                    formikProps.values.recipeImage &&
-                    <>
-                        <div className="bg-transparent m-0">
-                            <Container>
-                                <Row>
-                                    <Col>
-                                        <Image className="postRecipeImg" alt="food image"
-                                               src={formikProps.values.recipeImage}/>
-                                    </Col>
-                                    <Col>
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </div>
 
-                    </>
-                }
                 <div className="d-flex flex-fill bg-light justify-content-center align-items-center border rounded">
                     <FormControl
                         aria-label="recipe image files drag and drop area"
