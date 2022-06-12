@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import * as Yup from "yup";
 import {Formik} from "formik";
-import {Button, Form, FormControl, InputGroup, Image, Container, Row, Col} from 'react-bootstrap'
+import {Button, Form, FormControl, InputGroup} from 'react-bootstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {DisplayError} from "../../shared/components/display-error/DIsplayError";
 import {DisplayStatus} from "../../shared/components/display-status/DIsplayStatus";
