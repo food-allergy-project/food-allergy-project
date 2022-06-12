@@ -12,7 +12,7 @@ import FoodieLogo from "../imgs/1.png";
 export function Footer() {
     return (
         <>
-            <div className="container-fluid text-center text-md-left bg p-3 ">
+            <div className="container-fluid text-center text-md-left bg p-3 footer">
                 <div className="row">
                     <div className="col-md-5 mt-md-0 mt-3 p-3 creators">
                         <Figure>

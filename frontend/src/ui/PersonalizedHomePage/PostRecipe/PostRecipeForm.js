@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import * as Yup from "yup";
 import {Formik} from "formik";
-import { Button, Form, FormControl, InputGroup, Image } from 'react-bootstrap'
+import {Button, Form, FormControl, InputGroup, Image, Container, Row, Col} from 'react-bootstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {DisplayError} from "../../shared/components/display-error/DIsplayError";
 import {DisplayStatus} from "../../shared/components/display-status/DIsplayStatus";
 import {httpConfig} from "../../../utils/httpConfig";
 import {useDropzone} from "react-dropzone";
-
+import "./PostRecipeFormStyle.css"
 
 
 export const PostRecipeForm = () => {
@@ -94,6 +94,7 @@ function  PostRecipeFormContent(props){
                         fieldValue: 'recipeImage', setSelectedImage: setSelectedImage
                     }}>
                     </ImageDropZone>
+
                     <div>
                         {selectedImage !== null ? <img src={selectedImage}/> : ""}
                     </div>
@@ -106,7 +107,7 @@ function  PostRecipeFormContent(props){
                     )
                 }
 
-
+                    {/*Recipe Tile*/}
                     <Form.Label>Recipe Name</Form.Label>
                     <InputGroup>
                         <InputGroup.Text>
@@ -126,6 +127,7 @@ function  PostRecipeFormContent(props){
                     <DisplayError errors={errors} touched={touched} field={"recipeTitle"} />
                 </Form.Group>
 
+                {/*Recipe Ingredients*/}
                 <Form.Group className="mb-1" controlId="recipeIngredients">
                     <Form.Label>Ingredients</Form.Label>
                     <InputGroup>
@@ -146,6 +148,7 @@ function  PostRecipeFormContent(props){
                     <DisplayError errors={errors} touched={touched} field={"recipeInstructions"} />
                 </Form.Group>
 
+                {/*Recipe Instructions*/}
                 <Form.Group className="mb-1" controlId="recipeInstructions">
                     <Form.Label>Instructions</Form.Label>
                     <InputGroup>
@@ -162,30 +165,11 @@ function  PostRecipeFormContent(props){
                             onBlur={handleBlur}
 
                         />
-
                     </InputGroup>
                     <DisplayError errors={errors} touched={touched} field={"recipeInstructions"} />
                 </Form.Group>
 
-                <Form.Group className="mb-1" controlId="recipeImage">
-                    <Form.Label>Recipe Image</Form.Label>
-                    <InputGroup>
-                        <InputGroup.Text>
-                            <FontAwesomeIcon icon="phone"/>
-                        </InputGroup.Text>
-                        <FormControl
-                            className="form-control"
-                            name="recipeImage"
-                            type="URL"
-                            value={values.recipeImage}
-                            placeholder="Please provide a URL of your image"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-
-                        />
-                    </InputGroup>
-                    <DisplayError errors={errors} touched={touched} field={"recipeImage"} />
-                </Form.Group>
+                {/*Form Buttons*/}
                 <Form.Group className={"mt-3"}>
                     <Button className="btn btn-success" type="submit">Submit</Button>
                     {" "}
@@ -195,7 +179,9 @@ function  PostRecipeFormContent(props){
                         disabled={!dirty || isSubmitting}
                     >Clear All
                     </Button>
+
                 </Form.Group>
+
             </Form>
             <DisplayStatus status={status} />
 
@@ -205,6 +191,7 @@ function  PostRecipeFormContent(props){
     )
 }
 
+{/*ImageDropZone Function*/}
 function ImageDropZone ({ formikProps }) {
 
     const onDrop = React.useCallback(acceptedFiles => {
@@ -232,7 +219,15 @@ function ImageDropZone ({ formikProps }) {
                     formikProps.values.recipeImage &&
                     <>
                         <div className="bg-transparent m-0">
-                            <Image alt="food image" src={formikProps.values.recipeImage} />
+                           <Container>
+                               <Row>
+                                   <Col>
+                                <Image className="postRecipeImg" alt="food image" src={formikProps.values.recipeImage} />
+                                   </Col>
+                                   <Col>
+                                   </Col>
+                               </Row>
+                            </Container>
                         </div>
 
                     </>
