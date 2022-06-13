@@ -8,6 +8,7 @@ import  {fetchAllRecipes} from "../../store/recipes";
 import {PostRecipeButton} from "./PostRecipe/PostRecipeButton";
 import {fetchAuth} from "../../store/auth";
 
+
 export const PersonalizedHomePage = () => {
     const auth = useSelector(state => state.auth);
     console.log(auth)
@@ -26,11 +27,11 @@ export const PersonalizedHomePage = () => {
 
     return(
         <>
-            <PostRecipeButton/>
+            {auth && <PostRecipeButton profileId = {auth.profileId}/>}
             <PersonalizedInfo  profile={auth}/>
             <RecipeCategories/>
-            <RefreshRecipesButton/>
             <SuggestedRecipes recipes = {recipes}/>
+
         </>
     )
 }

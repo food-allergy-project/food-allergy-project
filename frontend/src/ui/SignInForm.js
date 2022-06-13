@@ -74,7 +74,7 @@ function SignInFormContent (props) {
     } = props;
     return (
         <>
-            <Container className='text-center border border-dark border-2 rounded p-3 col-md-6 pt-3 my-5 bg-success bg-opacity-10 bg-gradient'>
+            <Container className='text-center border border-dark border-2 rounded p-3 col-md-6 pt-3 my-5 ourBackground bg-gradient'>
                 <div className='pt-5'>
                     <h1 className='headerSize'>Welcome Back!</h1>
                 </div>

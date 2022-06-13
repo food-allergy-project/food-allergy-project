@@ -1,7 +1,7 @@
 /*Card Sizing (Suggested Recipes on Personalized Homepage)*/
 .recipeCardSize {
-    height: 450px;
     width: 265px;
+    height: 450px;
 }
 
 /*Card Image Sizing (Suggested Recipes on Personalized Homepage)*/
@@ -14,9 +14,21 @@
 .recipeCardTitle {
     margin: auto;
     width: 100%;
-    height: 100px;
+    height: 50px;
     text-align: center;
     line-height: 1.5;
     display: inline-block;
     vertical-align: middle;
+}
+
+.cardBackground1 {
+    background-color: #ffc39d;
+    border-color: gray;
+
+}
+
+.cardBackground2 {
+    background-color:  #e4f8ed;
+    border-color: gray;
+
 }

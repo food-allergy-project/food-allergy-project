@@ -26,7 +26,7 @@ console.log(allergies)
                 </div>
             <>
 
-                <Card body style={{height: '30rem'}} border="light">
+                <div>
                     <Container>
 
                         <Row ClassName='mt-5 py-5 justify-content-center'>
@@ -36,7 +36,7 @@ console.log(allergies)
                             <Button variant="success" className='buttonSize'>Submit Quiz</Button>
                         </div>
                     </Container>
-                </Card>
+                </div>
             </>
 
 

@@ -6,6 +6,8 @@ import {Button, FormControl, InputGroup, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {DisplayError} from "../shared/components/display-error/DIsplayError";
 import {DisplayStatus} from "../shared/components/display-status/DIsplayStatus";
+// import {useDropzone} from "react-dropzone";
+
 
 export const EditProfileForm = () => {
     const editProfile = {
@@ -43,7 +45,9 @@ export const EditProfileForm = () => {
 };
 
 function EditProfileFormContent(props){
+    // const [selectedImage, setSelectedImage] = useState(null)
     const {
+        // setFieldValue,
         status,
         values,
         errors,
@@ -55,10 +59,40 @@ function EditProfileFormContent(props){
         handleSubmit,
         handleReset
     } = props;
+
+    // change recipeImage to profileAvatar when we edited the backend
+    // if (values.recipeImage !== ""){
+    //     console.log(values.recipeImage.get("image"))
+    // }
+    // console.log(values.recipeImage)
+
     return (
         <>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-1" controlId="profileFullName">
+
+                        {/*Image Input*/}
+                        {/*<ImageDropZone*/}
+                        {/*    formikProps={{*/}
+                        {/*        values,*/}
+                        {/*        handleChange,*/}
+                        {/*        handleBlur,*/}
+                        {/*        setFieldValue,*/}
+                        {/*        fieldValue: 'recipeImage', setSelectedImage: setSelectedImage*/}
+                        {/*    }}>*/}
+                        {/*</ImageDropZone>*/}
+                        {/*<div>*/}
+                        {/*    {selectedImage !== null ? <img src={selectedImage}/> : ""}*/}
+                        {/*</div>*/}
+
+                        {/*{*/}
+                        {/*    errors.recipeImage && touched.recipeImage && (*/}
+                        {/*        <div className="alert alert-danger">*/}
+                        {/*            {errors.recipeImage}*/}
+                        {/*        </div>*/}
+                        {/*    )*/}
+                        {/*}*/}
+
                     <Form.Label>Full Name</Form.Label>
                     <InputGroup>
                         <InputGroup.Text>

@@ -2,6 +2,7 @@ import React from "react";
 import {Card, Col, Container, Row} from "react-bootstrap";
 import '../App.css'
 import {SuggestedRecipeCards} from "./SuggestedRecipeCards";
+import {RefreshRecipesButton} from "./RefreshButton";
 
 export const SuggestedRecipes = (props) => {
     const {recipes} = props
@@ -9,18 +10,24 @@ export const SuggestedRecipes = (props) => {
     return(
         <>
 
-            <Card body style={{height: '30rem'}} border="light">
+            <div>
                 <Container>
                     <Row>
                         <Col>
-                            <h6 className='text-start pt-3 text-uppercase'>Suggested Recipes: </h6>
+                            <h6 className='text-start pt-5 text-uppercase'>Suggested Recipes: </h6>
+                            <RefreshRecipesButton/>
                         </Col>
                     </Row>
-                    <Row  className='mt-5 py-5 d-flex align-items-center'>
+                    <Row  className='py-5 mb-5 d-flex align-items-center'>
                         {recipes.map(recipe => <SuggestedRecipeCards recipe = {recipe}/>)}
                     </Row>
                 </Container>
-            </Card>
+                <div className="my-5">
+                    <Row>
+                        <Col></Col>
+                    </Row>
+                </div>
+            </div>
         </>
     )
 }
