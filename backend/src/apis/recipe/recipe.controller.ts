@@ -66,6 +66,18 @@ export async function getRecipeByRecipeIdController(request: Request, response: 
     }
 }
 
+// GET All Recipes By ProfileId
+export async function getAllRecipeByRecipeProfileId(request: Request, response: Response) : Promise<Response> {
+    try {
+        const {recipeProfileId} = request.params;
+        const data = await selectRecipeByRecipeProfileId(recipeProfileId);
+        return response.json({status: 200, data, message: null})
+
+    } catch (error) {
+        return (response.json({status: 500, data: null, message: 'internal server error please try again.'}))
+    }
+}
+
 
 export async function getAllRecipeControllers(request: Request, response: Response) : Promise<Response> {
     try {
