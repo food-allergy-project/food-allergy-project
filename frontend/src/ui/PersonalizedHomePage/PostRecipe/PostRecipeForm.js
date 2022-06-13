@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import * as Yup from "yup";
 import {ErrorMessage, FieldArray, Field, Formik} from "formik";
-import {Button, Form, FormControl, InputGroup} from 'react-bootstrap'
+import {Button, Form, FormControl, FormGroup, InputGroup} from 'react-bootstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {DisplayError} from "../../shared/components/display-error/DIsplayError";
 import {DisplayStatus} from "../../shared/components/display-status/DIsplayStatus";
@@ -9,6 +9,7 @@ import {httpConfig} from "../../../utils/httpConfig";
 import {useDropzone} from "react-dropzone";
 import "./PostRecipeFormStyle.css"
 import {FormDebugger} from "../../shared/components/FormDeBugger";
+import {AllergyCheckBox} from "./AllergyCheckBoxes";
 
 
 export const PostRecipeForm = (props) => {
@@ -205,10 +206,10 @@ function PostRecipeFormContent(props) {
                                                     className="field-error"
                                                 />
                                             </div>
-                                            <div className="col">
+                                            <div className="col mt-1">
                                                 <button
                                                     type="button"
-                                                    className="btn btn-outline-danger mt-4"
+                                                    className="btn mt-4 pt-1 btn-outline-danger"
                                                     onClick={() => remove(index)}
                                                 >
                                                     X
@@ -259,7 +260,7 @@ function PostRecipeFormContent(props) {
                                             <div className="col">
                                                 <button
                                                     type="button"
-                                                    className="btn btn-outline-danger mt-2"
+                                                    className="btn btn-outline-danger mt-2 pt-1"
                                                     onClick={() => remove(index)}
                                                 >
                                                     X
@@ -281,6 +282,11 @@ function PostRecipeFormContent(props) {
                     </FieldArray>
                     <DisplayError errors={errors} touched={touched} field={"recipeInstructions"}/>
                 </Form.Group>
+
+                <FormGroup>
+                <AllergyCheckBox/>
+                </FormGroup>
+
 
                 {/*Form Buttons*/}
                 <Form.Group className={"mt-4 mb-2"}>
