@@ -53,6 +53,7 @@ CREATE TABLE recipe (
     recipeInstructions VARCHAR(5000) NOT NULL,
     recipeTitle        VARCHAR(355)   NOT NULL,
     INDEX (recipeId, recipeProfileId, recipeCategory),
+    FOREIGN KEY (recipeProfileId) references profile (profileId),
     PRIMARY KEY (recipeId)
 );
 
