@@ -4,7 +4,10 @@ import {MyRecipesCards} from "./MyRecipesCards";
 import {MyRecentFavoritesCards} from "./MyRecentFavoritesCards";
 
 
-export const MyRecipes = () => {
+export const MyRecipes = (props) => {
+    const {myFavoritedRecipes} = props
+    console.log(myFavoritedRecipes)
+
     return(
         <>
             <div>
@@ -27,7 +30,7 @@ export const MyRecipes = () => {
                         </Col>
                     </Row>
                     <Row className='py-5 justify-content-center'>
-                        <MyRecentFavoritesCards />
+                        {myFavoritedRecipes.map(myRecentFavorites => <MyRecentFavoritesCards myRecentFavorites = {myRecentFavorites} />)}
                     </Row>
                 </Container>
             </div>

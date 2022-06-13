@@ -4,6 +4,7 @@ import {insertAllergy} from "../../utils/allergy/insertAllergy";
 import {selectAllergyByAllergyId} from "../../utils/allergy/selectAllergyByAllergyId";
 import {Status} from "../../utils/interfaces/Status";
 import {selectAllAllergies} from "../../utils/allergy/selectAllAllergies";
+import {selectAllergiesByProfileId} from "../../utils/allergy/selectAllergiesByProfileId";
 
 export async function postAllergyController(request: Request, response: Response) : Promise<Response> {
     try {
@@ -39,5 +40,18 @@ export async function getAllAllergyControllers(request: Request, response: Respo
 
     } catch (error: any) {
         return(response.json({status: 400, data: null, message: error.message}))
+    }
+}
+
+// GET allergies by profileId
+export async function getAllergiesByProfileId (request: Request, response: Response) : Promise<Response> {
+    try {
+        const {profileId} = request.params;
+        const mySqlResult = await selectAllergiesByProfileId(profileId);
+        const data = mySqlResult ?? null
+        const status : Status = {status: 200, data, message: null}
+        return response.json(status)
+    } catch (error: any) {
+        return (response.json({status:400, data: null, message: error.message}))
     }
 }
