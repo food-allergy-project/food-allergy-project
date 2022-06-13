@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import * as Yup from "yup";
-import {Formik} from "formik";
+import {ErrorMessage, FieldArray, Field, Formik} from "formik";
 import {Button, Form, FormControl, InputGroup} from 'react-bootstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {DisplayError} from "../../shared/components/display-error/DIsplayError";
@@ -8,6 +8,7 @@ import {DisplayStatus} from "../../shared/components/display-status/DIsplayStatu
 import {httpConfig} from "../../../utils/httpConfig";
 import {useDropzone} from "react-dropzone";
 import "./PostRecipeFormStyle.css"
+import {FormDebugger} from "../../shared/components/FormDeBugger";
 
 
 export const PostRecipeForm = (props) => {
@@ -17,26 +18,37 @@ export const PostRecipeForm = (props) => {
     const validator = Yup.object().shape({
         recipeTitle: Yup.string()
             .required('Recipe name is required'),
-        recipeImage: Yup.string()                                //should this be .string?
+        recipeImage: Yup.string()
             .required("An image is required"),
         recipeImageAlt: Yup.string(),
-        recipeIngredients: Yup.string()
+        recipeIngredients: Yup.array()
             .required("Ingredient list is required"),
-        recipeInstructions: Yup.string()
+        recipeInstructions: Yup.array()
             .required("Cooking instruction is required")
     });
 
-            // const recipe = {
-            //     recipeIngredients: "",
-            //     recipeImage: "",
-            //     recipeInstructions: "",
-            //     recipeTitle: "",
-            // };
+             const recipe = {
+                 recipeImage: "",
+                 recipeTitle: "",
+                 recipeIngredients: [
+                     {
+                         value: '',      //numerical value
+                         unit: '',       //i.e. oz, cup, g
+                         name: '',       //name of the ingredient
+                     },
+                 ],
+                 recipeInstructions: [
+                     {
+                         step: ''
+                     },
+                 ],
+              };
+
 
     function submitUserRecipe(values, {resetForm, setStatus}) {
 
-        const submitRecipe = (submitARecipe) => {
-            httpConfig.post(`/apis/recipe/`,submitARecipe) //{...values, recipeProfileId: profileId}
+        const submitRecipe = (values) => {
+            httpConfig.post(`/apis/recipe/`,{...values, recipeProfileId: profileId})
                 .then(reply => {
                     let {message, type} = reply;
 
@@ -69,7 +81,7 @@ export const PostRecipeForm = (props) => {
     return (
 
         <Formik
-            initialValues={profileId}
+            initialValues={recipe}
             onSubmit={submitUserRecipe}
             validationSchema={validator}
         >
@@ -94,11 +106,6 @@ function PostRecipeFormContent(props) {
         handleSubmit,
         handleReset
     } = props;
-
-    if (values.recipeImage !== "") {
-        console.log(values.recipeImage.get("image"))
-    }
-    console.log(values.recipeImage)
 
     return (
         <>
@@ -132,9 +139,6 @@ function PostRecipeFormContent(props) {
                     {/*Recipe Tile*/}
                     <Form.Label>Recipe Name</Form.Label>
                     <InputGroup>
-                        <InputGroup.Text>
-                            <FontAwesomeIcon icon="envelope"/>
-                        </InputGroup.Text>
                         <FormControl
                             className="form-control"
                             name="recipeTitle"
@@ -151,48 +155,132 @@ function PostRecipeFormContent(props) {
 
                 {/*Recipe Ingredients*/}
                 <Form.Group className="mb-1" controlId="recipeIngredients">
-                    <Form.Label>Ingredients</Form.Label>
-                    <InputGroup>
-                        <InputGroup.Text>
-                            <FontAwesomeIcon icon="key"/>
-                        </InputGroup.Text>
-                        <FormControl
-                            className="form-control"
-                            name="recipeIngredients"
-                            type="text"
-                            value={values.recipeIngredients}
-                            placeholder="Please provide a list of Ingredients"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
+                    <h6 className="mt-2">Ingredients</h6>
+                    <FieldArray name="recipeIngredients">
+                        {({ insert, remove, push }) => (
+                            <div>
+                                {values.recipeIngredients.length > 0 &&
+                                    values.recipeIngredients.map((recipeIngredients, index) => (
+                                        <div className="row" key={index}>
+                                            <div className="col">
+                                                <label htmlFor={`recipeIngredients.${index}.value`}>Value </label>
+                                                <FormControl
+                                                    name={`recipeIngredients.${index}.value`}
+                                                    placeholder="i.e. 1, 0.5, etc."
+                                                    type="text"
+                                                />
+                                                <ErrorMessage
+                                                    name={`recipeIngredients.${index}.value`}
+                                                    component="div"
+                                                    className="field-error"
+                                                />
+                                            </div>
 
-                        />
-                    </InputGroup>
+                                            <div className="col">
+                                                <label htmlFor={`recipeIngredients.${index}.unit`}>Unit </label>
+                                                <FormControl
+                                                    name={`recipeIngredients.${index}.unit`}
+                                                    placeholder="cup, ounces, grams"
+                                                    type="text"
+                                                />
+                                                <ErrorMessage
+                                                    name={`recipeIngredients.${index}.unit`}
+                                                    component="div"
+                                                    className="field-error"
+                                                />
+                                            </div>
+                                            <div className="col">
+                                                <label htmlFor={`recipeIngredients.${index}.name`}>Name</label>
+                                                <FormControl
+                                                    name={`recipeIngredients.${index}.name`}
+                                                    placeholder="i.e. egg, shrimps, etc."
+                                                    type="text"
+                                                />
+                                                <ErrorMessage
+                                                    name={`recipeIngredients.${index}.name`}
+                                                    component="div"
+                                                    className="field-error"
+                                                />
+                                            </div>
+                                            <div className="col">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-outline-danger mt-4"
+                                                    onClick={() => remove(index)}
+                                                >
+                                                    X
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-success mt-2"
+                                    onClick={() => push({
+                                        value: '',      //numerical value
+                                        unit: '',       //i.e. oz, cup, g
+                                        name: '',       //name of the ingredient
+                                    },)}
+                                >
+                                    Add Ingredient
+                                </button>
+                            </div>
+                        )}
+                    </FieldArray>
                     <DisplayError errors={errors} touched={touched} field={"recipeInstructions"}/>
                 </Form.Group>
 
                 {/*Recipe Instructions*/}
                 <Form.Group className="mb-1" controlId="recipeInstructions">
-                    <Form.Label>Instructions</Form.Label>
-                    <InputGroup>
-                        <InputGroup.Text>
-                            <FontAwesomeIcon icon="dove"/>
-                        </InputGroup.Text>
-                        <FormControl
-                            className="form-control"
-                            name="recipeInstructions"
-                            type="text"
-                            value={values.recipeInstructions}
-                            placeholder="Provide instructions on how to make this."
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-
-                        />
-                    </InputGroup>
+                    <h6 className="mt-2">Instructions</h6>
+                    <FieldArray name="recipeInstructions">
+                        {({ insert, remove, push }) => (
+                            <div>
+                                {values.recipeInstructions.length > 0 &&
+                                    values.recipeInstructions.map((recipeInstructions, index) => (
+                                        <div className="row" key={index}>
+                                            <div className="col">
+                                                {/*<label htmlFor={`recipeInstructions.${index}.step`}>Step</label>*/}
+                                                <FormControl
+                                                    name={`recipeInstructions.${index}.step`}
+                                                    placeholder="Instruction step"
+                                                    type="text"
+                                                    className="mt-2"
+                                                />
+                                                <ErrorMessage
+                                                    name={`recipeInstructions.${index}.step`}
+                                                    component="div"
+                                                    className="field-error"
+                                                />
+                                            </div>
+                                            <div className="col">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-outline-danger mt-2"
+                                                    onClick={() => remove(index)}
+                                                >
+                                                    X
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-success mt-2"
+                                    onClick={() => push({
+                                        step: '',
+                                    },)}
+                                >
+                                    Add A Step
+                                </button>
+                            </div>
+                        )}
+                    </FieldArray>
                     <DisplayError errors={errors} touched={touched} field={"recipeInstructions"}/>
                 </Form.Group>
 
                 {/*Form Buttons*/}
-                <Form.Group className={"mt-3"}>
+                <Form.Group className={"mt-4 mb-2"}>
                     <Button className="btn btn-success" type="submit">Submit</Button>
                     {" "}
                     <Button
@@ -203,12 +291,10 @@ function PostRecipeFormContent(props) {
                     </Button>
 
                 </Form.Group>
-
             </Form>
+            {/*<FormDebugger {...props} />*/}
             <DisplayStatus status={status}/>
-
         </>
-
 
     )
 }
