@@ -75,7 +75,7 @@ export async function getAllRecipeByRecipeProfileId(request: Request, response: 
         return response.json({status: 200, data, message: null})
 
     } catch (error) {
-        return (response.json({status: 500, data: null, message: 'internal server error please try again.'}))
+        return (response.json({status: 500, data: [], message: null}))
     }
 }
 
