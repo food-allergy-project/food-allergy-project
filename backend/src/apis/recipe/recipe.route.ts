@@ -9,7 +9,7 @@ import {
     getRecipeByRecipeIdController,
     getAllRecipeControllers,
     postRecipeController,
-    getRecipeByFavoriteProfileId,
+    getRecipeByFavoriteProfileId, getAllRecipeByRecipeProfileId,
 } from "./recipe.controller";
 
 
@@ -27,6 +27,14 @@ RecipeRoute.route("/:recipeId")
     )
     //
     .put(isLoggedIn, asyncValidatorController(checkSchema(recipeValidator)),putRecipeController)
+
+RecipeRoute.route("/:recipeProfileId")
+    .get(
+        asyncValidatorController([
+            check("recipeProfileId", "please provide a valid recipeProfileId").isUUID()
+        ])
+        , getAllRecipeByRecipeProfileId
+    )
 
 
 RecipeRoute.route('/')

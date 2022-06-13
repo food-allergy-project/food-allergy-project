@@ -12,6 +12,7 @@ import {
     selectProfileAllergyByProfileAllergyProfileId
 } from "../../utils/profile-allergy/selectProfileAlleryByProfileAllergyProfileId";
 import {commentValidator} from "../comment/comment.validator";
+import {selectRecipeByRecipeProfileId} from "../../utils/recipe/selectRecipeByRecipeProfileId";
 //import { deleteRecipeByRecipeId } from "../../utils/recipe/deleteRecipeByRecipeId";
 
 export async function putRecipeController(request: Request, response: Response): Promise<Response> {
