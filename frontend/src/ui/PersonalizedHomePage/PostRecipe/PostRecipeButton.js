@@ -18,8 +18,8 @@ export const PostRecipeButton = (props) => {
                     </Button>
                 </div>
             </Container>
-            <Modal show={show} onHide={handleClose} size="lg">
-                <Modal.Header closeButton>
+            <Modal show={show} onHide={handleClose} size="lg" >
+                <Modal.Header closeButton className="ourBackground ourBorder">
                     <Modal.Title>Post Recipe</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

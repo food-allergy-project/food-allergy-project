@@ -30,7 +30,6 @@ export const PersonalizedHomePage = () => {
             {auth && <PostRecipeButton profileId = {auth.profileId}/>}
             <PersonalizedInfo  profile={auth}/>
             <RecipeCategories/>
-            <RefreshRecipesButton/>
             <SuggestedRecipes recipes = {recipes}/>
 
         </>

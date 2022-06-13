@@ -14,7 +14,7 @@ export function Footer() {
         <>
             <div className="container-fluid text-center text-md-left bg p-3 footer">
                 <div className="row">
-                    <div className="col-md-5 mt-md-0 mt-3 p-3 creators">
+                    <div className="col-md-5 md-0 mt-3 p-3 creators">
                         <Figure>
                             <FigureImage
                                 src= {FoodieLogo}
@@ -27,7 +27,7 @@ export function Footer() {
 
                         <p>June 2022 </p>
                     </div>
-                    <div className= "col-md-3 mb-md-0 mb-2 p-4 mt-3">
+                    <div className= "col-md-3 mb-md-0 mb-2 p-4 mt-4">
                         <h6>Check us out on LinkedIn!</h6>
                         <ul className="list-unstyled footer">
                             <li>
@@ -47,7 +47,7 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-md-3 mb-md-0 mb-2 p-4 mt-3">
+                    <div className="col-md-3 mb-md-0 mb-2 p-4 mt-4">
                         <h6>Check us out on GitHub!</h6>
                         <Figure>
                             <FigureImage

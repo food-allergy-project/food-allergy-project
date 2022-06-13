@@ -109,7 +109,7 @@ function PostRecipeFormContent(props) {
 
     return (
         <>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} >
 
                 <Form.Group className="mb-1" controlId="recipeForm">
 
@@ -140,7 +140,7 @@ function PostRecipeFormContent(props) {
                     <Form.Label>Recipe Name</Form.Label>
                     <InputGroup>
                         <FormControl
-                            className="form-control"
+                            className="form-control border border-dark border-2"
                             name="recipeTitle"
                             type="text"
                             value={values.recipeTitle}
@@ -168,6 +168,7 @@ function PostRecipeFormContent(props) {
                                                     name={`recipeIngredients.${index}.value`}
                                                     placeholder="i.e. 1, 0.5, etc."
                                                     type="text"
+                                                    className="form-control border border-dark border-2 mt-1"
                                                 />
                                                 <ErrorMessage
                                                     name={`recipeIngredients.${index}.value`}
@@ -182,6 +183,7 @@ function PostRecipeFormContent(props) {
                                                     name={`recipeIngredients.${index}.unit`}
                                                     placeholder="cup, ounces, grams"
                                                     type="text"
+                                                    className="form-control border border-dark border-2 mt-1"
                                                 />
                                                 <ErrorMessage
                                                     name={`recipeIngredients.${index}.unit`}
@@ -195,6 +197,7 @@ function PostRecipeFormContent(props) {
                                                     name={`recipeIngredients.${index}.name`}
                                                     placeholder="i.e. egg, shrimps, etc."
                                                     type="text"
+                                                    className="form-control border border-dark border-2 mt-1"
                                                 />
                                                 <ErrorMessage
                                                     name={`recipeIngredients.${index}.name`}
@@ -215,7 +218,7 @@ function PostRecipeFormContent(props) {
                                     ))}
                                 <button
                                     type="button"
-                                    className="btn btn-outline-success mt-2"
+                                    className="btn btn-outline-success mt-3"
                                     onClick={() => push({
                                         value: '',      //numerical value
                                         unit: '',       //i.e. oz, cup, g
@@ -245,7 +248,7 @@ function PostRecipeFormContent(props) {
                                                     name={`recipeInstructions.${index}.step`}
                                                     placeholder="Instruction step"
                                                     type="text"
-                                                    className="mt-2"
+                                                    className="mt-2 form-control border border-dark border-2"
                                                 />
                                                 <ErrorMessage
                                                     name={`recipeInstructions.${index}.step`}
@@ -266,7 +269,7 @@ function PostRecipeFormContent(props) {
                                     ))}
                                 <button
                                     type="button"
-                                    className="btn btn-outline-success mt-2"
+                                    className="btn btn-outline-success mt-3"
                                     onClick={() => push({
                                         step: '',
                                     },)}
@@ -325,7 +328,7 @@ function ImageDropZone({formikProps}) {
 
             <InputGroup size="lg" className="">
 
-                <div className="d-flex flex-fill bg-light justify-content-center align-items-center border rounded">
+                <div className="d-flex flex-fill ourBackground2 justify-content-center align-items-center border rounded p-5">
                     <FormControl
                         aria-label="recipe image files drag and drop area"
                         aria-describedby="image drag drop area"
