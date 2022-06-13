@@ -78,7 +78,7 @@ function  SignUpFormContent(props){
     } = props;
     return (
         <>
-            <Container className='text-center border border-dark border-2 rounded p-3 col-md-6 pt-3 my-5 bg-success bg-opacity-10 bg-gradient'>
+            <Container className='text-center border border-dark border-2 rounded p-3 col-md-6 pt-3 my-5 ourBackground bg-gradient'>
                 <div className='pt-5'>
                     <h1 className='headerSize'>Let's Get Started!</h1>
                 </div>
@@ -86,7 +86,6 @@ function  SignUpFormContent(props){
                     <h1>Create Account</h1>
                 </div>
                 <div>
-
 
                     <form onSubmit={handleSubmit} className='mx-auto col-form-label-lg centerBlockParent'>
 
@@ -103,9 +102,6 @@ function  SignUpFormContent(props){
                                 htmlFor="profileFullName"
                                 className='form-label'>Name: </label>
                         </div>
-
-
-
 
                         <div className='form-floating mb-1 col-md-8'>
                             <input
@@ -162,9 +158,6 @@ function  SignUpFormContent(props){
                         </div>
                     </form>
                 </div>
-
-
-
 
                 <div className='text-center py-5'>
                     <Button variant="success"

@@ -1,12 +1,8 @@
 import React from "react";
 import {Col, Container, Figure} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
-import avatarImage2 from "./imgs/greenAvatar2.png"
+import avatarImage2 from "../shared/imgs/greenAvatar.png"
 import {EditProfile} from "./EditProfile";
-
-
-
-
 
 
 export const UserProfileSection = (props) => {
@@ -15,11 +11,11 @@ export const UserProfileSection = (props) => {
 
     return (
         <>
-            <div className='p-3 my-4 bg-light'>
+            <div className='p-3 my-4 ourBackground mt-5'>
                 <Container className='text-center'>
                     <Col>
                         <Figure>
-                            <FigureImage roundedCircle className='mt-5 mx-5'
+                            <FigureImage roundedCircle className='mx-5'
                                          src={avatarImage2}
                                          alt="user avatar"
                                          width={120}
@@ -30,7 +26,7 @@ export const UserProfileSection = (props) => {
                             {profile &&<p>{profile.profileFullName}</p>}
                             <p> allergies</p>
                         </div>
-                        <EditProfile />
+                        <EditProfile/>
                     </Col>
                 </Container>
             </div>
