@@ -1,7 +1,7 @@
 import React from "react";
 import {Figure, Nav} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
-import FoodieLogo from '../imgs/logo-carrot.png'
+import FoodieLogo from '../imgs/brandlogo.png'
 import {Link} from "react-router-dom";
 
 

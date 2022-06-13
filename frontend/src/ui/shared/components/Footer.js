@@ -3,8 +3,8 @@ import {Figure} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
 import GitHubIcon from '../imgs/GitHubIcon.png'
 import LinkInLogo from '../imgs/LInkedInIcon.png'
-import "../../Footer.css"
-import FoodieLogo from "../imgs/1.png";
+import "./Footer.css"
+import FoodieLogo from "../imgs/blackCarrotLogo.png";
 
 
 
@@ -23,11 +23,12 @@ export function Footer() {
                                 height={100}
                             />
                         </Figure>
-                        <h3>Allergic Foodies Creators </h3>
+                        <h3>Allergic Foodies Creators</h3>
 
                         <p>June 2022 </p>
                     </div>
-                    <div className= "col-md-3 mb-md-0 mb-3 p-4">
+                    <div className= "col-md-3 mb-md-0 mb-2 p-4 mt-3">
+                        <h6>Check us out on LinkedIn!</h6>
                         <ul className="list-unstyled footer">
                             <li>
                             <Figure>
@@ -46,7 +47,8 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-md-3 mb-md-0 mb-3 p-4">
+                    <div className="col-md-3 mb-md-0 mb-2 p-4 mt-3">
+                        <h6>Check us out on GitHub!</h6>
                         <Figure>
                             <FigureImage
                                 className='GitHubIcon'

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 import {EditProfileForm} from "./EditProfileForm";
+import "../App.css"
 
 
 
@@ -13,7 +14,7 @@ export function EditProfile () {
 
     return (
         <>
-            <Button variant="success" onClick={handleShow}>
+            <Button variant="success" onClick={handleShow} className="mb-5">
                 Edit Profile
             </Button>
 

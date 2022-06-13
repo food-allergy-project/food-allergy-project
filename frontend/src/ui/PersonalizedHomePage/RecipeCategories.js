@@ -20,7 +20,7 @@ export const RecipeCategories = () => {
                     </Row>
                     <Row  ClassName='mt-5 py-5'>
                         <Col ClassName="justify-content-center">
-                            <Card bg='light' text='dark'>
+                            <Card className="cardBackground1">
                                 <Card.Img variant="top" src={breakfast} />
                                 <Card.Body>
                                     <Card.Title>Breakfast</Card.Title>
@@ -28,7 +28,7 @@ export const RecipeCategories = () => {
                             </Card>
                         </Col>
                         <Col ClassName="justify-content-center">
-                            <Card bg='light' text='dark'>
+                            <Card className="cardBackground2">
                                 <Card.Img variant="top" src={lunch} />
                                 <Card.Body>
                                     <Card.Title>Lunch</Card.Title>
@@ -36,7 +36,7 @@ export const RecipeCategories = () => {
                             </Card>
                         </Col>
                         <Col ClassName="justify-content-center">
-                            <Card bg='light' text='dark'>
+                            <Card className="cardBackground1">
                                 <Card.Img variant="top" src={dinner} />
                                 <Card.Body>
                                     <Card.Title>Dinner</Card.Title>
@@ -44,7 +44,7 @@ export const RecipeCategories = () => {
                             </Card>
                         </Col>
                         <Col ClassName="justify-content-center">
-                            <Card bg='light' text='dark'>
+                            <Card className="cardBackground2">
                                 <Card.Img variant="top" src={dessert} />
                                 <Card.Body>
                                     <Card.Title>Desserts</Card.Title>
@@ -52,7 +52,7 @@ export const RecipeCategories = () => {
                             </Card>
                         </Col>
                         <Col ClassName="justify-content-center">
-                            <Card bg='light' text='dark'>
+                            <Card className="cardBackground1">
                                 <Card.Img variant="top" src={snack} />
                                 <Card.Body>
                                     <Card.Title>Snacks</Card.Title>

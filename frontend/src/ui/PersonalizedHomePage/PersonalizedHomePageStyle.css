@@ -13,9 +13,21 @@
 .recipeCardTitle {
     margin: auto;
     width: 100%;
-    height: 100px;
+    height: 50px;
     text-align: center;
     line-height: 1.5;
     display: inline-block;
     vertical-align: middle;
+}
+
+.cardBackground1 {
+    background-color: #ffc39d;
+    border-color: gray;
+
+}
+
+.cardBackground2 {
+    background-color:  #e4f8ed;
+    border-color: gray;
+
 }

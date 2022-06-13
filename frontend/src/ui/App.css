@@ -14,6 +14,7 @@
     font-size: xx-large;
     font-weight: bold;
 }
+
 /* Stying size of the button in SignIn and SignUpForm pages*/
 .buttonBlockSize2 {
     width: 200px;
@@ -21,13 +22,29 @@
     font-size: xx-large;
     font-weight: bold;
 }
+
 /* Increase the size of the header tag (using on "Welcome Back!" in SignIn)*/
 .headerSize {
     font-size: 380%;
 }
+
 /* Center input boxes in SignIn and SignUpForm page*/
 .centerBlockParent {
     display: grid;
     place-items: center;
 }
 
+.ourBackground {
+    background-color: #e4f8ed;
+    border: none;
+
+}
+
+.ourButton {
+    background-color: #ff6300;
+    border: none;
+}
+
+.ourBorder {
+    border-color: gray;
+}

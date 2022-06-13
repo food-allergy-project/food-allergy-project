@@ -1,8 +1,8 @@
 import React from "react"
 
-import {QuizPage} from "./QuizPage/QuizPage";
-import {QuizButtons} from "./QuizPage/QuizButtons";
-import {QuizButtonCards} from "./QuizPage/QuizButtonCards";
+import {QuizPage} from "./QuizPage";
+import {QuizButtons} from "./QuizButtons";
+import {QuizButtonCards} from "./QuizButtonCards";
 
 
 export const Quiz = () => {

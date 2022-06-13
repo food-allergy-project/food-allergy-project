@@ -8,7 +8,7 @@ export function SuggestedRecipeCards( props ) {
     return (
         <>
             <Col className="justify-content-center align-content-center">
-                <Card bg='light' text='dark' className="recipeCardSize mt-5">
+                <Card className="recipeCardSize mt-5 cardBackground2">
                     <Card.Img variant="top" className="recipeCardImg"
                               src={
                                   recipe.recipeImage
