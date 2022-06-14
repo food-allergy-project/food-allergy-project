@@ -8,8 +8,9 @@ import {DisplayStatus} from "../../shared/components/display-status/DIsplayStatu
 import {httpConfig} from "../../../utils/httpConfig";
 import {useDropzone} from "react-dropzone";
 import "./PostRecipeFormStyle.css"
-import {FormDebugger} from "../../shared/components/FormDeBugger";
+
 import {AllergyCheckBox} from "./AllergyCheckBoxes";
+import {FormDebugger} from "../../shared/components/FormDebugger";
 
 
 export const PostRecipeForm = (props) => {
@@ -301,7 +302,7 @@ function PostRecipeFormContent(props) {
 
                 </Form.Group>
             </Form>
-            {/*<FormDebugger {...props} />*/}
+            <FormDebugger {...props} />
             <DisplayStatus status={status}/>
         </>
 

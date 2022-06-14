@@ -8,7 +8,8 @@ import {fetchAllAllergies} from "../../store/allergies";
 import {httpConfig} from "../../utils/httpConfig";
 import {fetchAuth} from "../../store/auth";
 import {FieldArray, Formik} from "formik";
-import {FormDebugger} from "../shared/components/FormDeBugger";
+import {FormDebugger} from "../shared/components/FormDebugger";
+
 
 
 
