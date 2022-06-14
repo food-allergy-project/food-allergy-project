@@ -3,7 +3,7 @@ import {Button, Container, Modal} from "react-bootstrap";
 import {PostRecipeForm} from "./PostRecipeForm";
 
 export const PostRecipeButton = (props) => {
-    const {profileId} = props
+    const {profileId, allergies} = props
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -23,7 +23,7 @@ export const PostRecipeButton = (props) => {
                     <Modal.Title>Post Recipe</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <PostRecipeForm profileId = {profileId}/>
+                    <PostRecipeForm profileId = {profileId} allergies={allergies}/>
                 </Modal.Body>
             </Modal>
         </>

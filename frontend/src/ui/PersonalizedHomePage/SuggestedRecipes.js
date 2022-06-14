@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col, Container, Row} from "react-bootstrap";
+import { Col, Container, Row} from "react-bootstrap";
 import '../App.css'
 import {SuggestedRecipeCards} from "./SuggestedRecipeCards";
 import {RefreshRecipesButton} from "./RefreshButton";

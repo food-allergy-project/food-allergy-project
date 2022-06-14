@@ -14,6 +14,7 @@ import {QuizPage} from "./QuizPage/QuizPage";
 import {SignUpForm} from "./SignUpForm";
 import {Footer} from "./shared/components/Footer";
 import {AccountPage} from "./AccountPage/AccountPage";
+import {SignOut} from "./shared/SignOut";
 
 
 
@@ -29,10 +30,11 @@ export const App = ({store}) => (
                 <Route path='*' element={<FourOhFour/>} />
                 <Route path='/account' element={<AccountPage />} />
                 <Route path='/sign-in' element={<SignInForm />} />
-                <Route path='/yourhomepage' element={<PersonalizedHomePage/>}/>
+                <Route exact path='/yourhomepage/' element={<PersonalizedHomePage/>}/>
                 <Route exact path='/favorites' element={<FavoritePage/>} />
                 <Route path='/quiz' element={<QuizPage/>} />
                 <Route exact path='/sign-up' element={<SignUpForm/>} />
+                <Route path='/sign-out' element={<SignOut/>}/>
             </Routes>
             <Footer/>
         </BrowserRouter>
