@@ -1,43 +1,39 @@
 import React, {useEffect} from 'react'
 import {Container, Row, Col, Button, Figure} from 'react-bootstrap'
-// import {Ingredients} from "./Ingredients";
-// import {Instructions} from "./Instructions";
 import {fetchRecipeByRecipeId} from "../../store/recipes";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-
-import {object} from "yup";
 import {Ingredients} from "./Ingredients";
 import {Instructions} from "./Instructions";
 import FigureImage from "react-bootstrap/FigureImage";
+// import {httpConfig} from "../../utils/httpConfig";
 
 
 export function RecipePage() {
-
-    //using useparam get access to the recipeId in the url
-
-
     let { recipeId } = useParams();
-
-    //In use selector call to the find prototype to grab the recipe by recipeId
-
-
     const recipe = useSelector(state => {
-
         return state.recipes
             ? state.recipes.find(recipe => recipe.recipeId === recipeId)
             : []
 });
-console.log(recipe)
     function sideEffects() {
-        // The dispatch function takes actions as arguments to make changes to the store/redux.
         dispatch(fetchRecipeByRecipeId(recipeId))
 
     }
     const dispatch = useDispatch();
     useEffect(sideEffects, []);
-
-
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//     function AddRecipeToFavorites() {
+//
+//         httpConfig.post("/apis/favorites/", {favoriteRecipeId: recipe.recipeId})
+//             .then(reply => {
+//                     if(reply.status === 200) {
+//                         console.log(recipe)
+//                         dispatch(fetchRecipeByRecipeId(recipeId))
+// //                     }
+//                 }
+//             );
+//     }
 
     return (
         <>
@@ -58,7 +54,7 @@ console.log(recipe)
             <Container>
                 <Row>
                     <Col className="ms-auto">
-                        <Button variant="success" className="my-2">Favorite</Button>
+                        {/*<Button onClick={AddRecipeToFavorites}>{recipe.favoriteCount}</Button>*/}
                         <Button variant="success" className="m-2">Comment</Button>
                     </Col>
                 </Row>
