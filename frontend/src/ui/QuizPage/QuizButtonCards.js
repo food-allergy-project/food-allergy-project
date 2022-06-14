@@ -4,7 +4,7 @@ import "./QuizPage.css"
 
 
 export function QuizButtonCards(props) {
-    const {allergy, insert, remove, index, values} = props
+    const {allergy, insert, remove, index, values, unshift} = props
 const [clicked, setClicked] = useState(false)
         // const quizallergies = [
     //     {
@@ -56,9 +56,10 @@ const [clicked, setClicked] = useState(false)
                      console.log(allergy.allergyId)
                      if (clicked === false) {
                          setClicked(true)
-                         insert(index, allergy.allergyId)
+                         unshift(allergy.allergyId)
                      } else {
-                         remove(index)
+                         const currentIndex = values.allergies.findIndex(value => value === allergy.allergyId)
+                         console.log(remove(currentIndex))
                          setClicked(false)
                      }
 
@@ -68,7 +69,7 @@ const [clicked, setClicked] = useState(false)
 
                  className="justify-content-center align-content-center">
 
-                <Card id={`friends.${index}`} bg='light' text='dark' className="quizButtonCardSize mt-5" onClick={ClickedCard}>
+                <Card id={`friends.${index}`} bg='light' text='dark' className="quizButtonCardSize mt-5">
                     <Card.Img variant="top" className="quizButtonCardImg"
                               src={
                                   allergy.allergyImage
@@ -84,6 +85,4 @@ const [clicked, setClicked] = useState(false)
     )
 }
 
-function ClickedCard () {
-    document.getElementById('friends.${index}').style.backgroundColor = "orange";
-}
+

@@ -12,6 +12,7 @@ import { CommentRoute } from './apis/comment/comment.route';
 import {RecipeAllergyRoutes} from "./apis/recipe-allergy/recipe-allergy.routes";
 import { createClient, RedisClientType } from 'redis'
 import RedisConnect from "connect-redis"
+import {ProfileAllergyRoute} from "./apis/profile-allergy/profile.allergy.route";
 const redisClient = createClient({legacyMode: true, socket:{host: process.env.REDIS_HOST}})
 redisClient.connect().catch(console.error)
 const RedisStore = RedisConnect(session)
@@ -61,6 +62,7 @@ export class App {
         this.app.use('/apis/favoritedrecipes', favoritedreciperoute )
         this.app.use('/apis/recipe-allergy', RecipeAllergyRoutes);
         this.app.use('/apis/comment', CommentRoute)
+        this.app.use('/apis/profile-allergy', ProfileAllergyRoute)
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port

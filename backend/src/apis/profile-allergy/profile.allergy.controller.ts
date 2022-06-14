@@ -17,13 +17,19 @@ import {deleteProfileAllergy} from "../../utils/profile-allergy/deleteProfileAll
 
 export async function postProfileAllergyController(request: Request, response: Response) : Promise<Response> {
     try {
-        const {profileAllergyAllergyId} = request.body
+        const {allergies} = request.body
         const profile = request.session.profile as Profile
         const profileAllergyProfileId = profile.profileId as string
-        const profileAllergy : ProfileAllergy = {profileAllergyAllergyId, profileAllergyProfileId}
+        if (Array.isArray(allergies) === false) {
+            throw new Error('allergies array is malformed')
+        }
 
-        const message = await insertProfileAllergy(profileAllergy)
-        return response.json({status:200, data: null, message})
+        for(let profileAllergyAllergyId of allergies) {
+            const profileAllergy : ProfileAllergy = {profileAllergyAllergyId, profileAllergyProfileId}
+
+            const message = await insertProfileAllergy(profileAllergy)
+        }
+        return response.json({status:200, data: null, message: 'allergy successfully inserted'})
 
     }catch (e) {
         console.error(e)

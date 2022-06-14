@@ -19,7 +19,7 @@ export function QuizPage (){
     }
     const allergyProfileId = useSelector(state => state.auth?.profileId ? state.auth.profileId: null)
     function onSubmit(values,{setStatus, resetForm}){
-        httpConfig.post('/apis/recipe',{...values, allergyProfileId}).then(reply=>{
+        httpConfig.post('/apis/profile-allergy/',{...values, allergyProfileId}).then(reply=>{
             console.log(values)
             let {message, type} = reply;
             setStatus({message, type});
@@ -84,9 +84,9 @@ console.log(allergies)
                 <Form onSubmit={handleSubmit}>
                 <Row ClassName='mt-5 py-5 justify-content-center'>
                     <FieldArray name={"allergies"}>
-                        {({insert, remove})=>(<>
+                        {({insert, unshift, remove})=>(<>
                             {allergies.map((allergy, index) =>
-                                <QuizButtonCards allergy={allergy} index={index} insert={insert} remove={remove} key={allergy.allergyId} values={values}/>
+                                <QuizButtonCards allergy={allergy} index={index} insert={insert} remove={remove} key={allergy.allergyId} values={values} unshift={unshift}/>
 
                             )}
                         </>)}

@@ -11,7 +11,7 @@ export const ProfileAllergyRoute: Router = Router()
 //post ProfileAllergy
 ProfileAllergyRoute.route("/")
     .post(
-    asyncValidatorController(checkSchema(profileAllergyValidator)),
+    asyncValidatorController([check('allergies.*','please provide valid UUID').isUUID()]),
     postProfileAllergyController
 
 )
