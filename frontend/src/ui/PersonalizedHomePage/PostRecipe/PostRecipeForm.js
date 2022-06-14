@@ -2,18 +2,19 @@ import React, {useState} from 'react';
 import * as Yup from "yup";
 import {ErrorMessage, FieldArray, Field, Formik} from "formik";
 import {Button, Form, FormControl, FormGroup, InputGroup} from 'react-bootstrap'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {DisplayError} from "../../shared/components/display-error/DIsplayError";
 import {DisplayStatus} from "../../shared/components/display-status/DIsplayStatus";
 import {httpConfig} from "../../../utils/httpConfig";
 import {useDropzone} from "react-dropzone";
 import "./PostRecipeFormStyle.css"
-import {FormDebugger} from "../../shared/components/FormDeBugger";
 import {AllergyCheckBox} from "./AllergyCheckBoxes";
+import allergies from "../../../store/allergies";
+import {FormDebugger} from "../../shared/components/FormDeBugger";
 
 
 export const PostRecipeForm = (props) => {
-    const {profileId} = props
+    const {profileId, allergies} = props
+    console.log(allergies)
 
 
     const validator = Yup.object().shape({
@@ -25,31 +26,34 @@ export const PostRecipeForm = (props) => {
         recipeIngredients: Yup.array()
             .required("Ingredient list is required"),
         recipeInstructions: Yup.array()
-            .required("Cooking instruction is required")
+            .required("Cooking instruction is required"),
+        allergies: Yup.array()
+            .required("Please check at least one allergen")
     });
 
-             const recipe = {
-                 recipeImage: "",
-                 recipeTitle: "",
-                 recipeIngredients: [
-                     {
-                         value: '',      //numerical value
-                         unit: '',       //i.e. oz, cup, g
-                         name: '',       //name of the ingredient
-                     },
-                 ],
-                 recipeInstructions: [
-                     {
-                         step: ''
-                     },
-                 ],
-              };
+    const recipe = {
+        recipeImage: "",
+        recipeTitle: "",
+        recipeIngredients: [
+            {
+                value: '',      //numerical value
+                unit: '',       //i.e. oz, cup, g
+                name: '',       //name of the ingredient
+            },
+        ],
+        recipeInstructions: [
+            {
+                step: ''
+            },
+        ],
+        allergies: [],
+    };
 
 
     function submitUserRecipe(values, {resetForm, setStatus}) {
 
         const submitRecipe = (values) => {
-            httpConfig.post(`/apis/recipe/`,{...values, recipeProfileId: profileId})
+            httpConfig.post(`/apis/recipe/`, {...values, recipeProfileId: profileId})
                 .then(reply => {
                     let {message, type} = reply;
 
@@ -110,7 +114,7 @@ function PostRecipeFormContent(props) {
 
     return (
         <>
-            <Form onSubmit={handleSubmit} >
+            <Form onSubmit={handleSubmit}>
 
                 <Form.Group className="mb-1" controlId="recipeForm">
 
@@ -158,7 +162,7 @@ function PostRecipeFormContent(props) {
                 <Form.Group className="mb-1" controlId="recipeIngredients">
                     <h6 className="mt-2">Ingredients</h6>
                     <FieldArray name="recipeIngredients">
-                        {({ insert, remove, push }) => (
+                        {({insert, remove, push}) => (
                             <div>
                                 {values.recipeIngredients.length > 0 &&
                                     values.recipeIngredients.map((recipeIngredients, index) => (
@@ -238,7 +242,7 @@ function PostRecipeFormContent(props) {
                 <Form.Group className="mb-1" controlId="recipeInstructions">
                     <h6 className="mt-2">Instructions</h6>
                     <FieldArray name="recipeInstructions">
-                        {({ insert, remove, push }) => (
+                        {({insert, remove, push}) => (
                             <div>
                                 {values.recipeInstructions.length > 0 &&
                                     values.recipeInstructions.map((recipeInstructions, index) => (
@@ -283,8 +287,35 @@ function PostRecipeFormContent(props) {
                     <DisplayError errors={errors} touched={touched} field={"recipeInstructions"}/>
                 </Form.Group>
 
+
+                {/*Recipe Allergies*/}
                 <FormGroup>
-                <AllergyCheckBox/>
+                    <div>
+                        <h6 className="mt-3">Select allergens that this recipe is free from </h6>
+                        <ul className="allergiesList">
+                            {allergies.map((allergy, index) => {
+                                return (
+                                    <li key={allergy.allergyId}>
+                                        <div>
+                                            <div className="left-section">
+                                                <input
+                                                    type="checkbox"
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    id={`custom-checkbox-${index}`}
+                                                    name="allergies"
+                                                    value={allergy.allergyId}
+                                                    className="form-check-input form-control-color border-success"
+                                                />
+                                                <label htmlFor={`custom-checkbox-${index}`}
+                                                       className="px-2 form-check-label">{allergy.allergyName}</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
                 </FormGroup>
 
 
@@ -301,14 +332,15 @@ function PostRecipeFormContent(props) {
 
                 </Form.Group>
             </Form>
-            {/*<FormDebugger {...props} />*/}
+            <FormDebugger {...props} />
             <DisplayStatus status={status}/>
         </>
 
     )
 }
 
-{/*ImageDropZone Function*/}
+{/*ImageDropZone Function*/
+}
 
 function ImageDropZone({formikProps}) {
 
@@ -334,7 +366,8 @@ function ImageDropZone({formikProps}) {
 
             <InputGroup size="lg" className="">
 
-                <div className="d-flex flex-fill ourBackground2 justify-content-center align-items-center border rounded p-5">
+                <div
+                    className="d-flex flex-fill ourBackground2 justify-content-center align-items-center border rounded p-5">
                     <FormControl
                         aria-label="recipe image files drag and drop area"
                         aria-describedby="image drag drop area"
