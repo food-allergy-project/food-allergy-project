@@ -7,7 +7,8 @@ import {DisplayStatus} from "../../shared/components/display-status/DIsplayStatu
 import {httpConfig} from "../../../utils/httpConfig";
 import {useDropzone} from "react-dropzone";
 import "./PostRecipeFormStyle.css"
-import {FormDebugger} from "../../shared/components/FormDeBugger";
+import {FormDebugger} from "../../shared/components/FormDebugger";
+// import {FormDebugger} from "../../shared/components/FormDeBugger";
 
 
 
@@ -332,7 +333,7 @@ export const PostRecipeForm = (props) => {
 
                     </Form.Group>
                 </Form>
-                <FormDebugger {...props} />
+                {/*<FormDebugger {...props} />*/}
                 <DisplayStatus status={status}/>
             </>
 
