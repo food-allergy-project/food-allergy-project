@@ -68,7 +68,7 @@ const [clicked, setClicked] = useState(false)
 
                  className="justify-content-center align-content-center">
 
-                <Card id={`friends.${index}`} bg='light' text='dark' className="quizButtonCardSize mt-5">
+                <Card id={`friends.${index}`} bg='light' text='dark' className="quizButtonCardSize mt-5" onClick={ClickedCard}>
                     <Card.Img variant="top" className="quizButtonCardImg"
                               src={
                                   allergy.allergyImage
@@ -82,4 +82,8 @@ const [clicked, setClicked] = useState(false)
             </Col>
         </>
     )
+}
+
+function ClickedCard () {
+    document.getElementById('friends.${index}').style.backgroundColor = "orange";
 }
