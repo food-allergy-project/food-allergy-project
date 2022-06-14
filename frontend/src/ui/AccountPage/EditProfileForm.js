@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import * as Yup from "yup";
 import {httpConfig} from "../../utils/httpConfig";
 import {Formik} from "formik";
@@ -6,7 +6,8 @@ import {Button, FormControl, InputGroup, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {DisplayError} from "../shared/components/display-error/DIsplayError";
 import {DisplayStatus} from "../shared/components/display-status/DIsplayStatus";
-// import {useDropzone} from "react-dropzone";
+import {useDropzone} from "react-dropzone";
+
 
 
 export const EditProfileForm = () => {
@@ -45,9 +46,9 @@ export const EditProfileForm = () => {
 };
 
 function EditProfileFormContent(props){
-    // const [selectedImage, setSelectedImage] = useState(null)
+    const [selectedImage, setSelectedImage] = useState(null)
     const {
-        // setFieldValue,
+        setFieldValue,
         status,
         values,
         errors,
@@ -71,27 +72,27 @@ function EditProfileFormContent(props){
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-1" controlId="profileFullName">
 
-                        {/*Image Input*/}
-                        {/*<ImageDropZone*/}
-                        {/*    formikProps={{*/}
-                        {/*        values,*/}
-                        {/*        handleChange,*/}
-                        {/*        handleBlur,*/}
-                        {/*        setFieldValue,*/}
-                        {/*        fieldValue: 'recipeImage', setSelectedImage: setSelectedImage*/}
-                        {/*    }}>*/}
-                        {/*</ImageDropZone>*/}
-                        {/*<div>*/}
-                        {/*    {selectedImage !== null ? <img src={selectedImage}/> : ""}*/}
-                        {/*</div>*/}
 
-                        {/*{*/}
-                        {/*    errors.recipeImage && touched.recipeImage && (*/}
-                        {/*        <div className="alert alert-danger">*/}
-                        {/*            {errors.recipeImage}*/}
-                        {/*        </div>*/}
-                        {/*    )*/}
-                        {/*}*/}
+                        <ImageDropZone
+                            formikProps={{
+                                values,
+                                handleChange,
+                                handleBlur,
+                                setFieldValue,
+                                fieldValue: 'recipeImage', setSelectedImage: setSelectedImage
+                            }}>
+                        </ImageDropZone>
+                        <div>
+                            {selectedImage !== null ? <img src={selectedImage}/> : ""}
+                        </div>
+
+                        {
+                            errors.recipeImage && touched.recipeImage && (
+                                <div className="alert alert-danger">
+                                    {errors.recipeImage}
+                                </div>
+                            )
+                        }
 
                     <Form.Label>Full Name</Form.Label>
                     <InputGroup>
@@ -111,7 +112,7 @@ function EditProfileFormContent(props){
                     <DisplayError errors={errors} touched={touched} field={"profileFullName"} />
                 </Form.Group>
                 <Form.Group className={"mt-3"}>
-                    <Button className="btn btn-success" type="submit">Submit</Button>
+                    <Button className="btn btn-success" type="submit">Update</Button>
                     {" "}
                     <Button
                         className="btn btn-danger"
@@ -124,5 +125,52 @@ function EditProfileFormContent(props){
             </Form>
             <DisplayStatus status={status} />
         </>
+    )
+}
+
+{/*ImageDropZone Function*/}
+
+function ImageDropZone({formikProps}) {
+
+    const onDrop = React.useCallback(acceptedFiles => {
+
+        const formData = new FormData()
+        formData.append('image', acceptedFiles[0])
+
+        const fileReader = new FileReader()
+        fileReader.readAsDataURL(acceptedFiles[0])
+        fileReader.addEventListener("load", () => {
+            formikProps.setSelectedImage(fileReader.result)
+        })
+
+        formikProps.setFieldValue(formikProps.fieldValue, formData)
+
+    }, [formikProps])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+
+    return (
+        <Form.Group className={"mb-3"} {...getRootProps()}>
+            <Form.Label>Upload Image</Form.Label>
+
+            <InputGroup size="lg" className="">
+
+                <div className="d-flex flex-fill ourBackground2 justify-content-center align-items-center border rounded p-5">
+                    <FormControl
+                        aria-label="recipe image files drag and drop area"
+                        aria-describedby="image drag drop area"
+                        className="form-control-file"
+                        accept="image/*"
+                        onChange={formikProps.handleChange}
+                        onBlur={formikProps.handleBlur}
+                        {...getInputProps()}
+                    />
+                    {
+                        isDragActive ?
+                            <span className="align-items-center">Drop image here</span> :
+                            <span className="align-items-center">Drag and drop image here, or click here to select an image</span>
+                    }
+                </div>
+            </InputGroup>
+        </Form.Group>
     )
 }
