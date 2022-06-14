@@ -6,8 +6,9 @@ import {DisplayError} from "../../shared/components/display-error/DIsplayError";
 import {DisplayStatus} from "../../shared/components/display-status/DIsplayStatus";
 import {httpConfig} from "../../../utils/httpConfig";
 import {useDropzone} from "react-dropzone";
-import "./PostRecipeFormStyle.css;
-import {FormDebugger} from "../../shared/components/FormDeBugger";
+import "./PostRecipeFormStyle.css";
+import {FormDebugger} from "../../shared/components/FormDebugger";
+
 
 
 export const PostRecipeForm = (props) => {
