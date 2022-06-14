@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Card, Col} from "react-bootstrap";
+import {Button, Card, Col} from "react-bootstrap";
 import "./QuizPage.css"
 
 
@@ -79,10 +79,13 @@ const [clicked, setClicked] = useState(false)
                             allergy.allergyName
                         }</Card.Title>
                     </Card.Body>
+
                 </Card>
             </Col>
         </>
     )
 }
+
+
 
 
