@@ -3,6 +3,7 @@ import { FavoritedRecipes } from '../interfaces/FavoritedRecipes'
 
 export async function insertfavoritedRecipes (favoritedRecipes: FavoritedRecipes): Promise<string> {
     const mySqlConnection = await connect()
+    console.log(favoritedRecipes)
     const mySqlQuery = 'INSERT INTO `favoritedRecipes`(favoritedRecipeProfileId, favoritedRecipeRecipeId) VALUES(UUID_TO_BIN(:favoritedRecipeProfileId), UUID_TO_BIN(:favoritedRecipeRecipeId))'
     await mySqlConnection.execute(mySqlQuery, favoritedRecipes)
     await mySqlConnection.release()

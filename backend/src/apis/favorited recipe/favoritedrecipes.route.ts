@@ -7,7 +7,7 @@ import {getfavoritedRecipeByPrimaryKey, togglefavoritedRecipeController} from ".
 export const favoritedreciperoute = Router()
 
 favoritedreciperoute.route('/')
-    .post(isLoggedIn, togglefavoritedRecipeController)
+    .post(isLoggedIn, asyncValidatorController([    check('favoritedRecipeRecipeId', 'please provide a valid favoritedRecipeRecipeId').isUUID()]), togglefavoritedRecipeController)
 favoritedreciperoute.route('/:favoritedRecipeRecipeId')
     .get(isLoggedIn, asyncValidatorController([
         check('favoritedRecipeRecipeId', 'please provide a valid favoritedRecipeRecipeId').isUUID()

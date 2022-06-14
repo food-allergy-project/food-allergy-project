@@ -6,7 +6,8 @@ import {useParams} from "react-router-dom";
 import {Ingredients} from "./Ingredients";
 import {Instructions} from "./Instructions";
 import FigureImage from "react-bootstrap/FigureImage";
-// import {httpConfig} from "../../utils/httpConfig";
+import {httpConfig} from "../../utils/httpConfig";
+
 
 
 export function RecipePage() {
@@ -23,17 +24,16 @@ export function RecipePage() {
     const dispatch = useDispatch();
     useEffect(sideEffects, []);
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//     function AddRecipeToFavorites() {
-//
-//         httpConfig.post("/apis/favorites/", {favoriteRecipeId: recipe.recipeId})
-//             .then(reply => {
-//                     if(reply.status === 200) {
-//                         console.log(recipe)
-//                         dispatch(fetchRecipeByRecipeId(recipeId))
-// //                     }
-//                 }
-//             );
-//     }
+    function AddRecipeToFavorites() {
+
+        httpConfig.post("/apis/favoritedrecipes/", {favoritedRecipeRecipeId: recipe.recipeId})
+            .then(reply => {
+                    if(reply.status === 200) {
+                        console.log(recipe)
+                    }
+                }
+            );
+    }
 
     return (
         <>
@@ -54,8 +54,7 @@ export function RecipePage() {
             <Container>
                 <Row>
                     <Col className="ms-auto">
-                        {/*<Button onClick={AddRecipeToFavorites}>{recipe.favoriteCount}</Button>*/}
-                        <Button variant="success" className="m-2">Comment</Button>
+                        <Button onClick={AddRecipeToFavorites}> Add to favorite</Button>
                     </Col>
                 </Row>
             </Container>
