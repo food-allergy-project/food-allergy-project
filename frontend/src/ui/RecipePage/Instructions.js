@@ -12,16 +12,16 @@ export function Instructions(props) {
                     <Container>
                         <Row>
                             <Col>
-                            <ul>
+                            <ol>
                                 <li>
                                     {recipe.recipeInstructions}
                                 </li>
-                            </ul>
+                            </ol>
                                 </Col>
                         </Row>
                     </Container>
 
-                })
+                }
 
         </>
     )
