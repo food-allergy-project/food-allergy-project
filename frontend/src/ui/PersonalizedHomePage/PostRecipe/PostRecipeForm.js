@@ -293,7 +293,7 @@ export const PostRecipeForm = (props) => {
                     {/*Recipe Allergies*/}
                     <FormGroup>
                         <div>
-                            <h6 className="mt-3">Select allergens that this recipe is free from</h6>
+                            <h6 className="mt-3">Select allergens that this recipe is free from </h6>
                             <ul className="allergiesList">
                                 {allergies.map((allergy, index) => {
                                     return (
