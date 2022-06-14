@@ -10,6 +10,9 @@ const slice = createSlice({
         setAllRecipes: (recipes, action) => action.payload,
         setRecipeByRecipeId: (recipes, action) => {
             recipes.unshift(action.payload)
+        },
+        setAllRecipeByRecipeProfileId: (recipes, action) => {
+            recipes.unshift(action.payload)
         }
     },
 
@@ -17,7 +20,7 @@ const slice = createSlice({
 })
 
 // Make our actions callable as function setAllMisquotes
-export const {setAllRecipes, setRecipeByRecipeId} = slice.actions
+export const {setAllRecipes, setRecipeByRecipeId, setAllRecipeByRecipeProfileId} = slice.actions
 
 export default slice.reducer
 
@@ -33,4 +36,9 @@ export const fetchRecipeByRecipeId = (id) => async (dispatch) => {
         const { data } = await httpConfig(`/apis/recipe/${id}`)
         dispatch(setRecipeByRecipeId( data ))
 
+}
+//=================================================================================//
+export const fetchAllRecipeByRecipeProfileId = (id) => async (dispatch) => {
+    const { data } = await httpConfig(`/apis/recipe/recipeProfileId/${id}`)
+    dispatch(setAllRecipeByRecipeProfileId( data ))
 }

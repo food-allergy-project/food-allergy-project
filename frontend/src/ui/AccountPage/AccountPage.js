@@ -5,6 +5,7 @@ import {MyRecipes} from "./MyRecipes";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAuth} from "../../store/auth";
 import {fetchFavoritedRecipesByProfileId} from "../../store/favoritedRecipes";
+import {fetchAllRecipeByRecipeProfileId} from "../../store/recipes";
 
 
 // import {MyRecentFavorites} from "./MyRecentFavorites";
@@ -15,6 +16,7 @@ export const AccountPage = () => {
     console.log(auth)
     const dispatch = useDispatch()
     const effects = () => {
+        dispatch(fetchAllRecipeByRecipeProfileId());
         dispatch(fetchFavoritedRecipesByProfileId());
         dispatch(fetchAuth());
     };
