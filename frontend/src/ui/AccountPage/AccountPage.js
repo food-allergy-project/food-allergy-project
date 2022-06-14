@@ -17,7 +17,7 @@ export const AccountPage = () => {
     console.log(auth)
     const dispatch = useDispatch()
     const effects = () => {
-        dispatch(fetchAllRecipeByRecipeProfileId());
+        // dispatch(fetchAllRecipeByRecipeProfileId());
         dispatch(fetchFavoritedRecipesByProfileId());
         dispatch(fetchAllRecipes());
         dispatch(fetchAuth());

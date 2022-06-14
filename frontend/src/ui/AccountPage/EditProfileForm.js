@@ -83,7 +83,7 @@ function EditProfileFormContent(props){
                             }}>
                         </ImageDropZone>
                         <div>
-                            {selectedImage !== null ? <img src={selectedImage}/> : ""}
+                            {selectedImage !== null ? <img className='img-fluid' src={selectedImage}/> : ""}
                         </div>
 
                         {
