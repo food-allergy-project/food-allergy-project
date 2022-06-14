@@ -116,7 +116,6 @@ export async function postRecipeController(request: Request, response: Response)
 }
 
 
-/*Is this a new comment color todo  create getRecipeByFavoriteProfileId*/
 
 export async function getRecipeByFavoriteProfileId(request: Request, response: Response) : Promise<Response> {
     try {

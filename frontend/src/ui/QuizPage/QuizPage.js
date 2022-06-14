@@ -1,17 +1,39 @@
 import React, {useEffect} from "react";
 import '../App.css';
 import {QuizButtons} from "./QuizButtons";
-import {Button, Card, Container, Row} from "react-bootstrap";
+import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import {QuizButtonCards} from "./QuizButtonCards";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllAllergies} from "../../store/allergies";
+import {httpConfig} from "../../utils/httpConfig";
+import {fetchAuth} from "../../store/auth";
+import {FieldArray, Formik} from "formik";
+import {FormDebugger} from "../shared/components/FormDebugger";
+
+
 
 
 export function QuizPage (){
+    const initialValues = {
+        allergies: []
+    }
+    const allergyProfileId = useSelector(state => state.auth?.profileId ? state.auth.profileId: null)
+    function onSubmit(values,{setStatus, resetForm}){
+        httpConfig.post('/apis/recipe',{...values, allergyProfileId}).then(reply=>{
+            console.log(values)
+            let {message, type} = reply;
+            setStatus({message, type});
+            if(reply.status === 200 ) {
+                resetForm();
+            }
+            setStatus({message, type});
+        })
+    }
     const allergies = useSelector(state => state.allergies ? state.allergies : []);
     const dispatch = useDispatch();
     const effects = () => {
         dispatch(fetchAllAllergies());
+        dispatch(fetchAuth())
     };
     const inputs = [];
     useEffect(effects, inputs);
@@ -28,13 +50,13 @@ console.log(allergies)
 
                 <div>
                     <Container>
+                        <Formik
+                            initialValues={initialValues}
+                            onSubmit={onSubmit}
+                        >
+                            {QuizPageFormContent}
+                        </Formik>
 
-                        <Row ClassName='mt-5 py-5 justify-content-center'>
-                            {allergies.map(allergy => <QuizButtonCards allergy={allergy} key={allergy.allergyId}/>)}
-                        </Row>
-                        <div className='text-center'>
-                            <Button variant="success" className='buttonSize'>Submit Quiz</Button>
-                        </div>
                     </Container>
                 </div>
             </>
@@ -42,4 +64,40 @@ console.log(allergies)
 
         </>
     )
+    function QuizPageFormContent (props){
+        const {
+            setFieldValue,
+            status,
+            values,
+            errors,
+            touched,
+            dirty,
+            isSubmitting,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            handleReset
+        } = props;
+        return(
+            <>
+
+                <Form onSubmit={handleSubmit}>
+                <Row ClassName='mt-5 py-5 justify-content-center'>
+                    <FieldArray name={"allergies"}>
+                        {({insert, remove})=>(<>
+                            {allergies.map((allergy, index) =>
+                                <QuizButtonCards allergy={allergy} index={index} insert={insert} remove={remove} key={allergy.allergyId} values={values}/>
+
+                            )}
+                        </>)}
+                    </FieldArray>
+                </Row>
+                <div className='text-center'>
+                    <Button type="submit" variant="success" className='buttonSize'>Submit Quiz</Button>
+                </div>
+                </Form>
+                <FormDebugger {...props}/>
+            </>
+        )
+    }
 }

@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {Card, Col} from "react-bootstrap";
 import "./QuizPage.css"
 
 
 export function QuizButtonCards(props) {
-    const {allergy} = props
+    const {allergy, insert, remove, index, values} = props
+const [clicked, setClicked] = useState(false)
         // const quizallergies = [
     //     {
     //         id: 1,
@@ -48,22 +49,41 @@ export function QuizButtonCards(props) {
     // ]
     return (
         <>
+            {clicked && <h1>I have been clicked</h1>}
+
+            <Col key={allergy.allergyId}
+                 onClick={()=>{
+                     console.log(allergy.allergyId)
+                     if (clicked === false) {
+                         setClicked(true)
+                         insert(index, allergy.allergyId)
+                     } else {
+                         remove(index)
+                         setClicked(false)
+                     }
 
 
-                            <Col className="justify-content-center align-content-center">
-                                <Card bg='light' text='dark' className="quizButtonCardSize mt-5">
-                                    <Card.Img variant="top" className="quizButtonCardImg"
-                                          src={
-                                              allergy.allergyImage
-                                          }/>
-                                    <Card.Body>
-                                        <Card.Title className="quizButtonCardTitle">{
-                                        allergy.allergyName
-                                        }</Card.Title>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
 
+                 }}
+
+                 className="justify-content-center align-content-center">
+
+                <Card id={`friends.${index}`} bg='light' text='dark' className="quizButtonCardSize mt-5" onClick={ClickedCard}>
+                    <Card.Img variant="top" className="quizButtonCardImg"
+                              src={
+                                  allergy.allergyImage
+                              }/>
+                    <Card.Body>
+                        <Card.Title className="quizButtonCardTitle">{
+                            allergy.allergyName
+                        }</Card.Title>
+                    </Card.Body>
+                </Card>
+            </Col>
         </>
     )
+}
+
+function ClickedCard () {
+    document.getElementById('friends.${index}').style.backgroundColor = "orange";
 }
