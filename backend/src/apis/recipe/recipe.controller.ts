@@ -8,6 +8,9 @@ import { selectAllRecipes } from "../../utils/recipe/selectAllRecipe";
 import { Profile } from "../../utils/interfaces/Profile";
 import {selectRecipeByFavoritedProfileId} from "../../utils/recipe/selectRecipeByFavoritedProfileId";
 import {selectRecipeByProfileAllergy} from "../../utils/recipe/selectRecipeByProfileAllergy";
+import {v1 as uuid} from 'uuid'
+import {RecipeAllergy} from "../../utils/interfaces/RecipeAllergy";
+import {insertRecipeAllergy} from "../../utils/recipe-allergy/insertRecipeAllergy";
 
 
 export async function putRecipeController(request: Request, response: Response): Promise<Response> {
@@ -81,20 +84,34 @@ export async function getAllRecipeControllers(request: Request, response: Respon
 export async function postRecipeController(request: Request, response: Response) : Promise<Response> {
     try {
         
-        const {recipeTitle, recipeImageAlt, recipeInstructions, recipeIngredients, recipeCategory, recipeImage} = request.body
+        const {recipeTitle, recipeImageAlt, recipeInstructions, recipeIngredients, recipeCategory, recipeImage, allergies} = request.body
         
         const profile: Profile = request.session.profile as Profile
         const recipeProfileId: string = profile.profileId as string
-        
-        const recipe: Recipe = {recipeId:null, recipeProfileId, recipeCategory,recipeDate:null, recipeIngredients, recipeImage, recipeImageAlt, recipeInstructions, recipeTitle}
+        const jsonIngredient = JSON.stringify(recipeIngredients)
+        console.log(recipeIngredients)
+        console.log("json",jsonIngredient)
+
+        const recipe: Recipe = {recipeId: uuid(), recipeProfileId, recipeCategory,recipeDate:null, recipeIngredients: jsonIngredient, recipeImage, recipeImageAlt, recipeInstructions: JSON.stringify(recipeInstructions), recipeTitle}
+
+        if (Array.isArray(allergies) === false) {
+            throw new Error('allergies array is malformed')
+        }
+
 
         const result = await insertRecipe(recipe)
-        const status: Status = {status: 200,message: result, data: null}
-        
-        return response.json(status)
+
+        for(let recipeAllergyAllergyId of allergies) {
+            let object: RecipeAllergy = {recipeAllergyAllergyId, recipeAllergyRecipeId:recipe.recipeId}
+            await insertRecipeAllergy(object)
+
+        }
+
+        return response.json({status:200, data: null, message: 'recipe successfully inserted'})
 
     } catch (error: any) {
-        return response.json( {status:400, data: null, message: error.message})
+        console.error(error)
+        return response.json( {status:500, data: null, message: 'internal server error please try again.'})
     }
 }
 
@@ -125,6 +142,7 @@ export async function getRecipeByProfileAllergy(request: Request, response: Resp
         return response.json(status)
 
     } catch (error: any) {
+        console.error(error)
         return(response.json({status: 400, data: null, message: error.message}))
     }
 }

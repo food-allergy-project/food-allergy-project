@@ -193,6 +193,8 @@ export const PostRecipeForm = (props) => {
                                                         placeholder="i.e. 1, 0.5, etc."
                                                         type="text"
                                                         className="form-control border border-dark border-2 mt-1"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
                                                     />
                                                     <ErrorMessage
                                                         name={`recipeIngredients.${index}.value`}
@@ -208,6 +210,8 @@ export const PostRecipeForm = (props) => {
                                                         placeholder="cup, ounces, grams"
                                                         type="text"
                                                         className="form-control border border-dark border-2 mt-1"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
                                                     />
                                                     <ErrorMessage
                                                         name={`recipeIngredients.${index}.unit`}
@@ -222,6 +226,8 @@ export const PostRecipeForm = (props) => {
                                                         placeholder="i.e. egg, shrimps, etc."
                                                         type="text"
                                                         className="form-control border border-dark border-2 mt-1"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
                                                     />
                                                     <ErrorMessage
                                                         name={`recipeIngredients.${index}.name`}
@@ -273,6 +279,8 @@ export const PostRecipeForm = (props) => {
                                                         placeholder="Instruction step"
                                                         type="text"
                                                         className="mt-2 form-control border border-dark border-2"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
                                                     />
                                                     <ErrorMessage
                                                         name={`recipeInstructions.${index}.step`}
