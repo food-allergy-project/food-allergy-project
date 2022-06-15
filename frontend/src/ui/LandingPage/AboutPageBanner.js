@@ -10,8 +10,12 @@ export function AboutPageBanner () {
                     <h1 className="mb-5"><strong>About Our Page</strong></h1>
                     <div className='fs-5'>
                         <p className='text-start'>
-                            Candy chocolate liquorice chocolate cake wafer caramels biscuit. Croissant marzipan lollipop tootsie roll jujubes chocolate muffin. Sweet brownie topping cookie tart cupcake powder candy candy. Jelly-o bear claw cheesecake tart topping sesame snaps shortbread sweet roll. Sweet cake shortbread chocolate cake gingerbread chupa chups soufflé sesame snaps. Chocolate bar tart bonbon muffin lemon drops. Cotton candy carrot cake muffin cupcake cookie cotton candy croissant jelly beans. Jujubes halvah danish dessert liquorice donut jelly beans cupcake. Sweet roll topping wafer donut sesame snaps candy canes cupcake sweet wafer. Tart cupcake powder gingerbread marzipan. Muffin icing lemon drops chocolate gummies muffin. Gummies sesame snaps muffin bear claw powder donut.
-                        </p>
+                            Researchers estimated that 32 million Americans are living with potentially life-threatening food allergies. This includes 5.6 million children under 18 years of age, which is one in every 13 children.</p>
+                        <p className='text-start'>
+                            In addition, about 40 percent of people with food allergies are allergic to more than one food. Living with food allergies is not easy, and it can be a hassle and time-consuming trying to find recipes that are free of your specific allergens.</p>
+                        <p className='text-start'>
+                            We are here to fix that problem! Allergic Foodies offer a way for anyone with food allergies to find recipes that are free from their allergens quickly and easily! Just take our quick little quiz to tell us about the thing(s) you’re allergic to and we’ll generate YOUR  personalized homepage that is filled with lots of delicious recipes that you can have!</p>
+
                     </div>
                 </div>
             </div>

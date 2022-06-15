@@ -2,12 +2,12 @@ import React, {useEffect} from 'react'
 import {Container, Row, Col, Button, Figure} from 'react-bootstrap'
 import {fetchRecipeByRecipeId} from "../../store/recipes";
 import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import {Ingredients} from "./Ingredients";
 import {Instructions} from "./Instructions";
 import FigureImage from "react-bootstrap/FigureImage";
 import {httpConfig} from "../../utils/httpConfig";
-
+import { useNavigate} from "react-router-dom"
 
 
 export function RecipePage() {
@@ -17,6 +17,7 @@ export function RecipePage() {
             ? state.recipes.find(recipe => recipe.recipeId === recipeId)
             : []
 });
+    let navigate = useNavigate();
     function sideEffects() {
         dispatch(fetchRecipeByRecipeId(recipeId))
 
@@ -40,7 +41,7 @@ export function RecipePage() {
 
             <Container>
                 {recipe && <h1 className="text-center my-5">{recipe.recipeTitle}</h1>}
-                <Button variant="secondary" className="m-3 my-4">Back to Recipes</Button>
+                <Button variant="secondary" onClick={() => navigate(-1)}   className="m-3 my-4">Back to Recipes</Button>
             </Container>
             <Container>
                 <Row>
