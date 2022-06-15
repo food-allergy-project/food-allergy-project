@@ -4,9 +4,11 @@ import {MyRecipes} from "./MyRecipes";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAuth} from "../../store/auth";
 import {fetchFavoritedRecipesByProfileId} from "../../store/favoritedRecipes";
+import {fetchAllRecipeByRecipeProfileId, fetchAllRecipes} from "../../store/recipes";
+import {MyRecentFavorites} from "./MyRecentFavorites";
 
 
-// import {MyRecentFavorites} from "./MyRecentFavorites";
+
 
 
 export const AccountPage = () => {
@@ -14,7 +16,9 @@ export const AccountPage = () => {
     console.log(auth)
     const dispatch = useDispatch()
     const effects = () => {
+        dispatch(fetchAllRecipeByRecipeProfileId());
         dispatch(fetchFavoritedRecipesByProfileId());
+        // dispatch(fetchAllRecipes());
         dispatch(fetchAuth());
     };
     const inputs = [];
@@ -22,17 +26,25 @@ export const AccountPage = () => {
 
     React.useEffect(effects, [dispatch])
     const myFavoritedRecipes = useSelector((state) => state.favoritedRecipes ? state.favoritedRecipes : [])
+    const recipes = useSelector((state) => state.recipes ? state.recipes : [])
+    console.log(recipes)
 
     return (
         <>
             <UserProfileSection profile={auth}/>
-            <div className='pb-5'>
-                <MyRecipes myFavoritedRecipes = {myFavoritedRecipes} />
-            </div>
-            {/*<div className='pb-5'></div>*/}
-            {/*<div className='my-5'>*/}
-            {/*    <MyRecentFavorites />*/}
+
+            {/*<div className='pb-5'>*/}
+            {/*    <MyRecipes myFavoritedRecipes = {myFavoritedRecipes} />*/}
             {/*</div>*/}
+
+
+            <div className='pb-5'>
+                <MyRecipes recipes = {recipes}/>
+            </div>
+            <div className='pb-5'></div>
+            <div className='my-5'>
+                <MyRecentFavorites myFavoritedRecipes = {myFavoritedRecipes} />
+            </div>
 
         </>
     )

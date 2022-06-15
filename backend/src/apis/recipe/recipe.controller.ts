@@ -7,10 +7,18 @@ import { selectRecipeByRecipeId } from "../../utils/recipe/selectRecipeByRecipeI
 import { selectAllRecipes } from "../../utils/recipe/selectAllRecipe";
 import { Profile } from "../../utils/interfaces/Profile";
 import {selectRecipeByFavoritedProfileId} from "../../utils/recipe/selectRecipeByFavoritedProfileId";
+
 import {selectRecipeByProfileAllergy} from "../../utils/recipe/selectRecipeByProfileAllergy";
 import {v1 as uuid} from 'uuid'
 import {RecipeAllergy} from "../../utils/interfaces/RecipeAllergy";
 import {insertRecipeAllergy} from "../../utils/recipe-allergy/insertRecipeAllergy";
+
+import {
+    selectProfileAllergyByProfileAllergyProfileId
+} from "../../utils/profile-allergy/selectProfileAlleryByProfileAllergyProfileId";
+import {commentValidator} from "../comment/comment.validator";
+import {selectRecipeByRecipeProfileId} from "../../utils/recipe/selectRecipeByRecipeProfileId";
+//import { deleteRecipeByRecipeId } from "../../utils/recipe/deleteRecipeByRecipeId";
 
 
 export async function putRecipeController(request: Request, response: Response): Promise<Response> {
@@ -62,6 +70,18 @@ export async function getRecipeByRecipeIdController(request: Request, response: 
 
     } catch (error) {
         return (response.json({status: 500, data: null, message: 'internal server error please try again.'}))
+    }
+}
+
+// GET All Recipes By ProfileId
+export async function getAllRecipeByRecipeProfileId(request: Request, response: Response) : Promise<Response> {
+    try {
+        const {recipeProfileId} = request.params;
+        const data = await selectRecipeByRecipeProfileId(recipeProfileId);
+        return response.json({status: 200, data, message: null})
+
+    } catch (error) {
+        return (response.json({status: 500, data: [], message: null}))
     }
 }
 
