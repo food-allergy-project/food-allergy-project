@@ -6,7 +6,7 @@ import {RowDataPacket} from "mysql2";
 export async function selectAllergiesByProfileId(profileId: string): Promise<Allergy[]> {
     try {
         const mysqlConnection = await connect();
-        const sqlQuery: string = 'SELECT BIN_TO_UUID(allergyId) as allergyId, allergyImage, allergyImageAlt, allergyName FROM allergy INNER JOIN recipeAllergy ON allergy.allergyId = recipeAllergy.recipeAllergyRecipeId WHERE recipeAllergy.recipeAllergyProfileId = UUID_TO_BIN(:ProfileId)'
+        const sqlQuery: string = 'SELECT BIN_TO_UUID(allergyId) as allergyId, allergyImage, allergyImageAlt, allergyName FROM allergy INNER JOIN profileAllergy ON allergy.allergyId = profileAllergy.profileAllergyProfileId WHERE profileAllergy.profileAllergyAllergyId = UUID_TO_BIN(:ProfileId)'
         const result = await mysqlConnection.execute(sqlQuery, {profileId}) as RowDataPacket[]
         await mysqlConnection.release()
         return result[0] as Allergy[]

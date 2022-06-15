@@ -2,12 +2,11 @@ import React, {useEffect} from "react";
 import {PersonalizedInfo} from "./PersonalizedInfo";
 import {RecipeCategories} from "./RecipeCategories";
 import {SuggestedRecipes} from "./SuggestedRecipes";
-import {RefreshRecipesButton} from "./RefreshButton";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAllRecipes, fetchRecipesByAllergiesAndProfile} from "../../store/recipes";
+import {fetchRecipesByAllergiesAndProfile} from "../../store/recipes";
 import {PostRecipeButton} from "./PostRecipe/PostRecipeButton";
 import {fetchAuth} from "../../store/auth";
-import {fetchAllAllergies} from "../../store/allergies";
+import {fetchAllergiesByProfileId} from "../../store/allergies";
 
 
 export const PersonalizedHomePage = () => {
@@ -16,11 +15,12 @@ export const PersonalizedHomePage = () => {
 
     const allergies = useSelector(state => state.allergies);
 
+
     const dispatch = useDispatch()
     const effects = () => {
         dispatch(fetchRecipesByAllergiesAndProfile());
         dispatch(fetchAuth());
-        dispatch(fetchAllAllergies());
+        dispatch(fetchAllergiesByProfileId());
     };
 
 
@@ -30,11 +30,12 @@ export const PersonalizedHomePage = () => {
 
     React.useEffect(effects, [dispatch])
     const recipes = useSelector((state) => state.recipes ? state.recipes : [])
+    const profileAllergies = useSelector((state) => state.allergies ? state.allergies : []);
 
     return(
         <>
             {auth && <PostRecipeButton profileId = {auth.profileId} allergies={allergies}/>}
-            <PersonalizedInfo  profile={auth}/>
+            {allergies && <PersonalizedInfo  profile={auth} profileAllergies = {profileAllergies} allergies={allergies} />}
             <RecipeCategories/>
             <SuggestedRecipes recipes = {recipes}/>
 

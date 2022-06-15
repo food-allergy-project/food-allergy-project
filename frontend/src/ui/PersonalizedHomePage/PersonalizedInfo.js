@@ -5,8 +5,7 @@ import avatarImage from "../shared/imgs/greenAvatar.png"
 
 
 export const PersonalizedInfo = (props) => {
-    const {profile,allergy} = props
-    console.log(profile)
+    const {profile,allergies} = props
     return(
         <>
 
@@ -22,7 +21,9 @@ export const PersonalizedInfo = (props) => {
                                     height={120}
                                 />
                             </Figure>
-                            {allergy && <p className='justify-content-center text-start mr-5 px-4 mb-5'> Allergic to:  {allergy.allergyName}</p>}
+                            <>
+                                <ul className='justify-content-center text-start mr-5 px-4 mb-5'> Allergic to: { allergies.map(allergy => <li key={allergy.allergyName} className="mx-1">{allergy.allergyName }</li> )} </ul>
+                            </>
                         </Col>
                         <Col>
                             <h3 className='text-end pt-5 mt-1'>
