@@ -4,7 +4,7 @@ import {RecipeCategories} from "./RecipeCategories";
 import {SuggestedRecipes} from "./SuggestedRecipes";
 import {RefreshRecipesButton} from "./RefreshButton";
 import {useDispatch, useSelector} from "react-redux";
-import  {fetchAllRecipes} from "../../store/recipes";
+import {fetchAllRecipes, fetchRecipesByAllergiesAndProfile} from "../../store/recipes";
 import {PostRecipeButton} from "./PostRecipe/PostRecipeButton";
 import {fetchAuth} from "../../store/auth";
 import {fetchAllAllergies} from "../../store/allergies";
@@ -18,7 +18,7 @@ export const PersonalizedHomePage = () => {
 
     const dispatch = useDispatch()
     const effects = () => {
-        dispatch(fetchAllRecipes());
+        dispatch(fetchRecipesByAllergiesAndProfile());
         dispatch(fetchAuth());
         dispatch(fetchAllAllergies());
     };

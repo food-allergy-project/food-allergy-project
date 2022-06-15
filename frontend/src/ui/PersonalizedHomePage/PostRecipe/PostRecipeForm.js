@@ -16,10 +16,12 @@ export const PostRecipeForm = (props) => {
 
 
     const validator = Yup.object().shape({
+        recipeCategory: Yup.string()
+            .required('Recipe category is required'),
         recipeTitle: Yup.string()
             .required('Recipe name is required'),
-        recipeImage: Yup.string()
-            .required("An image is required"),
+        // recipeImage: Yup.string()
+        //     .required("An image is required"),
         recipeImageAlt: Yup.string(),
         recipeIngredients: Yup.array()
             .required("Ingredient list is required"),
@@ -30,7 +32,9 @@ export const PostRecipeForm = (props) => {
     });
 
     const recipe = {
+        recipeCategory:"",
         recipeImage: "",
+        recipeImageAlt: "",
         recipeTitle: "",
         recipeIngredients: [
             {
@@ -63,7 +67,7 @@ export const PostRecipeForm = (props) => {
                 })
         };
 
-        if (values.recipeImage !== undefined) {
+        if (values.recipeImage !== '') {
             httpConfig.post(`/apis/image-upload`, values.recipeImage)
                 .then(reply => {
                         let {message, type} = reply;
@@ -137,6 +141,24 @@ export const PostRecipeForm = (props) => {
                                 </div>
                             )
                         }
+                        {/*Image Alt*/}
+
+                    <Form.Group>
+                        <Form.Label>Image Alt</Form.Label>
+                        <InputGroup>
+                            <FormControl
+                                className="form-control border border-dark border-2"
+                                name="recipeImageAlt"
+                                type="text"
+                                value={values.recipeImageAlt}
+                                placeholder="Please enter the recipe name"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+
+                            />
+                        </InputGroup>
+                        <DisplayError errors={errors} touched={touched} field={"recipeImageAlt"}/>
+                    </Form.Group>
 
                         {/*Recipe Tile*/}
                         <Form.Label>Recipe Name</Form.Label>
@@ -284,6 +306,20 @@ export const PostRecipeForm = (props) => {
                         <DisplayError errors={errors} touched={touched} field={"recipeInstructions"}/>
                     </Form.Group>
 
+                    <Form.Group>
+                        <Form.Select
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            name="recipeCategory"
+                            aria-label="recipeCategory">
+                            <option>Please select a category</option>
+                            <option value="breakfast">breakfast</option>
+                            <option value="lunch">lunch</option>
+                            <option value="dinner">dinner</option>
+                            <option value="dessert">dessert</option>
+                            <option value="snack">snack</option>
+                        </Form.Select>
+                    </Form.Group>
 
                     {/*Recipe Allergies*/}
                     <FormGroup>
