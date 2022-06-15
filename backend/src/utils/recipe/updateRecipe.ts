@@ -8,6 +8,7 @@ export async function updateRecipe(recipe: Recipe): Promise<string>  {
         const mysqlConnection = await connect();
         const query : string = 'UPDATE recipe SET recipeTitle = :recipeTitle, recipeInstructions = :recipeInstructions, recipeIngredients= :recipeIngredients, recipeImage = :recipeImage, recipeImageAlt =:recipeImageAlt, recipeCategory = :recipeCategory, recipeDate = :recipeDate WHERE recipeId = UUID_TO_BIN(:recipeId)';
         await mysqlConnection.execute(query, recipe)
+        await mysqlConnection.release()
         return 'Recipe successfully updated'
     } catch (error) {
         throw error
