@@ -3,6 +3,7 @@ import {Figure, Nav} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
 import FoodieLogo from '../imgs/brandlogo.png'
 import {Link} from "react-router-dom";
+import {SignOutComponent} from "./SignOut";
 
 
 
@@ -35,7 +36,7 @@ export function NavBar () {
                         <Nav.Link href="/sign-in" className={'text-dark'}>Login</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="link-2" className={'text-dark'}>Logout</Nav.Link>
+                        <SignOutComponent/>
                     </Nav.Item>
                 </Nav>
 
