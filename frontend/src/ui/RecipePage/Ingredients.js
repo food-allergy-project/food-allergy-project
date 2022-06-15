@@ -1,28 +1,35 @@
 import React from "react";
-import {Col, Container, Row} from "react-bootstrap";
+import { Col, Container, Row} from "react-bootstrap";
 
 
-export const Ingredients = (props) => {
-    const {
-        recipe
-    } = props
-
-    return (
+// export const Ingredients = (props) => {
+//     const {
+//         recipe
+//     } = props
 
 
-        <>
-            <Container>
-                <Row>
-                    <Col>
-                        <p>
-                            {recipe.recipeIngredients}
-                        </p>
-                    </Col>
+export function Ingredients(props) {
+    {
+        const recipe = {props}
+        return (
+            <>
+                {
+                    recipe.map((recipe) => {
+                        return (
+                            <Container>
+                                <Row>
+                                    <Col>
+                                        <p>
+                                            {recipe.amount} {recipe.value} {recipe.name}
+                                        </p>
+                                    </Col>
 
-                </Row>
-            </Container>
-
-        </>
-    )
-
+                                </Row>
+                            </Container>
+                        )
+                    })
+                }
+            </>
+        )
+    }
 }

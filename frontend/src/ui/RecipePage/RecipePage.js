@@ -8,6 +8,7 @@ import {Instructions} from "./Instructions";
 import FigureImage from "react-bootstrap/FigureImage";
 import {httpConfig} from "../../utils/httpConfig";
 import { useNavigate} from "react-router-dom"
+import {SuggestedRecipeCards} from "../PersonalizedHomePage/SuggestedRecipeCards";
 
 
 export function RecipePage() {
@@ -67,14 +68,16 @@ export function RecipePage() {
                         <h3>Ingredients</h3>
                         <ol>
                             <li>
-                            {recipe && <Ingredients recipe={recipe}/>}
+
+                                {recipe.map(recipe => <Ingredients recipe = {recipe.recipeIngredients}/>)}
                             </li>
                         </ol>
                     </Col>
                     <Col>
                         <h3>Instructions</h3>
                         <p>
-                            {recipe && <Instructions recipe={recipe}/>}
+
+                            {recipe.map && (recipe => <Instructions recipe = {recipe.recipeInstructions}/>)}
 
                         </p>
                     </Col>
