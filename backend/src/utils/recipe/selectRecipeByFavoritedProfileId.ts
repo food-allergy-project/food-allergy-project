@@ -1,4 +1,3 @@
-
 import { RowDataPacket } from 'mysql2/promise'
 import { Recipe } from '../interfaces/Recipe'
 import {connect} from "../../database";

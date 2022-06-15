@@ -29,7 +29,7 @@ export const recipeValidator: Schema = {
         isLength: {
             errorMessage: 'Image Alt must be between 1-20 characters',
             options: {min: 1, max: 20}
-            
+
         }
     },
     recipeTitle: {
@@ -40,22 +40,41 @@ export const recipeValidator: Schema = {
             options: {min: 1, max: 355}
         }
     },
-    recipeInstructions: {
+    "recipeInstructions.*.step": {
         escape: true,
         trim: true,
         isLength: {
-            errorMessage:'Recipe Instructions must be between 1-5000 characters',
-            options: {min:1, max:5000}
+            errorMessage: 'Recipe Instructions must be between 1-5000 characters',
+            options: {min: 1, max: 5000}
         }
     },
-    recipeIngredients: {
+    "recipeIngredients.*.value": {
         escape: true,
         trim: true,
         isLength: {
-            errorMessage:'Ingredients list must be between 1-300 characters',
-            options: {min:1, max:300}
+            errorMessage: 'Ingredients list must be between 1-300 characters',
+            options: {min: 1, max: 300}
         }
     },
+
+    "recipeIngredients.*.unit": {
+        escape: true,
+        trim: true,
+        isLength: {
+            errorMessage: 'Ingredients list must be between 1-300 characters',
+            options: {min: 1, max: 300}
+        }
+    },
+
+    "recipeIngredients.*.name": {
+        escape: true,
+        trim: true,
+        isLength: {
+            errorMessage: 'Ingredients list must be between 1-300 characters',
+            options: {min: 1, max: 300}
+        }
+    },
+
     recipeDate: {
         toDate: true
     },
@@ -63,16 +82,25 @@ export const recipeValidator: Schema = {
     recipeCategory: {
 
         custom: {
-            options:(value : string) => {
+            options: (value: string) => {
                 const options: Array<string> = ["breakfast", "lunch", "dinner", "snack", "dessert"]
                 console.log(value)
-                if (options.includes(value))  { return true
-                    
-                } else {throw new Error("Category must be breakfast, lunch, dinner, snack, or dessert")}
-                
+                if (options.includes(value)) {
+                    return true
+
+                } else {
+                    throw new Error("Category must be breakfast, lunch, dinner, snack, or dessert")
+                }
+
             }
         },
         escape: true,
         trim: true,
-        }
+    },
+
+    "allergies.*": {
+        escape: true,
+        trim: true,
+    }
 }
+

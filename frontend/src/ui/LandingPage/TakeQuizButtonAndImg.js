@@ -8,7 +8,7 @@ export function TakeQuizButtonAndImg () {
     return (
         <Container className='py-5 my-5'>
             <div className='text-center'>
-                <Button variant="success" className='buttonBlockSize'>Take Quiz</Button>
+                <Button variant="success" className='buttonBlockSize pt-4' href="/sign-up">Take Quiz</Button>
             </div>
             <div className='pt-5 my-5 text-center'>
                 <Figure>

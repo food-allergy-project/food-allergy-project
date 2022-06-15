@@ -47,10 +47,10 @@ CREATE TABLE recipe (
     recipeProfileId    BINARY(16)    NOT NULL,
     recipeCategory     VARCHAR(16)   NOT NULL,
     recipeDate         DATETIME(6),
-    recipeIngredients  VARCHAR(2500) NOT NULL,
+    recipeIngredients  JSON NOT NULL,
     recipeImage        VARCHAR(255)  NOT NULL,
     recipeImageAlt     VARCHAR(32),
-    recipeInstructions VARCHAR(5000) NOT NULL,
+    recipeInstructions JSON NOT NULL,
     recipeTitle        VARCHAR(355)   NOT NULL,
     INDEX (recipeId, recipeProfileId, recipeCategory),
     PRIMARY KEY (recipeId)
@@ -58,11 +58,11 @@ CREATE TABLE recipe (
 
 CREATE TABLE recipeAllergy (
     recipeAllergyRecipeId BINARY (16) NOT NULL,
-    recipeAllergyProfileId BINARY (16) NOT NULL,
-    INDEX (recipeAllergyRecipeId, recipeAllergyProfileId),
+    recipeAllergyAllergyId BINARY (16) NOT NULL,
+    INDEX (recipeAllergyRecipeId, recipeAllergyAllergyId),
     FOREIGN KEY (recipeAllergyRecipeId) references recipe (recipeId),
-    FOREIGN KEY (recipeAllergyProfileId) references profile (profileId),
-    PRIMARY KEY (recipeAllergyRecipeId,recipeAllergyProfileId)
+    FOREIGN KEY (recipeAllergyAllergyId) references allergy (allergyId),
+    PRIMARY KEY (recipeAllergyRecipeId,recipeAllergyAllergyId)
 
 );
 

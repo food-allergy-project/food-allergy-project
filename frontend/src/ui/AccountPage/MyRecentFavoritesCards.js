@@ -1,6 +1,7 @@
 import React from "react";
 import '../AccountPage/AccountPage.css'
 import {Card, Col} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 export function MyRecentFavoritesCards(props) {
     const {myRecentFavorites} = props
@@ -10,6 +11,10 @@ export function MyRecentFavoritesCards(props) {
 
 
             <Col>
+                <Link
+                      to={`/recipe/${myRecentFavorites.recipeId}`}
+                      reloadDocument={true}
+                >
                 <Card bg='light' text='dark' className='myRecipeCardSize mt-4'>
                     <Card.Img variant="top" className='myRecipeCardImg'
                               src={
@@ -22,6 +27,7 @@ export function MyRecentFavoritesCards(props) {
                         </Card.Title>
                     </Card.Body>
                 </Card>
+                </Link>
             </Col>
 
 

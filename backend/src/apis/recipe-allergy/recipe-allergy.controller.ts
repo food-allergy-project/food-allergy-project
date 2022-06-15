@@ -14,18 +14,14 @@ import {deleteRecipeAllergy} from "../../utils/recipe-allergy/deleteRecipeAllerg
 
 
 
+
 // POST recipeAllergy
 
 export async function postRecipeAllergyController (request: Request, response: Response) : Promise<Response> {
     try {
-        const {recipeAllergyRecipeId} = request.body
-        const profile = request.session.profile as Profile
-        const recipeAllergyProfileId = profile.profileId as string
+        const {recipeAllergyAllergyId, recipeAllergyRecipeId} = request.body
 
-        const recipeAllergy : RecipeAllergy = {recipeAllergyRecipeId, recipeAllergyProfileId}
-
-        const message = await insertRecipeAllergy(recipeAllergy)
-        return response.json({status: 200, data: null, message: "Successfully Insert"})
+        return response.json({status: 200, data: null, message: "recipeAllergy Successfully Insert"})
 
     } catch (e) {
         console.error(e)
@@ -81,12 +77,10 @@ export async  function getRecipeAllergyProfileId (request: Request, response: Re
 // DELETE recipeAllergy
 export async function deleteRecipeAllergyController (request: Request, response: Response) : Promise<Response> {
     try {
-        const {recipeAllergyRecipeId} = request.params;
-        const profile = request.session.profile as Profile
-        const recipeAllergyProfileId = profile.profileId as string
+        const {recipeAllergyRecipeId, recipeAllergyAllergyId} = request.params;
 
-        const recipeAllergy: RecipeAllergy = {recipeAllergyProfileId, recipeAllergyRecipeId}
-        const mySqlResult = await selectRecipeAllergyByPrimaryKey(recipeAllergyProfileId, recipeAllergyRecipeId)
+        const recipeAllergy: RecipeAllergy = {recipeAllergyAllergyId, recipeAllergyRecipeId}
+        const mySqlResult = await selectRecipeAllergyByPrimaryKey(recipeAllergyAllergyId, recipeAllergyRecipeId)
         if (mySqlResult === null) {
             return response.json({status: 404, message: 'recipeAllergy does not exists', data: null})
         }

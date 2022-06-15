@@ -1,4 +1,4 @@
-import express, { Application, Errback, ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import express, { Application} from 'express';
 import SignupRoute from './apis/sign-up/signup.route';
 import morgan from 'morgan';
 import { indexRoute } from './apis/index.routes';
@@ -10,9 +10,10 @@ import { RecipeRoute } from './apis/recipe/recipe.route';
 import {favoritedreciperoute} from "./apis/favorited recipe/favoritedrecipes.route";
 import { CommentRoute } from './apis/comment/comment.route';
 import {RecipeAllergyRoutes} from "./apis/recipe-allergy/recipe-allergy.routes";
-import { createClient, RedisClientType } from 'redis'
+import { createClient } from 'redis'
 import RedisConnect from "connect-redis"
 import {ProfileAllergyRoute} from "./apis/profile-allergy/profile.allergy.route";
+import {ImageUploadRouter} from "./apis/image-upload/image-uploade.route";
 const redisClient = createClient({legacyMode: true, socket:{host: process.env.REDIS_HOST}})
 redisClient.connect().catch(console.error)
 const RedisStore = RedisConnect(session)
@@ -63,6 +64,7 @@ export class App {
         this.app.use('/apis/recipe-allergy', RecipeAllergyRoutes);
         this.app.use('/apis/comment', CommentRoute)
         this.app.use('/apis/profile-allergy', ProfileAllergyRoute)
+        this.app.use('/apis/image-upload', ImageUploadRouter);
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port

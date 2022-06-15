@@ -27,6 +27,11 @@ export const fetchAllRecipes = () => async dispatch => {
     dispatch(setAllRecipes(data))
 }
 
+export const fetchRecipesByAllergiesAndProfile = () => async dispatch => {
+    const {data} = await httpConfig('/apis/recipe/allergies/profile')
+    dispatch(setAllRecipes(data))
+}
+
 //=================================================================================//
 export const fetchRecipeByRecipeId = (id) => async (dispatch) => {
 
