@@ -10,6 +10,7 @@ import {httpConfig} from "../../utils/httpConfig";
 import { useNavigate} from "react-router-dom"
 
 
+
 export function RecipePage() {
     let { recipeId } = useParams();
     const recipe = useSelector(state => {
@@ -67,14 +68,16 @@ export function RecipePage() {
                         <h3>Ingredients</h3>
                         <ol>
                             <li>
-                            {recipe && <Ingredients recipe={recipe}/>}
+
+                                {recipe && <Ingredients recipe = {recipe.recipeIngredients}/>}
                             </li>
                         </ol>
                     </Col>
                     <Col>
                         <h3>Instructions</h3>
                         <p>
-                            {recipe && <Instructions recipe={recipe}/>}
+
+                            {recipe && <Instructions recipe = {recipe.recipeInstructions}/>}
 
                         </p>
                     </Col>

@@ -14,6 +14,7 @@ import { createClient } from 'redis'
 import RedisConnect from "connect-redis"
 import {ProfileAllergyRoute} from "./apis/profile-allergy/profile.allergy.route";
 import {ImageUploadRouter} from "./apis/image-upload/image-uploade.route";
+import {SignOutRoute} from "./apis/sign-out/sign-out.route";
 const redisClient = createClient({legacyMode: true, socket:{host: process.env.REDIS_HOST}})
 redisClient.connect().catch(console.error)
 const RedisStore = RedisConnect(session)
@@ -65,6 +66,7 @@ export class App {
         this.app.use('/apis/comment', CommentRoute)
         this.app.use('/apis/profile-allergy', ProfileAllergyRoute)
         this.app.use('/apis/image-upload', ImageUploadRouter);
+        this.app.use("/apis/sign-out", SignOutRoute);
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
