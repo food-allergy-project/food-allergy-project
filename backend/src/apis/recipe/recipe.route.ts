@@ -1,4 +1,3 @@
-
 import {Router} from "express";
 import {asyncValidatorController} from "../../utils/controllers/async-validator.controller";
 import {check, checkSchema} from "express-validator";
@@ -9,7 +8,7 @@ import {
     getRecipeByRecipeIdController,
     getAllRecipeControllers,
     postRecipeController,
-    getRecipeByFavoriteProfileId,
+    getRecipeByFavoriteProfileId, getRecipeByProfileAllergy,
 } from "./recipe.controller";
 
 
@@ -39,3 +38,7 @@ RecipeRoute.route('/')
 RecipeRoute.route("/favorites/profile")
     .get(
         isLoggedIn,getRecipeByFavoriteProfileId)
+
+RecipeRoute.route("/allergies/profile")
+    .get(
+        isLoggedIn, getRecipeByProfileAllergy)

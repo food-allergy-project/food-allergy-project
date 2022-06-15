@@ -1,4 +1,4 @@
-import express, { Application, Errback, ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import express, { Application} from 'express';
 import SignupRoute from './apis/sign-up/signup.route';
 import morgan from 'morgan';
 import { indexRoute } from './apis/index.routes';
@@ -10,7 +10,7 @@ import { RecipeRoute } from './apis/recipe/recipe.route';
 import {favoritedreciperoute} from "./apis/favorited recipe/favoritedrecipes.route";
 import { CommentRoute } from './apis/comment/comment.route';
 import {RecipeAllergyRoutes} from "./apis/recipe-allergy/recipe-allergy.routes";
-import { createClient, RedisClientType } from 'redis'
+import { createClient } from 'redis'
 import RedisConnect from "connect-redis"
 import {ProfileAllergyRoute} from "./apis/profile-allergy/profile.allergy.route";
 const redisClient = createClient({legacyMode: true, socket:{host: process.env.REDIS_HOST}})
