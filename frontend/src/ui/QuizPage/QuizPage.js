@@ -8,7 +8,8 @@ import {fetchAllAllergies} from "../../store/allergies";
 import {httpConfig} from "../../utils/httpConfig";
 import {fetchAuth} from "../../store/auth";
 import {FieldArray, Formik} from "formik";
-import {FormDebugger} from "../shared/components/FormDebugger";
+import {useNavigate} from "react-router-dom";
+import {DisplayStatus} from "../shared/components/display-status/DIsplayStatus";
 
 
 
@@ -17,6 +18,7 @@ export function QuizPage (){
     const initialValues = {
         allergies: []
     }
+    const navigate = useNavigate()
     const allergyProfileId = useSelector(state => state.auth?.profileId ? state.auth.profileId: null)
     function onSubmit(values,{setStatus, resetForm}){
         httpConfig.post('/apis/profile-allergy/',{...values, allergyProfileId}).then(reply=>{
@@ -24,8 +26,9 @@ export function QuizPage (){
             let {message, type} = reply;
             setStatus({message, type});
             if(reply.status === 200 ) {
+                console.log("is this thing still on")
                 resetForm();
-                window.location = '/favorites'
+            setTimeout(() => {navigate("/yourhomepage")}, 2000)
 
             }
             setStatus({message, type});
@@ -98,7 +101,7 @@ console.log(allergies)
                     <Button type="submit" variant="success" className='buttonSize'>Submit Quiz</Button>
                 </div>
                 </Form>
-                <FormDebugger {...props}/>
+                <DisplayStatus status = {status}/>
             </>
         )
     }
