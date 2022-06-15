@@ -10,15 +10,13 @@ export function SuggestedRecipeCards( props ) {
     return (
         <>
             <Col className="justify-content-center align-content-center">
-
+                <Link
+                    to={`/recipe/${recipeId}`}
+                    reloadDocument={true}
+                >
                 <Card className="recipeCardSize mt-5 cardBackground2">
-                    <Link
-                        className='text-center btn-secondary'
-                        to={`/recipe/${recipeId}`}
-                        reloadDocument={true}
-                    >
-                        Click for detailed recipe
-                    </Link>
+
+
                     <Card.Img variant="top" className="recipeCardImg"
                               src={
                                   recipe.recipeImage
@@ -30,6 +28,7 @@ export function SuggestedRecipeCards( props ) {
 
                     </Card.Body>
                 </Card>
+                </Link>
             </Col>
             </>
     )

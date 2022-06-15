@@ -1,13 +1,14 @@
 /*Card Sizing (Suggested Recipes on Personalized Homepage)*/
 .favoriteRecipeCardSize {
     width: 255px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    height: 50%;
 }
 
 /*Card Image Sizing (Suggested Recipes on Personalized Homepage)*/
 .favoriteRecipeCardImg {
     width: 100%;
-    min-height: 350px;
+    min-height: 310px;
 }
 
 /*Card Title Sizing (Suggested Recipes on Personalized Homepage)*/
