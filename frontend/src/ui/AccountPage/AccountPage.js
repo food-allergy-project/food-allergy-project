@@ -17,9 +17,9 @@ export const AccountPage = () => {
     console.log(auth)
     const dispatch = useDispatch()
     const effects = () => {
-        // dispatch(fetchAllRecipeByRecipeProfileId());
+        dispatch(fetchAllRecipeByRecipeProfileId());
         dispatch(fetchFavoritedRecipesByProfileId());
-        dispatch(fetchAllRecipes());
+        // dispatch(fetchAllRecipes());
         dispatch(fetchAuth());
     };
     const inputs = [];
@@ -28,21 +28,24 @@ export const AccountPage = () => {
     React.useEffect(effects, [dispatch])
     const myFavoritedRecipes = useSelector((state) => state.favoritedRecipes ? state.favoritedRecipes : [])
     const recipes = useSelector((state) => state.recipes ? state.recipes : [])
+    console.log(recipes)
 
     return (
         <>
             <UserProfileSection profile={auth}/>
-            <div className='pb-5'>
-                <MyRecipes myFavoritedRecipes = {myFavoritedRecipes} />
-            </div>
-            {/*<UserProfileSection profile={auth}/>*/}
-            {/*/!*<div className='pb-5'>*!/*/}
-            {/*/!*    <MyRecipes myPostedRecipes = {recipes}/>*!/*/}
-            {/*/!*</div>*!/*/}
-            {/*<div className='pb-5'></div>*/}
-            {/*<div className='my-5'>*/}
-            {/*    <MyRecentFavorites myFavoritedRecipes = {myFavoritedRecipes} />*/}
+
+            {/*<div className='pb-5'>*/}
+            {/*    <MyRecipes myFavoritedRecipes = {myFavoritedRecipes} />*/}
             {/*</div>*/}
+
+
+            <div className='pb-5'>
+                <MyRecipes recipes = {recipes}/>
+            </div>
+            <div className='pb-5'></div>
+            <div className='my-5'>
+                <MyRecentFavorites myFavoritedRecipes = {myFavoritedRecipes} />
+            </div>
 
         </>
     )

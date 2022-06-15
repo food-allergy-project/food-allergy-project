@@ -11,6 +11,7 @@ import {useDropzone} from "react-dropzone";
 
 
 export const EditProfileForm = () => {
+    // const {profile} = props
     const editProfile = {
         profileFullName: "",
     };
@@ -18,9 +19,38 @@ export const EditProfileForm = () => {
         profileFullName: Yup.string()
             .required("profile name is required"),
     });
-
+    // function submitEditedProfile (values, {resetForm, setStatus}) {
+    //
+    //     const submitUpdatedProfile = (updatedProfile) => {
+    //         httpConfig.put(`/apis/account/${profile.profileId}`, updatedProfile)
+    //             .then(reply => {
+    //                 let {message, type} = reply;
+    //
+    //                 if (reply.status === 200) {
+    //                     resetForm();
+    //                 }
+    //                 setStatus({message, type});
+    //                 return (reply)
+    //             })
+    //     };
+    //     if (values.profileAvatarUrl !== undefined) {
+    //         httpConfig.post(`/apis/image-upload/`, values.profileAvatarUrl)
+    //             .then(reply => {
+    //                     let {message, type} = reply;
+    //
+    //                     if (reply.status === 200) {
+    //                         submitUpdatedProfile({...values, profileAvatarUrl:message})
+    //                     } else {
+    //                         setStatus({message, type});
+    //                     }
+    //                 }
+    //             );
+    //     } else {
+    //         submitUpdatedProfile(values);
+    //     }
+    // }
     const submitEditProfile = (values, {resetForm, setStatus}) => {
-        httpConfig.post("/apis/account/", values)
+        httpConfig.put("/apis/account/", values.profileFullName)
             .then(reply => {
                     let {message, type} = reply;
 

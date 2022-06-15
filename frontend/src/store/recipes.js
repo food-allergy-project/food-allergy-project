@@ -8,6 +8,7 @@ const slice = createSlice({
     initialState: [],
     reducers: {
         setAllRecipes: (recipes, action) => action.payload,
+
         setRecipeByRecipeId: (recipes, action) => {
             recipes.unshift(action.payload)
         },
@@ -38,7 +39,13 @@ export const fetchRecipeByRecipeId = (id) => async (dispatch) => {
 
 }
 //=================================================================================//
-export const fetchAllRecipeByRecipeProfileId = (id) => async (dispatch) => {
-    const { data } = await httpConfig(`/apis/recipe/recipeProfileId/${id}`)
-    dispatch(setAllRecipeByRecipeProfileId( data ))
+export const fetchAllRecipeByRecipeProfileId = () => async (dispatch, getState) => {
+
+        const auth = getState().auth
+        if (auth){
+            const {data} = await httpConfig(`/apis/recipe/recipeProfileId/${auth.profileId}`)
+            dispatch(setAllRecipes( data))
+        }
+
+
 }
