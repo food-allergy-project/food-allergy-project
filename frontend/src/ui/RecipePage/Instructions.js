@@ -3,7 +3,7 @@ import {Col, Container, Row} from "react-bootstrap";
 
 export function Instructions(props) {
     {
-        const recipe = {props}
+        const {recipe} = props
         return (
             <>
                 {

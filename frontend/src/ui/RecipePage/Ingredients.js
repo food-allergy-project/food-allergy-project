@@ -10,8 +10,10 @@ import { Col, Container, Row} from "react-bootstrap";
 
 export function Ingredients(props) {
     {
-        const recipe = {props}
+        const {recipe} = props
+        console.log(recipe)
         return (
+
             <>
                 {
                     recipe.map((recipe) => {
