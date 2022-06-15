@@ -25,6 +25,8 @@ export function QuizPage (){
             setStatus({message, type});
             if(reply.status === 200 ) {
                 resetForm();
+                window.location = '/favorites'
+
             }
             setStatus({message, type});
         })

@@ -49,7 +49,6 @@ const [clicked, setClicked] = useState(false)
     // ]
     return (
         <>
-            {clicked && <h1>I have been clicked</h1>}
 
             <Col key={allergy.allergyId}
                  onClick={()=>{
@@ -67,9 +66,9 @@ const [clicked, setClicked] = useState(false)
 
                  }}
 
-                 className="justify-content-center align-content-center">
+                 className={`justify-content-center align-content-center`}>
 
-                <Card id={`friends.${index}`} bg='light' text='dark' className="quizButtonCardSize mt-5">
+                <Card id={`friends.${index}`} bg='light' text='success' className={`quizButtonCardSize mt-5 ${clicked ? 'bg-dark' : null}`}>
                     <Card.Img variant="top" className="quizButtonCardImg"
                               src={
                                   allergy.allergyImage
