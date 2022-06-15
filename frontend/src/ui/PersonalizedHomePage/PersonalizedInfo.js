@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, Col, Container, Figure, Row} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
-import avatarImage from "../shared/imgs/greenAvatar.png"
+import avatarImage from "../shared/imgs/fawn_avatar.png"
 
 
 export const PersonalizedInfo = (props) => {

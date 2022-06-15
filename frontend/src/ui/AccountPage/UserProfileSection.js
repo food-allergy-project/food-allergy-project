@@ -1,7 +1,7 @@
 import React from "react";
 import {Col, Container, Figure} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
-import avatarImage2 from "../shared/imgs/greenAvatar.png"
+import avatarImage2 from "../shared/imgs/fawn_avatar.png"
 import {EditProfile} from "./EditProfile";
 
 
@@ -23,8 +23,8 @@ export const UserProfileSection = (props) => {
                             />
                         </Figure>
                         <div>
-                            {profile &&<p>{profile.profileFullName}</p>}
-                            <p> allergies</p>
+                            {profile &&<p><strong>{profile.profileFullName}</strong></p>}
+                            <p> allergies: dairy, gluten</p>
                         </div>
                         <EditProfile/>
                     </Col>
