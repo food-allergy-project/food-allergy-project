@@ -1,6 +1,5 @@
 import React, {useEffect} from "react"
 import {UserProfileSection} from "./UserProfileSection";
-
 import {MyRecipes} from "./MyRecipes";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAuth} from "../../store/auth";

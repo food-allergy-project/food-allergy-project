@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, Col, Container, Row} from "react-bootstrap";
+import {Card, Col} from "react-bootstrap";
 import "./FavoritedCardRecipe.css"
 import {Link} from "react-router-dom";
 
@@ -16,19 +16,14 @@ export function FavoriteCards(props) {
                 recipes.map((recipe) => {
                     const{recipeId} = recipe
                     return (
-                        <Container>
-                            <Row>
 
-                                <Col className="justify-content-center align-content-center">
-
+                                <Col className="justify-content-center align-content-center col-sm-6">
+                                    <Link className='text-center btn-primary bg-secondary'
+                                        to={`/recipe/${recipeId}`}
+                                        reloadDocument={true}
+                                    >
                                     <Card bg='light' text='dark' className="favoriteRecipeCardSize mt-5">
-                                        <Link
-                                            className='text-center btn-primary bg-secondary'
-                                            to={`/recipe/${recipeId}`}
-                                            reloadDocument={true}
-                                        >
-                                            Click for detailed Recipe
-                                        </Link>
+
                                         <Card.Img variant="top" className="favoriteRecipeCardImg"
                                                   src={recipe.recipeImage}/>
                                         <Card.Body>
@@ -41,9 +36,9 @@ export function FavoriteCards(props) {
 
 
                                     </Card>
+                                    </Link>
                                 </Col>
-                            </Row>
-                        </Container>
+
                     )
                 })
             }
