@@ -14,8 +14,9 @@ import {RowDataPacket} from "mysql2";
 
 export async function selectRecipeByRecipeProfileId(recipeProfileId: string): Promise<Recipe[]> {
     const mysqlConnection =  await connect()
-    const mysqlQuery = 'SELECT BIN_TO_UUID(recipeId) as recipeId, BIN_TO_UUID(recipeProfileId) as recipeProfileId, recipeCategory, recipeDate, recipeIngredients, recipeImage, recipeImageAlt, recipeInstructions, recipeTitle FROM recipe INNER JOIN profile on profile.profileId = recipe.recipeProfileId = UUID_TO_BIN(:recipeProfileId)'
+    const mysqlQuery = 'SELECT BIN_TO_UUID(recipeId) as recipeId, BIN_TO_UUID(recipeProfileId) as recipeProfileId, recipeCategory, recipeDate, recipeIngredients, recipeImage, recipeImageAlt, recipeInstructions, recipeTitle FROM recipe Where recipeProfileId = uuid_to_bin(:recipeProfileId)'
     const result = await mysqlConnection.execute(mysqlQuery, {recipeProfileId}) as RowDataPacket
+    console.log(result)
     await mysqlConnection.release()
     return result[0] as Recipe[]
 }

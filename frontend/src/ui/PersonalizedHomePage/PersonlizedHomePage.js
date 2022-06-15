@@ -6,7 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchRecipesByAllergiesAndProfile} from "../../store/recipes";
 import {PostRecipeButton} from "./PostRecipe/PostRecipeButton";
 import {fetchAuth} from "../../store/auth";
-import {fetchAllergiesByProfileId} from "../../store/allergies";
+import {fetchAllAllergies} from "../../store/allergies";
+import {fetchAllergiesByProfileId} from "../../store/profileAllergies";
 
 
 export const PersonalizedHomePage = () => {
@@ -14,13 +15,15 @@ export const PersonalizedHomePage = () => {
 
 
     const allergies = useSelector(state => state.allergies);
-
+    console.log(allergies)
+    const yourallergies = useSelector(state => state.profileAllergies);
 
     const dispatch = useDispatch()
     const effects = () => {
         dispatch(fetchRecipesByAllergiesAndProfile());
         dispatch(fetchAuth());
-        dispatch(fetchAllergiesByProfileId());
+        dispatch(fetchAllAllergies());
+        dispatch(fetchAllergiesByProfileId())
     };
 
 
@@ -35,7 +38,7 @@ export const PersonalizedHomePage = () => {
     return(
         <>
             {auth && <PostRecipeButton profileId = {auth.profileId} allergies={allergies}/>}
-            {allergies && <PersonalizedInfo  profile={auth} profileAllergies = {profileAllergies} allergies={allergies} />}
+            {allergies && <PersonalizedInfo  profile={auth}  allergies={yourallergies} />}
             <RecipeCategories/>
             <SuggestedRecipes recipes = {recipes}/>
 
